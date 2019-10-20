@@ -1,22 +1,5 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from behave import given, when, then
 
-
-@given(u'Start web server')
-def step_impl(context):
-    print ('background - Web browser started')
-
-
-@given(u'Connect required database')
-def step_impl(context):
-    print ('background - Connected to required database')
-
-
-@given(u'Launch web application')
-def step_impl(context):
-    print ('background - Web application launched')
 
 
 @given(u'Launch browser')
