@@ -13,6 +13,12 @@ class Proyecto:
     def mostrarHito(self):
         print("Muestro hito")
     
+    def completarHito(self):
+        print("Completo hito")
+    
+    def demorarHito(self):
+        print("Hito demorado")
+    
     def mostrarProgresoTareasAsociadas(self):
         print("Muestro tiempo que falta para terminar el proyecto")
     
@@ -22,4 +28,4 @@ class Proyecto:
     def mostrarListaDeClientesImpactados(self):
         print("Muestro lista de clientes impactados")
     
-    
+proyecto = Proyecto()
