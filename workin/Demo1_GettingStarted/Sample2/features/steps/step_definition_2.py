@@ -1,6 +1,5 @@
 from behave import given, when, then
 
-
 @given(u'Some precondition specific to this scenario')
 def step_impl(context):
     print ('Precondition set up')
@@ -39,7 +38,3 @@ def step_impl(context):
 @then(u'Respective os specific "{preferred_browser}" browser should be launched')
 def step_impl(context,preferred_browser):
     print ('Following ' + preferred_browser + ' browser is launched\n')
-
-
-#  cd D:\Automation_project\Python_Projects\Python_Behave_Demo\Demo1_GettingStarted\Sample2
-#  behave --no-capture --no-capture-stderr

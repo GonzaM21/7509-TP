@@ -1,30 +1,27 @@
 from behave import given, when, then
+from mod.proyecto import Proyecto
 
-
-
-@given(u'Launch browser')
+@given(u'que soy un lider de proyecto')
 def step_impl(context):
-    print ('Browser launched')
+    pass
 
-
-@when(u'I register with valid credentials')
+@when(u'asigno un tipo a un proyecto')
 def step_impl(context):
-    print ('Registration completed with valid credential')
+    proyecto = Proyecto()
+    proyecto.asignarTipo("Finanzas")
 
-
-@then(u'User registration should be successful')
+@then(u'tendra el tipo que le asigne')
 def step_impl(context):
-    print ('User registration is successful\n\n')
+    proyecto = Proyecto()
+    proyecto.mostrarTipo()
 
-
-@when(u'I login with valid credentials')
+@when(u'reemplazo un tipo a un proyecto')
 def step_impl(context):
-    print ('Login attempted with valid credentials')
+    proyecto = Proyecto()
+    proyecto.asignarTipo("Desarrollo")
 
 
-@then(u'Login should be successful')
+@then(u'el proyecto tendra el nuevo tipo')
 def step_impl(context):
-    print ('Login is successful\n\n')
-
-#  cd D:\Automation_project\Python_Projects\Python_Behave_Demo\Demo1_GettingStarted\Sample2
-#  behave --no-capture --no-capture-stderr
+    proyecto = Proyecto()
+    proyecto.mostrarTipo()

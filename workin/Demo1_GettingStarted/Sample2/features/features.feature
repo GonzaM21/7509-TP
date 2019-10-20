@@ -1,15 +1,14 @@
 # language: es
 
-Característica: Starting up
+Característica: Proyectos
 
-  Antecedentes: Repeat few steps for every scenario
+  Escenario: el lider de proyectos quiere asignar un tipo a un proyecto
+    Dado que soy un lider de proyecto
+     Cuando asigno un tipo a un proyecto
+     Entonces tendra el tipo que le asigne
 
-  Escenario: User registration functionality check
-    Dado Launch browser
-     Cuando I register with valid credentials
-     Entonces User registration should be successful
+  Escenario: el lider de proyecto quiere remplazar un tipo de un proyecto
+    Dado que soy un lider de proyecto
+     Cuando reemplazo un tipo a un proyecto
+     Entonces el proyecto tendra el nuevo tipo
 
-  Escenario: Login functionality check
-    Dado Launch browser
-     Cuando I login with valid credentials
-     Entonces Login should be successful
