@@ -48,7 +48,7 @@ def step_impl(context):
 def step_impl(context):
     proyecto.mostrarHito()
 
-@given(u'que jefe de desarrollo')
+@given(u'que soy un jefe de desarrollo')
 def step_impl(context):
     pass
 
@@ -59,3 +59,16 @@ def step_impl(context):
 @then(u'muestro la cantidad de horas de desarrollo de un proyecto')
 def step_impl(context):
     proyecto.mostrarHorasDeDesarrollo()
+
+@then(u'muestro el tiempo estimado para terminar el proyecto')
+def step_impl(context):
+    proyecto.mostrarProgresoTareasAsociadas()
+
+@then(u'muestro los requisitos relacionados al proyecto')
+def step_impl(context):
+    proyecto.mostrarRequisitosAsociados()
+
+@then(u'muestro la lista de clientes impactados')
+def step_impl(context):
+    proyecto.mostrarListaDeClientesImpactados()
+

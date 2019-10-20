@@ -26,7 +26,22 @@ Característica: Proyectos
      Entonces el proyecto muestra el proyecto esta atrasado
 
   Escenario: El jefe de desarrollo quiere ver la cantidad de horas totales  de desarrollo que un proyecto lleva
-    Dado que jefe de desarrollo
+    Dado que soy un jefe de desarrollo
       Cuando selecciono un proyecto
       Entonces muestro la cantidad de horas de desarrollo de un proyecto
 
+  Escenario: El jefe de desarrollo quiere ver el progreso de las tareas asociadas a un proyecto
+    Dado que soy un jefe de desarrollo
+      Cuando selecciono un proyecto
+      Entonces muestro el tiempo estimado para terminar el proyecto
+
+  Escenario: El jefe de desarrollo quiere ver los requisitos de un proyecto
+    Dado que soy un jefe de desarrollo
+      Cuando selecciono un proyecto
+      Entonces muestro los requisitos relacionados al proyecto
+
+  Escenario: El jefe de desarrollo quiere ver los clientes impactados en un proyecto
+      Dado que soy un jefe de desarrollo
+        Cuando selecciono un proyecto
+        Entonces muestro la lista de clientes impactados
+  

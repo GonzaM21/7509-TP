@@ -31,4 +31,6 @@ class Proyecto:
     def mostrarListaDeClientesImpactados(self):
         print("Muestro lista de clientes impactados")
     
+    
+
 proyecto = Proyecto()
