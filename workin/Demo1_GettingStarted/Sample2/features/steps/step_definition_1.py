@@ -47,3 +47,15 @@ def step_impl(context):
 @then(u'el proyecto muestra el proyecto esta atrasado')
 def step_impl(context):
     proyecto.mostrarHito()
+
+@given(u'que jefe de desarrollo')
+def step_impl(context):
+    pass
+
+@when(u'selecciono un proyecto')
+def step_impl(context):
+    pass
+
+@then(u'muestro la cantidad de horas de desarrollo de un proyecto')
+def step_impl(context):
+    proyecto.mostrarHorasDeDesarrollo()

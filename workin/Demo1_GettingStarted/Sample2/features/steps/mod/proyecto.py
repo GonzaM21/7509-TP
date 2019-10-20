@@ -19,6 +19,9 @@ class Proyecto:
     def demorarHito(self):
         print("Hito demorado")
     
+    def mostrarHorasDeDesarrollo(self):
+        print("Muestro horas de desarrollo")
+
     def mostrarProgresoTareasAsociadas(self):
         print("Muestro tiempo que falta para terminar el proyecto")
     

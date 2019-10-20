@@ -25,4 +25,8 @@ Característica: Proyectos
      Cuando el hito asignado tiene una fecha pasada a la actual no se completo
      Entonces el proyecto muestra el proyecto esta atrasado
 
+  Escenario: El jefe de desarrollo quiere ver la cantidad de horas totales  de desarrollo que un proyecto lleva
+    Dado que jefe de desarrollo
+      Cuando selecciono un proyecto
+      Entonces muestro la cantidad de horas de desarrollo de un proyecto
 
