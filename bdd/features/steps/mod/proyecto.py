@@ -1,4 +1,7 @@
 class Proyecto:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
     def asignarTipo(self, tipo):
         self.tipo = tipo
         print("Asigno tipo {}".format(tipo))
@@ -25,12 +28,19 @@ class Proyecto:
     def mostrarProgresoTareasAsociadas(self):
         print("Muestro tiempo que falta para terminar el proyecto")
     
+    def asignarRequisito(self, requisito):
+        self.requisito = requisito
+        print("Asigno requisito")
+
     def mostrarRequisitosAsociados(self):
         print("Muestro requisitos asociados")
 
     def mostrarListaDeClientesImpactados(self):
         print("Muestro lista de clientes impactados")
     
+    def mostrarValides(self):
+        print("Muestro si el proyecto es valido")
+    
     
 
-proyecto = Proyecto()
+proyecto = Proyecto("anInfo")

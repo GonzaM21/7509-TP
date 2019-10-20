@@ -41,7 +41,20 @@ Característica: Proyectos
       Entonces muestro los requisitos relacionados al proyecto
 
   Escenario: El jefe de desarrollo quiere ver los clientes impactados en un proyecto
-      Dado que soy un jefe de desarrollo
-        Cuando selecciono un proyecto
-        Entonces muestro la lista de clientes impactados
+    Dado que soy un jefe de desarrollo
+      Cuando selecciono un proyecto
+      Entonces muestro la lista de clientes impactados
   
+  Escenario: El jefe de desarrollo quiere asignar requisitos a un proyecto
+    Dado que soy un jefe de desarrollo
+      Cuando asigno requisitos a un proyecto
+      Entonces el requisito esta agregdo en mi proyecto
+
+  Escenario: El lider de proyecto quiere iniciar un proyecto nuevo
+    Dado que soy un lider de proyecto
+      Cuando creo un proyecto
+      Entonces informar que el proyecto fue creado con exito
+    Dado que soy un lider de proyecto
+      Cuando creo un proyecto con un nombre ya existente
+      Entonces informar que no se creo con normalidad
+

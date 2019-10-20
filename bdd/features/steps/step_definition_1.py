@@ -72,3 +72,26 @@ def step_impl(context):
 def step_impl(context):
     proyecto.mostrarListaDeClientesImpactados()
 
+@when(u'asigno requisitos a un proyecto')
+def step_impl(context):
+    proyecto.asignarRequisito("elRequisito")
+
+@then(u'el requisito esta agregdo en mi proyecto')
+def step_impl(context):
+    proyecto.mostrarRequisitosAsociados()
+
+@when(u'creo un proyecto')
+def step_impl(context):
+    proyecto = Proyecto("miProyecto")
+
+@then(u'informar que el proyecto fue creado con exito')
+def step_impl(context):
+    proyecto.mostrarValides()
+
+@when(u'creo un proyecto con un nombre ya existente')
+def step_impl(context):
+    proyecto = Proyecto("miProyecto")
+
+@then(u'informar que no se creo con normalidad')
+def step_impl(context):
+    proyecto.mostrarValides()
