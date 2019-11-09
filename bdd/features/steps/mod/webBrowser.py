@@ -12,4 +12,7 @@ class WebBrowser:
     def ingresar(self, elemento, valor):
         print("Ingreso en valor en el elemento", elemento)
 
+    def interactuar(self, elemento):
+        print("Interactue con el elemento", elemento)
+
 webBrowser = WebBrowser()

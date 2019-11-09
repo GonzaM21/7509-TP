@@ -82,13 +82,13 @@ Característica: webBrowser
      Y ingreso a notificaciones
      Entonces veo las notificaciones relacionadas a mi funcion en la fecha ingresada
     
-  Escenario: el jefe de desarrollor
+  Escenario: el jefe de desarrollo quiere saber los proyectos y sus lideres
     Dado que soy el jefe de desarrollo
      Cuando ingreso a la direccion de la pagina web de PSA
      Y ingreso a lideres de proyecto
      Entonces veo los proyectos y cada lider de proyecto
          
-  Escenario: el jefe de desarrollor
+  Escenario: el jefe de desarrollo quiere saber el listado de proyectos y su lista de tareas
     Dado que soy el jefe de desarrollo
      Cuando ingreso a la direccion de la pagina web de PSA
      Y ingreso a proyectos
@@ -100,3 +100,35 @@ Característica: webBrowser
      Y veo sus tareas
      Y su tiempo invertido por cada tarea
      Y su tiempo estimado por caa tarea
+         
+  Escenario: el lider de proyecto quiere saber sus tareas relacionadas al proyecto asignado
+    Dado que soy el lider de proyecto
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a tareas
+     Entonces veo un listado con los proyectos asignados
+    Dado que soy el lider de proyecto
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a tareas
+     Y selecciono un proyecto
+     Entonces veo un listado con las tareas relacionadas al proyecto
+     Y veo su prioridad
+     Y veo su titulo
+     Y veo su estado
+     Y veo su tiempo invertido
+     Y veo su tiempo estimado
+     Y veo su tiempo restante
+
+         
+  Escenario: el lider de proyecto quiere crear una tarea en un proyecto asignado
+    Dado que soy el lider de proyecto
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a tareas
+     Y presiono en crear tarea
+     Entonces veo puedo crear una tarea
+    Dado que soy el lider de proyecto
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a tareas
+     Y presiono en crear tarea
+     Entonces veo puedo ingresar un titulo
+     Y veo que puedo ingresar una descripcion
+     Y veo que puedo ingresar a que proyecto pertenece

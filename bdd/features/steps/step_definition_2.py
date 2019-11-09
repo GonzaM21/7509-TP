@@ -223,3 +223,58 @@ def step_impl(context):
 @then(u'su tiempo estimado por caa tarea')
 def step_impl(context):
     webBrowser.obtenerElemento("tiempo-estimado-tarea")
+
+@given(u'que soy el lider de proyecto')
+def step_impl(context):
+    pass
+
+
+@then(u'veo un listado con los proyectos asignados')
+def step_impl(context):
+    webBrowser.obtenerElemento("listado-proyectos")
+
+
+@then(u'veo un listado con las tareas relacionadas al proyecto')
+def step_impl(context):
+    webBrowser.obtenerElemento("listado-proyectos")
+
+@then(u'veo su titulo')
+def step_impl(context):
+    webBrowser.obtenerElemento("titulo")
+
+
+@then(u'veo su tiempo invertido')
+def step_impl(context):
+    webBrowser.obtenerElemento("tiempo-invertido")
+
+
+@then(u'veo su tiempo restante')
+def step_impl(context):
+    webBrowser.obtenerElemento("tiempo-restante")
+
+
+@when(u'presiono en crear tarea')
+def step_impl(context):
+    webBrowser.interactuar("crear-tarea")
+
+
+@then(u'veo puedo crear una tarea')
+def step_impl(context):
+    webBrowser.obtenerElemento("creacion-de-tareas")
+
+
+@then(u'veo puedo ingresar un titulo')
+def step_impl(context):
+    webBrowser.obtenerElemento("titulo")
+
+
+@then(u'veo que puedo ingresar una descripcion')
+def step_impl(context):
+    webBrowser.obtenerElemento("descripcion")
+
+
+@then(u'veo que puedo ingresar a que proyecto pertenece')
+def step_impl(context):
+    webBrowser.ingresar("proyecto", "PSA-PROYECT")
+
+
