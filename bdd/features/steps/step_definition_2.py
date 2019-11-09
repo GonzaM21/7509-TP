@@ -141,3 +141,85 @@ def step_impl(context):
 @then(u'veo su descripcion')
 def step_impl(context):
     webBrowser.obtenerElemento("descripcion")
+
+@given(u'que soy el gerente de marketing')
+def step_impl(context):
+    pass
+
+@when(u'ingreso a features')
+def step_impl(context):
+    webBrowser.navegarPaginaWeb("PSA.com.ar/direccion/projectoPSA/features")
+
+@then(u'veo un listado de features con su nombre')
+def step_impl(context):
+    webBrowser.obtenerElemento("feature")
+
+@then(u'veo las notificaciones relacionadas a mi funcion')
+def step_impl(context):
+    webBrowser.obtenerElemento("notificaciones")
+
+@when(u'ingreso un dia')
+def step_impl(context):
+    webBrowser.ingresar("fecha", "19-12-2019")
+
+@then(u'veo las notificaciones relacionadas a mi funcion en la fecha ingresada')
+def step_impl(context):
+    webBrowser.obtenerElemento("notificaciones")
+
+@given(u'que soy el jefe de desarrollo')
+def step_impl(context):
+    pass
+
+@when(u'ingreso a lideres de proyecto')
+def step_impl(context):
+    webBrowser.navegarPaginaWeb("PSA.com.ar/direccion/projectoPSA/lideres")
+
+
+@then(u'veo los proyectos y cada lider de proyecto')
+def step_impl(context):
+    webBrowser.obtenerElemento("proyectos-lideres")
+
+
+@when(u'ingreso a proyectos')
+def step_impl(context):
+    webBrowser.navegarPaginaWeb("PSA.com.ar/direccion/projectoPSA/proyectos")
+
+
+@then(u'veo un listado con los proyectos')
+def step_impl(context):
+    webBrowser.obtenerElemento("proyectos")
+
+
+@then(u'veo sus horas de desarrollo')
+def step_impl(context):
+    webBrowser.obtenerElemento("horas-desarrollo")
+
+
+@then(u'veo sus tiempo estimado de finalizacion')
+def step_impl(context):
+    webBrowser.obtenerElemento("tiempo-estimado")
+
+
+@then(u'veo los clientes relacionados al proyecto')
+def step_impl(context):
+    webBrowser.obtenerElemento("clientes-proyecto")
+
+
+@then(u'veo sus requisitos estimados')
+def step_impl(context):
+    webBrowser.obtenerElemento("requisitos-estimado")
+
+
+@then(u'veo sus tareas')
+def step_impl(context):
+    webBrowser.obtenerElemento("tareas")
+
+
+@then(u'su tiempo invertido por cada tarea')
+def step_impl(context):
+    webBrowser.obtenerElemento("tiempo-invertido-tarea")
+
+
+@then(u'su tiempo estimado por caa tarea')
+def step_impl(context):
+    webBrowser.obtenerElemento("tiempo-estimado-tarea")

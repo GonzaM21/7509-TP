@@ -62,5 +62,41 @@ Característica: webBrowser
      Y veo su tiempo estimado
      Y veo tu feature
      Y veo su descripcion
-     
+    
+  Escenario: el gerente de marketing quiere los features
+    Dado que soy el gerente de marketing
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a features
+     Entonces veo un listado de features con su nombre
+     Y veo su prioridad
+     Y veo su tiempo estimado
 
+  Escenario: el empleado de PSA quiere saber las notificaciones relacionadas a su funcion
+    Dado que soy empleado de PSA
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a notificaciones
+     Entonces veo las notificaciones relacionadas a mi funcion
+    Dado que soy el gerente de marketing
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso un dia
+     Y ingreso a notificaciones
+     Entonces veo las notificaciones relacionadas a mi funcion en la fecha ingresada
+    
+  Escenario: el jefe de desarrollor
+    Dado que soy el jefe de desarrollo
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a lideres de proyecto
+     Entonces veo los proyectos y cada lider de proyecto
+         
+  Escenario: el jefe de desarrollor
+    Dado que soy el jefe de desarrollo
+     Cuando ingreso a la direccion de la pagina web de PSA
+     Y ingreso a proyectos
+     Entonces veo un listado con los proyectos
+     Y veo sus horas de desarrollo
+     Y veo sus tiempo estimado de finalizacion
+     Y veo los clientes relacionados al proyecto
+     Y veo sus requisitos estimados
+     Y veo sus tareas
+     Y su tiempo invertido por cada tarea
+     Y su tiempo estimado por caa tarea
