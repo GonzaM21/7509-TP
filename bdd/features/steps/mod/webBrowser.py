@@ -8,5 +8,8 @@ class WebBrowser:
 
     def obtenerElemento(self, elemento):
         print("Obtuve elemento")
-        
+    
+    def ingresar(self, elemento, valor):
+        print("Ingreso en valor en el elemento", elemento)
+
 webBrowser = WebBrowser()
