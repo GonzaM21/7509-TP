@@ -12,8 +12,32 @@ class App extends React.Component {
       <React.Fragment>
         <NavBar />
         <div className="jumbotron">
+          <div className="row">
+            <div className="col-sm">
+              Ultimas notificaciones
+            </div>
+            <div className="col-sm">
+              Imagen de calendario aqui
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm">
+              <div className="text-wrapper">
+                Proyectos de desarrollo: 6
+              </div>
+              <div className="text-wrapper">
+              Proyectos de customizacion: 3
+              </div>
+              <div className="text-wrapper">
+                Proyectos de implemetacion: 3
+              </div>
+            </div>
+            <div className="col-sm"> </div>
+          </div>
+          Meto el grafico de avance de los proyectos aca
           
         </div>
+
       </React.Fragment>
     );
   }
