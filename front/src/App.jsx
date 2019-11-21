@@ -1,13 +1,15 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import NavBar from "./components/NavBar";
+import Button from '@material-ui/core/Button';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  
   render() {
+    
     return (
       <React.Fragment>
         <NavBar />
