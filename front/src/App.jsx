@@ -1,5 +1,6 @@
 import React from "react";
 import { hot } from "react-hot-loader";
+import NavBar from "./components/NavBar";
 
 class App extends React.Component {
   constructor(props) {
@@ -9,11 +10,9 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <title>
-          PSA
-        </title>
-        <div className="Hello world">
-          Hello world.
+        <NavBar />
+        <div className="jumbotron">
+          
         </div>
       </React.Fragment>
     );
