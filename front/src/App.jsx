@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "./components/NavBar";
-import Buscador from "./components/Buscador";
-
+import Proyectos from "./components/Proyectos";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +11,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <NavBar />
-        <Buscador />
+        <Proyectos />
       </React.Fragment>
     );
   }

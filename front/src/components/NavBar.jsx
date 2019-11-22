@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { Icon } from "semantic-ui-react";
 
 class NavBar extends React.Component {
@@ -12,10 +12,10 @@ class NavBar extends React.Component {
     return (
         <div id="appbar" position={"static"} style={{width: "100%", background: "rgb(46, 61, 179)", color: "white", display: "flex", alignItems: "center", justifyContent: "space-between"}}>
             <span>
-                <Button id="home" color='inherit' className="menu-item" href="/" >PSA</Button>
-                <Button id="proyects" color='inherit' className="proyectos" href="/proyectos" >Proyectos</Button>
-                <Button id="clients" color='inherit' className="clientes" href="/clientes" >Clientes</Button>
-                <Button id="config" color='inherit' className="config" href="/configuración" >Configuración</Button>   
+                <Button id="home" color='inherit' className="menu-item" to="/" >PSA</Button>
+                <Button id="proyects" color='inherit' className="proyectos" to="/proyectos" >Proyectos</Button>
+                <Button id="clients" color='inherit' className="clientes" to="/clientes" >Clientes</Button>
+                <Button id="config" color='inherit' className="config" to="/configuración" >Configuración</Button>   
             </span>
             <span>
                 <Button style={{textAlign: 'center', color: "white", height: "100%",  fontSize:"20px"}}>
