@@ -1,55 +1,33 @@
 import React from "react";
-import { hot } from "react-hot-loader";
 import { AppBar, Button } from "@material-ui/core";
+import { Icon } from "semantic-ui-react";
+
 class NavBar extends React.Component {
+    
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-        <AppBar>
-            <div>
-                <Button variant="contained" color="primary">
-                    Inicio
+        <div id="appbar" position={"static"} style={{width: "100%", background: "rgb(46, 61, 179)", color: "white", display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+            <span>
+                <Button id="home" color='inherit' className="menu-item" href="/" >PSA</Button>
+                <Button id="proyects" color='inherit' className="proyectos" href="/proyectos" >Proyectos</Button>
+                <Button id="clients" color='inherit' className="clientes" href="/clientes" >Clientes</Button>
+                <Button id="config" color='inherit' className="config" href="/configuración" >Configuración</Button>   
+            </span>
+            <span>
+                <Button style={{textAlign: 'center', color: "white", height: "100%",  fontSize:"20px"}}>
+                    <Icon name='user circle' style={{margin:0,marginLeft:"1%",height:"100%"}}/>
                 </Button>
-                <Button variant="contained" color="primary">
-                    Tareas
+                <Button style={{textAlign: 'center', color: "white", height: "100%", margin:0, fontSize:"20px"}}>
+                    <Icon name='bell' style={{margin:0,marginLeft:"1%",height:"100%"}}/>
                 </Button>
-                <Button variant="contained" color="primary">
-                    Proyectos
-                </Button>
-                <Button variant="contained" color="primary">
-                    Notificaciones
-                </Button>
-            </div>
-        </AppBar>
-    /*
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a className="navbar-brand" href="#">PSA-Lider</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse" id="navbarColor01">
-                <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                    <a className="nav-link" href="#">Inicio <span className="sr-only">(current)</span></a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Tareas</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Proyectos</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Notificaciones</a>
-                </li>
-                </ul>
-            </div>
-        </nav>
-        */
+            </span>
+        </div>
     );
   }
 }
 
-export default hot(module)(NavBar);
+export default NavBar;
