@@ -4,6 +4,20 @@ import { Button, TextField } from "@material-ui/core";
 class CrearTarea extends React.Component {
   constructor(props) {
     super(props);
+    this.crearTarea = this.crearTarea.bind(this);
+  }
+
+  crearTarea() {
+    var tarea = {
+        prioridad: 1,
+        titulo: "crear front 1231",
+        descripcion: "se debe crear el front",
+        tiempoReal: "12hs",
+        tiempoEstimado: "10hs",
+        estado: "Desarrollando",
+        desarrolladorAsignado: "felipe"
+    };
+    this.props.agregarTareas(tarea);
   }
 
   render() {
@@ -52,7 +66,7 @@ class CrearTarea extends React.Component {
             />
             <div className="ui grid">
                 <div className="two wide column">
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="primary" onClick={this.crearTarea}>
                         Aceptar
                     </Button>
                 </div>

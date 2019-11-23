@@ -62,6 +62,17 @@ class Proyectos extends React.Component {
     }
     this.agregarNuevoProyecto = this.agregarNuevoProyecto.bind(this);
     this.mostrarTareas = this.mostrarTareas.bind(this);
+    this.agregarTareas = this.agregarTareas.bind(this);
+  }
+
+  agregarTareas(tarea) {
+    let proyectosCopy = [...this.state.proyectos];
+    
+    let tareasNuevas = [...proyectosCopy[this.state.proyectoSeleccionado].tareas, tarea];
+    proyectosCopy[this.state.proyectoSeleccionado].tareas = tareasNuevas;
+    this.setState({
+      proyectos: proyectosCopy
+    });
   }
 
   mostrarTareas(numeroDeProyecto) {
@@ -147,7 +158,7 @@ class Proyectos extends React.Component {
           </Button>
         </div>  
         <CrearProyecto agregarNuevoProyecto={this.agregarNuevoProyecto} mostrarCrearProyectos={this.state.mostrarCrearProyectos} cantidadDeProyecto={this.state.cantidadDeProyecto} mostrarTareas={this.mostrarTareas}/>
-        <Tareas mostrarTareas={this.state.mostrarTareas} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
+        <Tareas agregarTareas={this.agregarTareas} mostrarTareas={this.state.mostrarTareas} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
       </div>
     );
   }

@@ -66,7 +66,7 @@ class Tareas extends React.Component {
             <div className="ui grid">
                 <div className="two wide column">
                     <Button variant="contained" color="primary">
-                        Crear Tarea
+                        Crear nueva tarea
                     </Button>
                 </div>
                 <div className="two wide column">
@@ -75,7 +75,7 @@ class Tareas extends React.Component {
                     </Button>
                 </div>
             </div>
-            <CrearTarea />
+            <CrearTarea agregarTareas={this.props.agregarTareas}/>
         </div>
         
     );
