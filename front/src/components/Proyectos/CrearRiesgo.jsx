@@ -9,7 +9,7 @@ class CrearRiesgo extends React.Component {
   render() {
     
     return (
-        <div className="crear-riesgo">
+        <div className="crear-riesgo" hidden={!this.props.mostrarCrearRiesgo}>
             <div className="texto-informacion">
                 Ingrese el nombre del riesgo
             </div>
@@ -45,7 +45,7 @@ class CrearRiesgo extends React.Component {
                     </Button>
                 </div>
                 <div className="two wide column">
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="primary" onClick={this.props.intercambiarTablaCrearRiesgo}>
                         Cancelar
                     </Button>
                 </div>

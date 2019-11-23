@@ -13,8 +13,19 @@ import CrearRiesgo from "./CrearRiesgo";
 class Riesgos extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+        mostrarTabla: true,
+        mostrarCrearRiesgo: false
+    }
+    this.intercambiarTablaCrearRiesgo = this.intercambiarTablaCrearRiesgo.bind(this);
   }
 
+  intercambiarTablaCrearRiesgo() {
+      this.setState({
+        mostrarTabla: !this.state.mostrarTabla,
+        mostrarCrearRiesgo: !this.state.mostrarCrearRiesgo
+      })
+  }
   render() {
     const StyledTableCell = withStyles(theme => ({
         head: {
@@ -50,37 +61,48 @@ class Riesgos extends React.Component {
     ];
 
     return (
-        <div className="riesgos-tab">
+        <div className="riesgos-tab" hidden={!this.props.mostrarRiesgos}>
+            <div className="informacion-riesgo" hidden={!this.state.mostrarTabla}>
                 <div className="riesgo numero">
                     Limite de riesgo: 0.4
                 </div>
                 <Table className="tabla-riesgos" aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Riesgo</StyledTableCell>
-                        <StyledTableCell align="right">Probabilidad  Ocurrencia</StyledTableCell>
-                        <StyledTableCell align="right">Impacto en el proyecto</StyledTableCell>
-                        <StyledTableCell align="right">Exposicion</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                {rows.map((row, i) => (
-                    <StyledTableRow key={i}>
-                        <StyledTableCell component="th" scope="row">
-                            {row.nombre}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">{row.probabilidadOcurrencia}</StyledTableCell>
-                        <StyledTableCell align="right">{row.impactoProyecto}</StyledTableCell>
-                        <StyledTableCell align="right">{row.exposicion}</StyledTableCell>
-                    </StyledTableRow>
-                ))}
-                </TableBody>
-            </Table>
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Riesgo</StyledTableCell>
+                            <StyledTableCell align="right">Probabilidad  Ocurrencia</StyledTableCell>
+                            <StyledTableCell align="right">Impacto en el proyecto</StyledTableCell>
+                            <StyledTableCell align="right">Exposicion</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row, i) => (
+                            <StyledTableRow key={i}>
+                                <StyledTableCell component="th" scope="row">
+                                    {row.nombre}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">{row.probabilidadOcurrencia}</StyledTableCell>
+                                <StyledTableCell align="right">{row.impactoProyecto}</StyledTableCell>
+                                <StyledTableCell align="right">{row.exposicion}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <div className="ui grid">
+                    <div className="two wide column">
+                        <Button variant="contained" color="primary" onClick={this.intercambiarTablaCrearRiesgo}>
+                            Crear riesgo
+                        </Button>
+                    </div>
+                    <div className="two wide column">
+                        <Button variant="contained" color="primary" onClick={this.props.intercambiarTabRiesgos}>
+                            Volver
+                        </Button>
+                    </div>
+                </div>
+            </div>
             
-            <Button variant="contained" color="primary">
-                Crear nuevo riesgo
-            </Button>
-            <CrearRiesgo />
+            <CrearRiesgo intercambiarTablaCrearRiesgo={this.intercambiarTablaCrearRiesgo} mostrarCrearRiesgo={this.state.mostrarCrearRiesgo}/>
         </div>
         
     );

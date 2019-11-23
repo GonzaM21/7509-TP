@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Button } from "@material-ui/core";
 import Iteraciones from "./Iteraciones";
 import Hitos from "./Hitos";
+import Riesgos from "./Riesgos";
 import Tareas from "./Tareas";
 import CrearProyecto from "./CrearProyecto";
 import Detalles from "./Detalles";
@@ -44,6 +45,7 @@ class Proyectos extends React.Component {
       mostrarCrearProyectos: false,
       mostrarTareas: false,
       mostrarDetalles: false,
+      mostrarRiesgos: false,
       proyectoSeleccionado: 0
     }
     this.agregarNuevoProyecto = this.agregarNuevoProyecto.bind(this);
@@ -53,7 +55,24 @@ class Proyectos extends React.Component {
     this.volverDeProyectos = this.volverDeProyectos.bind(this);
     this.intercambiarTabDetalles = this.intercambiarTabDetalles.bind(this);
     this.mostrarDetalles = this.mostrarDetalles.bind(this);
+    this.intercambiarTabRiesgos = this.intercambiarTabRiesgos.bind(this);
+    this.mostrarRiesgos = this.mostrarRiesgos.bind(this);
   }
+  
+  mostrarRiesgos(numeroDeProyecto) {
+    this.setState({
+      proyectoSeleccionado: numeroDeProyecto
+    });
+    this.intercambiarTabRiesgos();
+  }
+
+  intercambiarTabRiesgos() {
+    this.setState({
+      mostrarProyectos: !this.state.mostrarProyectos,
+      mostrarRiesgos: !this.state.mostrarRiesgos
+    });
+  }
+
   mostrarDetalles(numeroDeProyecto) {
     this.setState({
       proyectoSeleccionado: numeroDeProyecto
@@ -166,7 +185,7 @@ class Proyectos extends React.Component {
                   <StyledTableCell align="right">
                     <Button variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
                       Tareas
-                    </Button>, <Button variant="contained" color="primary">
+                    </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarRiesgos(i)}>
                       Riesgos
                     </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarDetalles(i)}>
                       Detalles
@@ -184,13 +203,13 @@ class Proyectos extends React.Component {
               ))}
             </TableBody>
           </Table>
-          
           <Button variant="contained" color="primary" onClick={() => this.setState({mostrarProyectos: false, mostrarCrearProyectos: true})}>
             Crear proyecto
           </Button>
         </div>  
         <CrearProyecto volverDeProyectos={this.volverDeProyectos} agregarNuevoProyecto={this.agregarNuevoProyecto} mostrarCrearProyectos={this.state.mostrarCrearProyectos}/>
         <Tareas volverDeTareas={this.volverDeTareas} agregarTareas={this.agregarTareas} mostrarTareas={this.state.mostrarTareas} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
+        <Riesgos mostrarRiesgos={this.state.mostrarRiesgos} intercambiarTabRiesgos={this.intercambiarTabRiesgos} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Detalles mostrarDetalles={this.state.mostrarDetalles} intercambiarTabDetalles={this.intercambiarTabDetalles} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
       </div>
     );

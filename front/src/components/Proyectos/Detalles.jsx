@@ -75,9 +75,13 @@ class Detalles extends React.Component {
                         {proyecto.fechaEstimadaDeFinalizacion}
                     </div>
                 </div>
-                <Button variant="contained" color="primary" onClick={this.props.intercambiarTabDetalles}>
-                    Volver
-                </Button>
+                <div className="row">
+                    <div className="column" style={{display: "flex", justifyContent: "center"}}>
+                        <Button variant="contained" color="primary" onClick={this.props.intercambiarTabDetalles}>
+                            Volver
+                        </Button>
+                    </div>
+                </div>
             </div>
         </div>
         
