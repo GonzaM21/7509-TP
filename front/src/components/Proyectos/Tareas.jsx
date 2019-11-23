@@ -70,7 +70,7 @@ class Tareas extends React.Component {
                     </Button>
                 </div>
                 <div className="two wide column">
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="primary" onClick={this.props.volverDeTareas}>
                         Volver
                     </Button>
                 </div>
