@@ -12,6 +12,18 @@ import CrearTarea from "./CrearTarea";
 class Tareas extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+        mostrarTabla: true,
+        mostrarCrearTareas: false
+    }
+    this.intercambiarVisibilidadTablaCrear = this.intercambiarVisibilidadTablaCrear.bind(this);
+  }
+
+  intercambiarVisibilidadTablaCrear() {
+    this.setState({
+        mostrarTabla: !this.state.mostrarTabla,
+        mostrarCrearTareas: !this.state.mostrarCrearTareas
+    });
   }
 
   render() {
@@ -35,47 +47,49 @@ class Tareas extends React.Component {
     
     return (
         <div className="tareas-tab" hidden={!this.props.mostrarTareas}>
+            <div hidden={!this.state.mostrarTabla}>
                 <Table className="tabla-tareas" aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Prioridad</StyledTableCell>
-                        <StyledTableCell align="right">Titulo</StyledTableCell>
-                        <StyledTableCell align="right">Descripcion</StyledTableCell>
-                        <StyledTableCell align="right">Tiempo Real</StyledTableCell>
-                        <StyledTableCell align="right">Tiempo Estimado</StyledTableCell>
-                        <StyledTableCell align="right">Estado</StyledTableCell>
-                        <StyledTableCell align="right">Desarrollador asignado</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                {this.props.proyectos[this.props.proyectoSeleccionado].tareas.map((row, i) => (
-                    <StyledTableRow key={i}>
-                        <StyledTableCell component="th" scope="row">
-                            {row.prioridad}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">{row.titulo}</StyledTableCell>
-                        <StyledTableCell align="right">{row.descripcion}</StyledTableCell>
-                        <StyledTableCell align="right">{row.tiempoReal}</StyledTableCell>
-                        <StyledTableCell align="right">{row.tiempoEstimado}</StyledTableCell>
-                        <StyledTableCell align="right">{row.estado}</StyledTableCell>
-                        <StyledTableCell align="right">{row.desarrolladorAsignado}</StyledTableCell>
-                    </StyledTableRow>
-                ))}
-                </TableBody>
-            </Table>
-            <div className="ui grid">
-                <div className="two wide column">
-                    <Button variant="contained" color="primary">
-                        Crear nueva tarea
-                    </Button>
-                </div>
-                <div className="two wide column">
-                    <Button variant="contained" color="primary" onClick={this.props.volverDeTareas}>
-                        Volver
-                    </Button>
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Prioridad</StyledTableCell>
+                            <StyledTableCell align="right">Titulo</StyledTableCell>
+                            <StyledTableCell align="right">Descripcion</StyledTableCell>
+                            <StyledTableCell align="right">Tiempo Real</StyledTableCell>
+                            <StyledTableCell align="right">Tiempo Estimado</StyledTableCell>
+                            <StyledTableCell align="right">Estado</StyledTableCell>
+                            <StyledTableCell align="right">Desarrollador asignado</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {this.props.proyectos[this.props.proyectoSeleccionado].tareas.map((row, i) => (
+                        <StyledTableRow key={i}>
+                            <StyledTableCell component="th" scope="row">
+                                {row.prioridad}
+                            </StyledTableCell>
+                            <StyledTableCell align="right">{row.titulo}</StyledTableCell>
+                            <StyledTableCell align="right">{row.descripcion}</StyledTableCell>
+                            <StyledTableCell align="right">{row.tiempoReal}</StyledTableCell>
+                            <StyledTableCell align="right">{row.tiempoEstimado}</StyledTableCell>
+                            <StyledTableCell align="right">{row.estado}</StyledTableCell>
+                            <StyledTableCell align="right">{row.desarrolladorAsignado}</StyledTableCell>
+                        </StyledTableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+                <div className="ui grid">
+                    <div className="two wide column">
+                        <Button variant="contained" color="primary" onClick={this.intercambiarVisibilidadTablaCrear}>
+                            Crear nueva tarea
+                        </Button>
+                    </div>
+                    <div className="two wide column">
+                        <Button variant="contained" color="primary" onClick={this.props.volverDeTareas}>
+                            Volver
+                        </Button>
+                    </div>
                 </div>
             </div>
-            <CrearTarea agregarTareas={this.props.agregarTareas}/>
+            <CrearTarea mostrarCrearTareas={this.state.mostrarCrearTareas} intercambiarVisibilidadTablaCrear={this.intercambiarVisibilidadTablaCrear} agregarTareas={this.props.agregarTareas}/>
         </div>
         
     );

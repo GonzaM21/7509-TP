@@ -36,34 +36,19 @@ class Proyectos extends React.Component {
           iteraciones: [],
           hitos: [],
           limiteDeRiesgo: "0.3",
-          fechaEstimadaDeFinalizacion: "25/11/2019",
-          acciones: [<Button variant="contained" color="primary" key={0} onClick={() => this.mostrarTareas(0)}>
-                      Tareas
-                    </Button>, <Button variant="contained" color="primary" key={1}>
-                      Riesgos
-                    </Button>, <Button variant="contained" color="primary" key={2}>
-                      Detalles
-                    </Button>, <Button variant="contained" color="primary" key={3}>
-                      Iteracion
-                    </Button>, <Button variant="contained" color="primary" key={4}>
-                      Hitos
-                    </Button>, <Button variant="contained" color="primary" key={5}>
-                      Cancelar
-                    </Button>, <Button variant="contained" color="primary" key={6}>
-                      Finalizar
-                    </Button>]
+          fechaEstimadaDeFinalizacion: "25/11/2019"
       }
       ],
       mostrarProyectos: true,
       mostrarCrearProyectos: false,
       mostrarTareas: false,
-      proyectoSeleccionado: 0,
-      cantidadDeProyecto: 0
+      proyectoSeleccionado: 0
     }
     this.agregarNuevoProyecto = this.agregarNuevoProyecto.bind(this);
     this.mostrarTareas = this.mostrarTareas.bind(this);
     this.agregarTareas = this.agregarTareas.bind(this);
     this.volverDeTareas = this.volverDeTareas.bind(this);
+    this.volverDeProyectos = this.volverDeProyectos.bind(this);
   }
 
   agregarTareas(tarea) {
@@ -77,7 +62,6 @@ class Proyectos extends React.Component {
   }
 
   mostrarTareas(numeroDeProyecto) {
-    console.log(numeroDeProyecto);
     this.setState({
       proyectoSeleccionado: numeroDeProyecto,
       mostrarProyectos: false,
@@ -91,11 +75,17 @@ class Proyectos extends React.Component {
       mostrarTareas: false
     });
   }
-
+  
+  volverDeProyectos() {
+    this.setState({
+      mostrarProyectos: true,
+      mostrarCrearProyectos: false
+    });
+  }
+  
   agregarNuevoProyecto(proyecto) {
     this.setState({
       proyectos: [...this.state.proyectos, proyecto],
-      cantidadDeProyecto: this.state.cantidadDeProyecto + 1
     });
     this.setState({
       mostrarProyectos: true,
@@ -155,7 +145,23 @@ class Proyectos extends React.Component {
                   <StyledTableCell align="right">{row.tipo}</StyledTableCell>
                   <StyledTableCell align="right">{row.estado}</StyledTableCell>
                   
-                  <StyledTableCell align="right">{row.acciones}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    <Button variant="contained" color="primary" key={0} onClick={() => this.mostrarTareas(i)}>
+                      Tareas
+                    </Button>, <Button variant="contained" color="primary" key={1}>
+                      Riesgos
+                    </Button>, <Button variant="contained" color="primary" key={2}>
+                      Detalles
+                    </Button>, <Button variant="contained" color="primary" key={3}>
+                      Iteracion
+                    </Button>, <Button variant="contained" color="primary" key={4}>
+                      Hitos
+                    </Button>, <Button variant="contained" color="primary" key={5}>
+                      Cancelar
+                    </Button>, <Button variant="contained" color="primary" key={6}>
+                      Finalizar
+                    </Button>
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -165,7 +171,7 @@ class Proyectos extends React.Component {
             Crear proyecto
           </Button>
         </div>  
-        <CrearProyecto agregarNuevoProyecto={this.agregarNuevoProyecto} mostrarCrearProyectos={this.state.mostrarCrearProyectos} cantidadDeProyecto={this.state.cantidadDeProyecto} mostrarTareas={this.mostrarTareas}/>
+        <CrearProyecto volverDeProyectos={this.volverDeProyectos} agregarNuevoProyecto={this.agregarNuevoProyecto} mostrarCrearProyectos={this.state.mostrarCrearProyectos}/>
         <Tareas volverDeTareas={this.volverDeTareas} agregarTareas={this.agregarTareas} mostrarTareas={this.state.mostrarTareas} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
       </div>
     );

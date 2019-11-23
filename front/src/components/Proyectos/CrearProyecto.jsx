@@ -48,21 +48,6 @@ class CrearProyecto extends React.Component {
         hitos: [],
         limiteDeRiesgo: this.state.limiteDeRiesgo,
         fechaEstimadaDeFinalizacion: this.state.fechaDeFinalizacion,
-        acciones: [<Button variant="contained" color="primary" key={0} onClick={() => this.props.mostrarTareas(this.props.cantidadDeProyecto)}>
-                    Tareas
-                  </Button>, <Button variant="contained" color="primary" key={1}>
-                    Riesgos
-                  </Button>, <Button variant="contained" color="primary" key={2}>
-                    Detalles
-                  </Button>, <Button variant="contained" color="primary" key={3}>
-                    Iteracion
-                  </Button>, <Button variant="contained" color="primary" key={4}>
-                    Hitos
-                  </Button>, <Button variant="contained" color="primary" key={5}>
-                    Cancelar
-                  </Button>, <Button variant="contained" color="primary" key={6}>
-                    Finalizar
-                  </Button>]
     };
     this.props.agregarNuevoProyecto(proyecto);
   }
@@ -148,7 +133,7 @@ class CrearProyecto extends React.Component {
                     </Button>
                 </div>
                 <div className="two wide column">
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="primary" onClick={this.props.volverDeProyectos}>
                         Cancelar
                     </Button>
                 </div>
