@@ -7,7 +7,7 @@ class Detalles extends React.Component {
   }
 
   render() {
-    
+    let proyecto = this.props.proyectos[this.props.proyectoSeleccionado];
     return (
         <div className="detalles-tab" hidden={!this.props.mostrarDetalles}>
             <div className="ui two column grid">
@@ -16,7 +16,7 @@ class Detalles extends React.Component {
                         Nombre
                     </div>
                     <div className="column">
-                        algun nombre
+                        {proyecto.nombre}
                     </div>
                 </div>
                 <div className="row">
@@ -24,7 +24,7 @@ class Detalles extends React.Component {
                         Prioridad
                     </div>
                     <div className="column">
-                        121
+                        {proyecto.prioridad}
                     </div>
                 </div>
                 <div className="row">
@@ -32,7 +32,7 @@ class Detalles extends React.Component {
                         Version
                     </div>
                     <div className="column">
-                        v1.0
+                        {proyecto.version}
                     </div>
                 </div>
                 <div className="row">
@@ -40,7 +40,7 @@ class Detalles extends React.Component {
                         Lider
                     </div>
                     <div className="column">
-                        CEO
+                        {proyecto.lider}
                     </div>
                 </div>
                 <div className="row">
@@ -48,7 +48,7 @@ class Detalles extends React.Component {
                         Tipo
                     </div>
                     <div className="column">
-                        Desarrollo
+                        {proyecto.tipo}
                     </div>
                 </div>
                 <div className="row">
@@ -56,7 +56,7 @@ class Detalles extends React.Component {
                         Estado
                     </div>
                     <div className="column">
-                        Desarrollando
+                        {proyecto.estado}
                     </div>
                 </div>
                 <div className="row">
@@ -64,7 +64,7 @@ class Detalles extends React.Component {
                         Limite de riesgo
                     </div>
                     <div className="column">
-                        0.4
+                        {proyecto.limiteDeRiesgo}
                     </div>
                 </div>
                 <div className="row">
@@ -72,13 +72,13 @@ class Detalles extends React.Component {
                         Fecha estimada de finalizacion
                     </div>
                     <div className="column">
-                        0.4
+                        {proyecto.fechaEstimadaDeFinalizacion}
                     </div>
                 </div>
                 <Button variant="contained" color="primary" onClick={this.props.intercambiarTabDetalles}>
                     Volver
                 </Button>
-        </div>
+            </div>
         </div>
         
     );
