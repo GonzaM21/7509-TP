@@ -49,6 +49,12 @@ class CrearProyecto extends React.Component {
         <TextField
             variant="outlined"
         />
+        <div className="texto-informacion">
+            Ingrese fecha estimada de finalizacion
+        </div>
+        <TextField
+            variant="outlined"
+        />
         <div class="ui grid">
             <div class="two wide column">
                 <Button variant="contained" color="primary">

@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Button } from "@material-ui/core";
 import Tareas from "./Tareas";
 import Riesgos from "./Riesgos";
+import Detalles from "./Detalles";
 
 class Proyectos extends React.Component {
   constructor(props) {
@@ -122,7 +123,7 @@ class Proyectos extends React.Component {
         <Button variant="contained" color="primary">
           Crear proyecto
         </Button>
-        <Riesgos />
+        <Detalles />
       </div>
     );
   }
