@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 import { Button } from "@material-ui/core";
+import CrearTarea from "./CrearTarea";
 
 class Tareas extends React.Component {
   constructor(props) {
@@ -87,6 +88,7 @@ class Tareas extends React.Component {
             <Button variant="contained" color="primary">
                 Crear Tarea
             </Button>
+            <CrearTarea />
         </div>
         
     );
