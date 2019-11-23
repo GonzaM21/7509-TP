@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Button } from "@material-ui/core";
-import CrearProyecto from "./CrearProyecto";
+import Tareas from "./Tareas";
 
 class Proyectos extends React.Component {
   constructor(props) {
@@ -118,10 +118,12 @@ class Proyectos extends React.Component {
           </TableBody>
         </Table>
         
-        <Button variant="contained" color="primary" key={0}>
+        <Button variant="contained" color="primary">
           Crear proyecto
         </Button>
-        <CrearProyecto />
+        <Tareas miEstado={"hola"}>
+          
+        </Tareas>
       </div>
     );
   }

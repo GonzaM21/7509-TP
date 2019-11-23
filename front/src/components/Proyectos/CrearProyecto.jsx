@@ -45,12 +45,12 @@ class CrearProyecto extends React.Component {
         />
         <div class="ui grid">
             <div class="two wide column">
-                <Button variant="contained" color="primary" key={0}>
+                <Button variant="contained" color="primary">
                     Aceptar
                 </Button>
             </div>
             <div class="two wide column">
-                <Button variant="contained" color="primary" key={0}>
+                <Button variant="contained" color="primary">
                     Cancelar
                 </Button>
             </div>
