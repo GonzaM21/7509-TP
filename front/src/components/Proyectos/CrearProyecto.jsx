@@ -53,88 +53,90 @@ class CrearProyecto extends React.Component {
   render() {
     
     return (
-      <div className="crear-proyecto">
-        <div className="texto-informacion">
-            Ingrese el nombre del proyecto
-        </div>
-        <TextField
-            variant="outlined"
-            value={this.state.nombre}
-            onChange={event => this.setState({ nombre: event.target.value })}
-            // error={text === ""}
-            // helperText={text === "" ? 'Empty field!' : ' '}
-        />
-        <div className="texto-informacion">
-            Ingrese prioridad del proyecto
-        </div>
-        <TextField
-            variant="outlined"
-            value={this.state.prioridad}
-            onChange={event => this.setState({ prioridad: event.target.value })}
-            
-        />
-        <div className="texto-informacion">
-            Ingrese el tipo de proyecto
-        </div>
-        <TextField
-            variant="outlined"
-            value={this.state.tipo}
-            onChange={event => this.setState({ tipo: event.target.value })}
-            
-        />
-        <div className="texto-informacion">
-            Ingrese el lider del proyecto
-        </div>
-        <TextField
-            value={this.state.lider}
-            onChange={event => this.setState({ lider: event.target.value })}
-            
-            variant="outlined"
-        />
-        <div className="texto-informacion">
-            Ingrese version del proyecto
-        </div>
-        <TextField
-            value={this.state.version}
-            onChange={event => this.setState({ version: event.target.value })}
-            variant="outlined"
-        />
-        <div className="texto-informacion">
-            Ingrese estado del proyecto
-        </div>
-        <TextField
-            value={this.state.estado}
-            onChange={event => this.setState({ estado: event.target.value })}
-            variant="outlined"
-        />
-        <div className="texto-informacion">
-            Ingrese limite de riesgo del proyecto
-        </div>
-        <TextField
-            value={this.state.limiteDeRiesgo}
-            onChange={event => this.setState({ limiteDeRiesgo: event.target.value })}
-            variant="outlined"
-        />
-        <div className="texto-informacion">
-            Ingrese fecha estimada de finalizacion
-        </div>
-        <TextField
-            value={this.state.fechaDeFinalizacion}
-            onChange={event => this.setState({ fechaDeFinalizacion: event.target.value })}
-            variant="outlined"
-        />
-        <div class="ui grid">
-            <div class="two wide column">
-                <Button variant="contained" color="primary" onClick={this.crearProyecto}>
-                    Aceptar
-                </Button>
+      <div className="crear-proyecto" hidden={!this.props.mostrarCrearProyectos}>
+          <div clasName="wrapper">
+            <div className="texto-informacion">
+                Ingrese el nombre del proyecto
             </div>
-            <div class="two wide column">
-                <Button variant="contained" color="primary">
-                    Cancelar
-                </Button>
+            <TextField
+                variant="outlined"
+                value={this.state.nombre}
+                onChange={event => this.setState({ nombre: event.target.value })}
+                // error={text === ""}
+                // helperText={text === "" ? 'Empty field!' : ' '}
+            />
+            <div className="texto-informacion">
+                Ingrese prioridad del proyecto
             </div>
-        </div>
+            <TextField
+                variant="outlined"
+                value={this.state.prioridad}
+                onChange={event => this.setState({ prioridad: event.target.value })}
+                
+            />
+            <div className="texto-informacion">
+                Ingrese el tipo de proyecto
+            </div>
+            <TextField
+                variant="outlined"
+                value={this.state.tipo}
+                onChange={event => this.setState({ tipo: event.target.value })}
+                
+            />
+            <div className="texto-informacion">
+                Ingrese el lider del proyecto
+            </div>
+            <TextField
+                value={this.state.lider}
+                onChange={event => this.setState({ lider: event.target.value })}
+                
+                variant="outlined"
+            />
+            <div className="texto-informacion">
+                Ingrese version del proyecto
+            </div>
+            <TextField
+                value={this.state.version}
+                onChange={event => this.setState({ version: event.target.value })}
+                variant="outlined"
+            />
+            <div className="texto-informacion">
+                Ingrese estado del proyecto
+            </div>
+            <TextField
+                value={this.state.estado}
+                onChange={event => this.setState({ estado: event.target.value })}
+                variant="outlined"
+            />
+            <div className="texto-informacion">
+                Ingrese limite de riesgo del proyecto
+            </div>
+            <TextField
+                value={this.state.limiteDeRiesgo}
+                onChange={event => this.setState({ limiteDeRiesgo: event.target.value })}
+                variant="outlined"
+            />
+            <div className="texto-informacion">
+                Ingrese fecha estimada de finalizacion
+            </div>
+            <TextField
+                value={this.state.fechaDeFinalizacion}
+                onChange={event => this.setState({ fechaDeFinalizacion: event.target.value })}
+                variant="outlined"
+            />
+            <div class="ui grid botones-aceptar-cancelar">
+                <div class="two wide column">
+                    <Button variant="contained" color="primary" onClick={this.crearProyecto}>
+                        Aceptar
+                    </Button>
+                </div>
+                <div class="two wide column">
+                    <Button variant="contained" color="primary">
+                        Cancelar
+                    </Button>
+                </div>
+            </div>
+          </div>
       </div>
     );
   }
