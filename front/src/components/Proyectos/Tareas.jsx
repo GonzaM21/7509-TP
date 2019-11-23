@@ -15,27 +15,6 @@ class Tareas extends React.Component {
   }
 
   render() {
-    const rows = [
-        {
-            prioridad: 1,
-            titulo: "la tarea",
-            descripcion: "la tarea hace algo",
-            tiempoReal: 12312,
-            tiempoEstimado: 22222,
-            estado: "Desarrollando",
-            desarrolladorAsignado: "felipe"
-        },
-        {
-            prioridad: 2,
-            titulo: "la tarea",
-            descripcion: "la tarea hace algo",
-            tiempoReal: 12312,
-            tiempoEstimado: 22222,
-            estado: "Desarrollando",
-            desarrolladorAsignado: "felipe"
-        }
-    ];
-
     const StyledTableCell = withStyles(theme => ({
         head: {
           backgroundColor: theme.palette.common.black,
@@ -69,7 +48,7 @@ class Tareas extends React.Component {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {rows.map((row, i) => (
+                {this.props.proyectos[this.props.proyectoSeleccionado].tareas.map((row, i) => (
                     <StyledTableRow key={i}>
                         <StyledTableCell component="th" scope="row">
                             {row.prioridad}

@@ -15,12 +15,50 @@ class Proyectos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      proyectos: [],
+      proyectos: [
+        {
+          prioridad: 1,
+          nombre: "PSA System",
+          version: "Demo",
+          lider: "Soluzzia",
+          tipo: "Desarrollo",
+          estado: "Desarrolando",
+          tareas: [{
+                  prioridad: 1,
+                  titulo: "crear front",
+                  descripcion: "se debe crear el front",
+                  tiempoReal: "12hs",
+                  tiempoEstimado: "10hs",
+                  estado: "Desarrollando",
+                  desarrolladorAsignado: "felipe"
+              }],
+          riesgos: [],
+          iteraciones: [],
+          hitos: [],
+          limiteDeRiesgo: "0.3",
+          fechaEstimadaDeFinalizacion: "25/11/2019",
+          acciones: [<Button variant="contained" color="primary" key={0} onClick={() => this.mostrarTareas(0)}>
+                      Tareas
+                    </Button>, <Button variant="contained" color="primary" key={1}>
+                      Riesgos
+                    </Button>, <Button variant="contained" color="primary" key={2}>
+                      Detalles
+                    </Button>, <Button variant="contained" color="primary" key={3}>
+                      Iteracion
+                    </Button>, <Button variant="contained" color="primary" key={4}>
+                      Hitos
+                    </Button>, <Button variant="contained" color="primary" key={5}>
+                      Cancelar
+                    </Button>, <Button variant="contained" color="primary" key={6}>
+                      Finalizar
+                    </Button>]
+      }
+      ],
       mostrarProyectos: true,
       mostrarCrearProyectos: false,
       mostrarTareas: false,
       proyectoSeleccionado: 0,
-      cantidadDeProyecto: 0
+      cantidadDeProyecto: 1
     }
     this.agregarNuevoProyecto = this.agregarNuevoProyecto.bind(this);
     this.mostrarTareas = this.mostrarTareas.bind(this);
@@ -109,7 +147,7 @@ class Proyectos extends React.Component {
           </Button>
         </div>  
         <CrearProyecto agregarNuevoProyecto={this.agregarNuevoProyecto} mostrarCrearProyectos={this.state.mostrarCrearProyectos} cantidadDeProyecto={this.state.cantidadDeProyecto} mostrarTareas={this.mostrarTareas}/>
-        <Tareas mostrarTareas={this.state.mostrarTareas}/>
+        <Tareas mostrarTareas={this.state.mostrarTareas} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
       </div>
     );
   }

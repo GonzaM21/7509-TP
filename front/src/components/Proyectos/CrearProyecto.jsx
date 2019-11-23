@@ -25,7 +25,24 @@ class CrearProyecto extends React.Component {
         lider: this.state.lider,
         tipo: this.state.tipo,
         estado: this.state.estado,
-        tareas: [],
+        tareas: [{
+                prioridad: 1,
+                titulo: "la tarea",
+                descripcion: "la tarea hace algo",
+                tiempoReal: 12312,
+                tiempoEstimado: 22222,
+                estado: "Desarrollando",
+                desarrolladorAsignado: "felipe"
+            },
+            {
+                prioridad: 2,
+                titulo: "la tarea",
+                descripcion: "la tarea hace algo",
+                tiempoReal: 12312,
+                tiempoEstimado: 22222,
+                estado: "Desarrollando",
+                desarrolladorAsignado: "felipe"
+            }],
         riesgos: [],
         iteraciones: [],
         hitos: [],
