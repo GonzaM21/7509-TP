@@ -55,7 +55,7 @@ class Tareas extends React.Component {
     }))(TableRow);
     
     return (
-        <div className="tareas-tab">
+        <div className="tareas-tab" hidden={!this.props.mostrarTareas}>
                 <Table className="tabla-tareas" aria-label="customized table">
                 <TableHead>
                     <TableRow>
@@ -84,10 +84,18 @@ class Tareas extends React.Component {
                 ))}
                 </TableBody>
             </Table>
-            
-            <Button variant="contained" color="primary">
-                Crear Tarea
-            </Button>
+            <div className="ui grid">
+                <div className="two wide column">
+                    <Button variant="contained" color="primary">
+                        Crear Tarea
+                    </Button>
+                </div>
+                <div className="two wide column">
+                    <Button variant="contained" color="primary">
+                        Volver
+                    </Button>
+                </div>
+            </div>
             <CrearTarea />
         </div>
         

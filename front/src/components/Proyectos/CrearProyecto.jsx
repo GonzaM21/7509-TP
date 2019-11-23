@@ -31,7 +31,7 @@ class CrearProyecto extends React.Component {
         hitos: [],
         limiteDeRiesgo: this.state.limiteDeRiesgo,
         fechaEstimadaDeFinalizacion: this.state.fechaDeFinalizacion,
-        acciones: [<Button variant="contained" color="primary" key={0}>
+        acciones: [<Button variant="contained" color="primary" key={0} onClick={() => this.props.mostrarTareas(this.props.cantidadDeProyecto)}>
                     Tareas
                   </Button>, <Button variant="contained" color="primary" key={1}>
                     Riesgos
@@ -54,7 +54,7 @@ class CrearProyecto extends React.Component {
     
     return (
       <div className="crear-proyecto" hidden={!this.props.mostrarCrearProyectos}>
-          <div clasName="wrapper">
+          <div className="wrapper">
             <div className="texto-informacion">
                 Ingrese el nombre del proyecto
             </div>
@@ -124,13 +124,13 @@ class CrearProyecto extends React.Component {
                 onChange={event => this.setState({ fechaDeFinalizacion: event.target.value })}
                 variant="outlined"
             />
-            <div class="ui grid botones-aceptar-cancelar">
-                <div class="two wide column">
+            <div className="ui grid botones-aceptar-cancelar">
+                <div className="two wide column">
                     <Button variant="contained" color="primary" onClick={this.crearProyecto}>
                         Aceptar
                     </Button>
                 </div>
-                <div class="two wide column">
+                <div className="two wide column">
                     <Button variant="contained" color="primary">
                         Cancelar
                     </Button>

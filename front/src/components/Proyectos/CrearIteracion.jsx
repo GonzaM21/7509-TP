@@ -49,13 +49,13 @@ class CrearIteracion extends React.Component {
         <TextField
             variant="outlined"
         />
-        <div class="ui grid">
-            <div class="two wide column">
+        <div className="ui grid">
+            <div className="two wide column">
                 <Button variant="contained" color="primary">
                     Aceptar
                 </Button>
             </div>
-            <div class="two wide column">
+            <div className="two wide column">
                 <Button variant="contained" color="primary">
                     Cancelar
                 </Button>

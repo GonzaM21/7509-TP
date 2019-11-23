@@ -8,68 +8,68 @@ class Detalles extends React.Component {
   render() {
     
     return (
-        <div class="ui two column grid">
-            <div class="row">
-                <div class="column">
+        <div className="ui two column grid">
+            <div className="row">
+                <div className="column">
                     Nombre
                 </div>
-                <div class="column">
+                <div className="column">
                     algun nombre
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
+            <div className="row">
+                <div className="column">
                     Prioridad
                 </div>
-                <div class="column">
+                <div className="column">
                     121
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
+            <div className="row">
+                <div className="column">
                     Version
                 </div>
-                <div class="column">
+                <div className="column">
                     v1.0
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
+            <div className="row">
+                <div className="column">
                     Lider
                 </div>
-                <div class="column">
+                <div className="column">
                     CEO
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
+            <div className="row">
+                <div className="column">
                     Tipo
                 </div>
-                <div class="column">
+                <div className="column">
                     Desarrollo
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
+            <div className="row">
+                <div className="column">
                     Estado
                 </div>
-                <div class="column">
+                <div className="column">
                     Desarrollando
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
+            <div className="row">
+                <div className="column">
                     Limite de riesgo
                 </div>
-                <div class="column">
+                <div className="column">
                     0.4
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
+            <div className="row">
+                <div className="column">
                     Fecha estimada de finalizacion
                 </div>
-                <div class="column">
+                <div className="column">
                     0.4
                 </div>
             </div>
