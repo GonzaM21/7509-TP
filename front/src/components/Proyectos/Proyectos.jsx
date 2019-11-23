@@ -8,62 +8,25 @@ import TableRow from '@material-ui/core/TableRow';
 import { Button } from "@material-ui/core";
 import Iteraciones from "./Iteraciones";
 import Hitos from "./Hitos";
+import Tareas from "./Tareas";
+import CrearProyecto from "./CrearProyecto";
 
 class Proyectos extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      proyectos: []
+    }
+    this.agregarNuevoProyecto = this.agregarNuevoProyecto.bind(this);
+  }
+
+  agregarNuevoProyecto(proyecto) {
+    this.setState({
+      proyectos: [...this.state.proyectos, proyecto]
+    });
   }
 
   render() {
-    const rows = [
-      {
-        prioridad: 1,
-        nombre: "el mejor tablero",
-        version: "alpha",
-        lider: "ceo",
-        tipo: "Desarrollo",
-        estado: "Desarrollando",
-        acciones: [<Button variant="contained" color="primary" key={0}>
-                    Tareas
-                  </Button>, <Button variant="contained" color="primary" key={1}>
-                    Riesgos
-                  </Button>, <Button variant="contained" color="primary" key={2}>
-                    Detalles
-                  </Button>, <Button variant="contained" color="primary" key={3}>
-                    Iteracion
-                  </Button>, <Button variant="contained" color="primary" key={4}>
-                    Hitos
-                  </Button>, <Button variant="contained" color="primary" key={5}>
-                    Cancelar
-                  </Button>, <Button variant="contained" color="primary" key={6}>
-                    Finalizar
-                  </Button>]
-      },
-      {
-        prioridad: 1,
-        nombre: "el mejor tablero",
-        version: "alpha",
-        lider: "ceo",
-        tipo: "Desarrollo",
-        estado: "Desarrollando",
-        acciones: [<Button variant="contained" color="primary" key={0}>
-                    Tareas
-                  </Button>, <Button variant="contained" color="primary" key={1}>
-                    Riesgos
-                  </Button>, <Button variant="contained" color="primary" key={2}>
-                    Detalles
-                  </Button>, <Button variant="contained" color="primary" key={3}>
-                    Iteracion
-                  </Button>, <Button variant="contained" color="primary" key={4}>
-                    Hitos
-                  </Button>, <Button variant="contained" color="primary" key={5}>
-                    Cancelar
-                  </Button>, <Button variant="contained" color="primary" key={6}>
-                    Finalizar
-                  </Button>]
-      }
-    ];
-
     const StyledTableCell = withStyles(theme => ({
       head: {
         backgroundColor: theme.palette.common.black,
@@ -103,7 +66,7 @@ class Proyectos extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, i) => (
+            {this.state.proyectos.map((row, i) => (
               <StyledTableRow key={i}>
                 <StyledTableCell component="th" scope="row">
                   {row.prioridad}
@@ -123,7 +86,7 @@ class Proyectos extends React.Component {
           Crear proyecto
         </Button>
         
-        <Hitos />
+        <CrearProyecto agregarNuevoProyecto={this.agregarNuevoProyecto}/>
       </div>
     );
   }

@@ -4,7 +4,36 @@ import { Button, TextField } from "@material-ui/core";
 class CrearProyecto extends React.Component {
   constructor(props) {
     super(props);
+    this.crearProyecto = this.crearProyecto.bind(this);
   }
+
+  crearProyecto() {
+    var proyecto = {
+        prioridad: 1,
+        nombre: "el mejor tablero",
+        version: "alpha",
+        lider: "ceo",
+        tipo: "Desarrollo",
+        estado: "Desarrollando",
+        acciones: [<Button variant="contained" color="primary" key={0}>
+                    Tareas
+                  </Button>, <Button variant="contained" color="primary" key={1}>
+                    Riesgos
+                  </Button>, <Button variant="contained" color="primary" key={2}>
+                    Detalles
+                  </Button>, <Button variant="contained" color="primary" key={3}>
+                    Iteracion
+                  </Button>, <Button variant="contained" color="primary" key={4}>
+                    Hitos
+                  </Button>, <Button variant="contained" color="primary" key={5}>
+                    Cancelar
+                  </Button>, <Button variant="contained" color="primary" key={6}>
+                    Finalizar
+                  </Button>]
+    };
+    this.props.agregarNuevoProyecto(proyecto);
+  }
+
   render() {
     
     return (
@@ -57,7 +86,7 @@ class CrearProyecto extends React.Component {
         />
         <div class="ui grid">
             <div class="two wide column">
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={this.crearProyecto}>
                     Aceptar
                 </Button>
             </div>
