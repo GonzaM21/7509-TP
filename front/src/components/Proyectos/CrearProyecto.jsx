@@ -14,8 +14,11 @@ class CrearProyecto extends React.Component {
         estado: "",
         limiteDeRiesgo: "",
         fechaDeFinalizacion: "",
-        nombreVacio: false,
-        fechaInvalida: false
+        nombreProyectoVacio: false,
+        fechaInvalida: false,
+        prioridadInvalida: false,
+        nombreLiderProyectoVacio: false,
+        versionInvalida: false
     }
     this.crearProyecto = this.crearProyecto.bind(this);
   }
@@ -38,20 +41,36 @@ class CrearProyecto extends React.Component {
     };
     
     let date = moment(this.state.fechaDeFinalizacion, "DD/MM/YYYY");
-
     if (this.state.nombre === "") {
+        this.state.nombreProyectoVacio = true;
+    } else {
+        this.state.nombreProyectoVacio = false;
+    }    
+    if (!date.isValid() || !(this.state.fechaDeFinalizacion.split("/").length === 3)) {
+        this.state.fechaInvalida = true;
+    } else {
+        this.state.fechaInvalida = false;
+    } if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
+        this.state.prioridadInvalida = true;
         this.setState({
-            nombreVacio: true
-        });
-    } else if (!date.isValid() || !(this.state.fechaDeFinalizacion.split("/").length === 3)) {
-        this.setState({
-            fechaInvalida: true
+            prioridadInvalida: true
         });
     } else {
+        this.state.prioridadInvalida = false;
         this.setState({
-            nombreVacio: false,
-            fechaInvalida: false
-        })
+            prioridadInvalida: false
+        });
+    } if (this.state.lider === "") {
+        this.state.nombreLiderProyectoVacio = true;
+    } else {
+        this.state.nombreLiderProyectoVacio = false;
+    } if (isNaN(parseInt(this.state.version))) {
+        this.state.versionInvalida = true
+    } else {
+        this.state.versionInvalida = false
+    }
+    if (this.state.nombreProyectoVacio == false && this.state.fechaInvalida == false && this.state.prioridadInvalida == false
+        && this.state.nombreLiderProyectoVacio == false && this.state.versionInvalida == false) {
         this.props.agregarNuevoProyecto(proyecto);
     }
   }
@@ -62,26 +81,30 @@ class CrearProyecto extends React.Component {
       <div className="crear-proyecto" hidden={!this.props.mostrarCrearProyectos}>
           <div className="wrapper">
             <div className="texto-informacion">
-                Ingrese el nombre del proyecto
+                Ingrese el nombre del proycto
             </div>
             <TextField
-                id = "nombre-proyecto"
+                id="nombre-proyecto"
                 variant="outlined"
                 value={this.state.nombre}
-                aria-required = "true"
-                aria-invalid = {this.state.nombreVacio === true}
+                aria-required="true"
+                aria-invalid={this.state.nombreProyectoVacio}
                 onChange={event => this.setState({ nombre: event.target.value })}
-                error={this.state.nombreVacio === true}
-                helperText={this.state.nombreVacio? 'Campo vacio' : ' '}
+                error={this.state.nombreProyectoVacio}
+                helperText={this.state.nombreProyectoVacio? 'Campo vacio' : ' '}
             />
             <div className="texto-informacion">
                 Ingrese prioridad del proyecto
             </div>
             <TextField
+                id="prioridad-proyecto"
                 variant="outlined"
+                aria-required="true"
+                aria-invalid={this.state.prioridadInvalida}
                 value={this.state.prioridad}
-                onChange={event => this.setState({ prioridad: event.target.value })}
-                
+                onChange={event => this.setState({ prioridad: event.target.value })}  
+                error={this.state.prioridadInvalida}
+                helperText={this.state.prioridadInvalida? 'Prioridad inválida': ' '}
             />
             <div className="texto-informacion">
                 Ingrese el tipo de proyecto
@@ -96,18 +119,27 @@ class CrearProyecto extends React.Component {
                 Ingrese el lider del proyecto
             </div>
             <TextField
+                id="lider-proyecto"
+                variant="outlined"
+                aria-required="true"
+                aria-invalid={this.state.nombreLiderProyectoVacio}
                 value={this.state.lider}
                 onChange={event => this.setState({ lider: event.target.value })}
-                
-                variant="outlined"
+                error={this.state.nombreLiderProyectoVacio}
+                helperText={this.state.nombreLiderProyectoVacio? 'Campo vacío': ' '}
             />
             <div className="texto-informacion">
                 Ingrese version del proyecto
             </div>
             <TextField
+                id="version-proyecto"
+                variant="outlined"
+                aria-required="true"
+                aria-invalid={this.state.versionInvalida}
                 value={this.state.version}
                 onChange={event => this.setState({ version: event.target.value })}
-                variant="outlined"
+                error={this.state.versionInvalida}
+                helperText={this.state.versionInvalida? 'Versión inválida': ' '}
             />
             <div className="texto-informacion">
                 Ingrese estado del proyecto
