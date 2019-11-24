@@ -49,7 +49,8 @@ class Proyectos extends React.Component {
           iteraciones: [],
           hitos: [],
           limiteDeRiesgo: "0.3",
-          fechaEstimadaDeFinalizacion: "25/11/2019"
+          fechaEstimadaDeFinalizacion: "25/11/2019",
+          mostrarBotones: true
       }
       ],
       mostrarProyectos: true,
@@ -69,7 +70,29 @@ class Proyectos extends React.Component {
     this.intercambiarTabRiesgos = this.intercambiarTabRiesgos.bind(this);
     this.mostrarRiesgos = this.mostrarRiesgos.bind(this);
     this.agregarRiesgos = this.agregarRiesgos.bind(this);
+    this.finalizarProyecto = this.finalizarProyecto.bind(this);
+    this.cancelarProyecto = this.cancelarProyecto.bind(this);
   }
+
+  finalizarProyecto(numeroDeProyecto) {
+    let proyectosCopy = [...this.state.proyectos];
+    proyectosCopy[numeroDeProyecto].mostrarBotones = false;
+
+    this.setState({
+      proyectos: proyectosCopy
+    });
+  }
+
+  cancelarProyecto(numeroDeProyecto) {
+    let proyectosCopy = [...this.state.proyectos];
+    proyectosCopy[numeroDeProyecto].mostrarBotones = false;
+
+    this.setState({
+      proyectos: proyectosCopy
+    });
+    console.log(this.state.proyectos);
+  }
+
   agregarRiesgos(riesgo) {
     let proyectosCopy = [...this.state.proyectos];
     
@@ -215,11 +238,15 @@ class Proyectos extends React.Component {
                       Iteracion
                     </Button>, <Button variant="contained" color="primary">
                       Hitos
-                    </Button>, <Button variant="contained" color="primary">
-                      Cancelar
-                    </Button>, <Button variant="contained" color="primary">
-                      Finalizar
-                    </Button>
+                    </Button>, <span hidden={!row.mostrarBotones}>
+                      <Button variant="contained" color="primary" onClick={() => this.cancelarProyecto(i)} >
+                        Cancelar
+                      </Button>  
+                    </span>, <span hidden={!row.mostrarBotones}>
+                      <Button variant="contained" color="primary" onClick={() => this.finalizarProyecto(i)}>
+                        Finalizar
+                      </Button>
+                      </span>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -233,6 +260,7 @@ class Proyectos extends React.Component {
         <Tareas volverDeTareas={this.volverDeTareas} agregarTareas={this.agregarTareas} mostrarTareas={this.state.mostrarTareas} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Riesgos agregarRiesgos={this.agregarRiesgos} mostrarRiesgos={this.state.mostrarRiesgos} intercambiarTabRiesgos={this.intercambiarTabRiesgos} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Detalles mostrarDetalles={this.state.mostrarDetalles} intercambiarTabDetalles={this.intercambiarTabDetalles} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
+        <Iteraciones />
       </div>
     );
   }
