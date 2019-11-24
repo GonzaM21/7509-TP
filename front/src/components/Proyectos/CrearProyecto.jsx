@@ -68,11 +68,15 @@ class CrearProyecto extends React.Component {
         this.state.versionInvalida = true
     } else {
         this.state.versionInvalida = false
+    } if (isNaN(parseFloat(this.state.limiteDeRiesgo))) {
+        this.state.limiteRiesgoInvalido = true;
+    } else {
+        this.state.limiteRiesgoInvalido = false;
     }
-    if (this.state.nombreProyectoVacio == false && this.state.fechaInvalida == false && this.state.prioridadInvalida == false
-        && this.state.nombreLiderProyectoVacio == false && this.state.versionInvalida == false) {
+    if (this.state.nombreProyectoVacio == false && this.state.fechaInvalida == false && this.state.prioridadInvalida == false &&
+        this.state.nombreLiderProyectoVacio == false && this.state.versionInvalida == false && this.state.limiteRiesgoInvalido == false) {
         this.props.agregarNuevoProyecto(proyecto);
-    }
+    } 
   }
 
   render() {
@@ -153,9 +157,14 @@ class CrearProyecto extends React.Component {
                 Ingrese limite de riesgo del proyecto
             </div>
             <TextField
+                id="riesgo-proyecto"
+                variant="outlined"
+                aria-required="true"
+                aria-invalid={this.state.limiteRiesgoInvalido}
                 value={this.state.limiteDeRiesgo}
                 onChange={event => this.setState({ limiteDeRiesgo: event.target.value })}
-                variant="outlined"
+                error={this.state.limiteRiesgoInvalido}
+                helperText={this.state.limiteRiesgoInvalido? 'Límite riesgo inválido': ' '}
             />
             <div className="texto-informacion">
                 Ingrese fecha estimada de finalizacion

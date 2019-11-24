@@ -126,7 +126,7 @@ class PythonOrgSearch(unittest.TestCase):
 		nav_bar.click()
 		sleep(2)
 
-		#Le doy prioridad al proyecto
+		#Le doy version al proyecto
 		version_proyecto = driver.find_element_by_id('version-proyecto')
 		version_proyecto.send_keys("Not a valid version")
 		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
@@ -144,7 +144,7 @@ class PythonOrgSearch(unittest.TestCase):
 		nav_bar.click()
 		sleep(2)
 
-		#Le doy prioridad al proyecto
+		#Le doy version al proyecto
 		version_proyecto = driver.find_element_by_id('version-proyecto')
 		version_proyecto.send_keys("1.2.4")
 		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
@@ -152,6 +152,42 @@ class PythonOrgSearch(unittest.TestCase):
 		sleep(2)
 		assert(version_proyecto.get_attribute("value") == '1.2.4')
 		assert(version_proyecto.get_attribute("aria-invalid") == "false")
+	
+	def test_limite_riesgo_valido(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		nav_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'proyecto-bar')))
+		nav_bar.click()
+		sleep(2)
+
+		#Le doy limite de riesgo al proyecto
+		riesgo_proyecto = driver.find_element_by_id('riesgo-proyecto')
+		riesgo_proyecto.send_keys("Not a valid risk")
+		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(riesgo_proyecto.get_attribute("value") == 'Not a valid risk')
+		assert(riesgo_proyecto.get_attribute("aria-invalid") == "true")
+
+	def test_limite_riesgo_invalido(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		nav_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'proyecto-bar')))
+		nav_bar.click()
+		sleep(2)
+
+		#Le doy limite de riesgo al proyecto
+		riesgo_proyecto = driver.find_element_by_id('version-proyecto')
+		riesgo_proyecto.send_keys("0.95")
+		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(riesgo_proyecto.get_attribute("value") == '0.95')
+		assert(riesgo_proyecto.get_attribute("aria-invalid") == "false")
 	
 
 	def tearDown(self):
