@@ -34,7 +34,18 @@ class Proyectos extends React.Component {
                   estado: "Desarrollando",
                   desarrolladorAsignado: "felipe"
               }],
-          riesgos: [],
+          riesgos: [{
+                  nombre: "algun riesgo",
+                  probabilidadOcurrencia: 0.1,
+                  impactoProyecto: 0.3,
+                  exposicion: 10000
+              },
+              {
+                  nombre: "algun riesgo2",
+                  probabilidadOcurrencia: 0.1,
+                  impactoProyecto: 0.3,
+                  exposicion: 10000
+              }],
           iteraciones: [],
           hitos: [],
           limiteDeRiesgo: "0.3",
@@ -57,8 +68,19 @@ class Proyectos extends React.Component {
     this.mostrarDetalles = this.mostrarDetalles.bind(this);
     this.intercambiarTabRiesgos = this.intercambiarTabRiesgos.bind(this);
     this.mostrarRiesgos = this.mostrarRiesgos.bind(this);
+    this.agregarRiesgos = this.agregarRiesgos.bind(this);
   }
-  
+  agregarRiesgos(riesgo) {
+    let proyectosCopy = [...this.state.proyectos];
+    
+    let riesgosNuevo = [...proyectosCopy[this.state.proyectoSeleccionado].riesgos, riesgo];
+    proyectosCopy[this.state.proyectoSeleccionado].riesgos = riesgosNuevo;
+
+    this.setState({
+      proyectos: proyectosCopy
+    });
+  }
+
   mostrarRiesgos(numeroDeProyecto) {
     this.setState({
       proyectoSeleccionado: numeroDeProyecto
@@ -209,7 +231,7 @@ class Proyectos extends React.Component {
         </div>  
         <CrearProyecto volverDeProyectos={this.volverDeProyectos} agregarNuevoProyecto={this.agregarNuevoProyecto} mostrarCrearProyectos={this.state.mostrarCrearProyectos}/>
         <Tareas volverDeTareas={this.volverDeTareas} agregarTareas={this.agregarTareas} mostrarTareas={this.state.mostrarTareas} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
-        <Riesgos mostrarRiesgos={this.state.mostrarRiesgos} intercambiarTabRiesgos={this.intercambiarTabRiesgos} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
+        <Riesgos agregarRiesgos={this.agregarRiesgos} mostrarRiesgos={this.state.mostrarRiesgos} intercambiarTabRiesgos={this.intercambiarTabRiesgos} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Detalles mostrarDetalles={this.state.mostrarDetalles} intercambiarTabDetalles={this.intercambiarTabDetalles} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
       </div>
     );

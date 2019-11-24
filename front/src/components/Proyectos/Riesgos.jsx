@@ -45,26 +45,11 @@ class Riesgos extends React.Component {
     },
     }))(TableRow);
     
-    const rows = [
-        {
-            nombre: "algun riesgo",
-            probabilidadOcurrencia: 0.1,
-            impactoProyecto: 0.3,
-            exposicion: 10000
-        },
-        {
-            nombre: "algun riesgo2",
-            probabilidadOcurrencia: 0.1,
-            impactoProyecto: 0.3,
-            exposicion: 10000
-        }
-    ];
-
     return (
         <div className="riesgos-tab" hidden={!this.props.mostrarRiesgos}>
             <div className="informacion-riesgo" hidden={!this.state.mostrarTabla}>
                 <div className="riesgo numero">
-                    Limite de riesgo: 0.4
+                    Limite de riesgo: {this.props.proyectos[this.props.proyectoSeleccionado].limiteDeRiesgo}
                 </div>
                 <Table className="tabla-riesgos" aria-label="customized table">
                     <TableHead>
@@ -76,7 +61,7 @@ class Riesgos extends React.Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row, i) => (
+                        {this.props.proyectos[this.props.proyectoSeleccionado].riesgos.map((row, i) => (
                             <StyledTableRow key={i}>
                                 <StyledTableCell component="th" scope="row">
                                     {row.nombre}
@@ -102,7 +87,7 @@ class Riesgos extends React.Component {
                 </div>
             </div>
             
-            <CrearRiesgo intercambiarTablaCrearRiesgo={this.intercambiarTablaCrearRiesgo} mostrarCrearRiesgo={this.state.mostrarCrearRiesgo}/>
+            <CrearRiesgo agregarRiesgos={this.props.agregarRiesgos} intercambiarTablaCrearRiesgo={this.intercambiarTablaCrearRiesgo} mostrarCrearRiesgo={this.state.mostrarCrearRiesgo}/>
         </div>
         
     );
