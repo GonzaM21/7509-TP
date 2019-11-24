@@ -68,6 +68,8 @@ class CrearProyecto extends React.Component {
                 id = "nombre-proyecto"
                 variant="outlined"
                 value={this.state.nombre}
+                aria-required = "true"
+                aria-invalid = {this.state.nombreVacio === true}
                 onChange={event => this.setState({ nombre: event.target.value })}
                 error={this.state.nombreVacio === true}
                 helperText={this.state.nombreVacio? 'Campo vacio' : ' '}
