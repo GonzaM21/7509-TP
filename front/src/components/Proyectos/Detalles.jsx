@@ -12,23 +12,23 @@ class Detalles extends React.Component {
         <div className="detalles-tab" hidden={!this.props.mostrarDetalles}>
             <div className="ui two column grid">
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Nombre
                     </div>
-                    <div className="column">
+                    <div className="column ">
                         {proyecto.nombre}
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Prioridad
                     </div>
-                    <div className="column">
+                    <div className="column ">
                         {proyecto.prioridad}
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Version
                     </div>
                     <div className="column">
@@ -36,7 +36,7 @@ class Detalles extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Lider
                     </div>
                     <div className="column">
@@ -44,7 +44,7 @@ class Detalles extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Tipo
                     </div>
                     <div className="column">
@@ -52,7 +52,7 @@ class Detalles extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Estado
                     </div>
                     <div className="column">
@@ -60,7 +60,7 @@ class Detalles extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Limite de riesgo
                     </div>
                     <div className="column">
@@ -68,7 +68,7 @@ class Detalles extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
+                    <div className="column propiedad-detalle">
                         Fecha estimada de finalizacion
                     </div>
                     <div className="column">

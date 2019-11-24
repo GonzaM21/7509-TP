@@ -35,16 +35,16 @@ class Proyectos extends React.Component {
                   desarrolladorAsignado: "felipe"
               }],
           riesgos: [{
-                  nombre: "algun riesgo",
-                  probabilidadOcurrencia: 0.1,
-                  impactoProyecto: 0.3,
-                  exposicion: 10000
+                  nombre: "Perder clientes",
+                  probabilidadOcurrencia: 0.2,
+                  impactoProyecto: 0.7,
+                  exposicion: 100
               },
               {
-                  nombre: "algun riesgo2",
-                  probabilidadOcurrencia: 0.1,
-                  impactoProyecto: 0.3,
-                  exposicion: 10000
+                  nombre: "Contaminacion ambiental",
+                  probabilidadOcurrencia: 0.6,
+                  impactoProyecto: 0.4,
+                  exposicion: 10
               }],
           iteraciones: [{
             nombreIteracion: "Iteracion 1",
@@ -298,25 +298,33 @@ class Proyectos extends React.Component {
                   <StyledTableCell align="right">{row.tipo}</StyledTableCell>
                   <StyledTableCell align="right">{row.estado}</StyledTableCell>
                   <StyledTableCell align="right">
-                    <Button variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
-                      Tareas
-                    </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarRiesgos(i)}>
-                      Riesgos
-                    </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarDetalles(i)}>
-                      Detalles
-                    </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarIteraciones(i)}>
-                      Iteracion
-                    </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
-                      Hitos
-                    </Button>, <span hidden={!row.mostrarBotones}>
-                      <Button variant="contained" color="primary" onClick={() => this.cancelarProyecto(i)} >
-                        Cancelar
-                      </Button>  
-                    </span>, <span hidden={!row.mostrarBotones}>
-                      <Button variant="contained" color="primary" onClick={() => this.finalizarProyecto(i)}>
-                        Finalizar
-                      </Button>
+                    <div className="botones-accion">
+                      <Button variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
+                        Tareas
+                      </Button> 
+                      <Button variant="contained" color="primary" onClick={() => this.mostrarRiesgos(i)}>
+                        Riesgos
+                      </Button> 
+                      <Button variant="contained" color="primary" onClick={() => this.mostrarDetalles(i)}>
+                        Detalles
+                      </Button> 
+                      <Button variant="contained" color="primary" onClick={() => this.mostrarIteraciones(i)}>
+                        Iteracion
+                      </Button> 
+                      <Button variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
+                        Hitos
+                      </Button> 
+                      <span hidden={!row.mostrarBotones}>
+                        <Button variant="contained" color="primary" onClick={() => this.cancelarProyecto(i)} >
+                          Cancelar
+                        </Button>  
+                      </span> 
+                      <span hidden={!row.mostrarBotones}>
+                        <Button variant="contained" color="primary" onClick={() => this.finalizarProyecto(i)}>
+                          Finalizar
+                        </Button>
                       </span>
+                    </div>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
