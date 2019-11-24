@@ -54,7 +54,12 @@ class Proyectos extends React.Component {
             hitos: "Hito 1",
             tareas: "Tarea 1"
               }],
-          hitos: [],
+          hitos: [{
+            nombreHito: "Hito 1",
+            fecha: "02/12/2019",
+            features: "feature 1",
+            estado: "A Tiempo"
+              }],
           limiteDeRiesgo: "0.3",
           fechaEstimadaDeFinalizacion: "25/11/2019",
           mostrarBotones: true
@@ -86,9 +91,21 @@ class Proyectos extends React.Component {
     this.intercambiarTabHitos = this.intercambiarTabHitos.bind(this);
     this.intercambiarTabIteraciones = this.intercambiarTabIteraciones.bind(this);
     this.agregarIteracion = this.agregarIteracion.bind(this);
+    this.agregarHito = this.agregarHito.bind(this);
   }
 
+  agregarHito(hito) {
+    let proyectosCopy = [...this.state.proyectos];
+    
+    let hitosNuevos = [...proyectosCopy[this.state.proyectoSeleccionado].hitos, hito];
+    proyectosCopy[this.state.proyectoSeleccionado].hitos = hitosNuevos;
 
+    this.setState({
+      proyectos: proyectosCopy
+    });
+  }
+
+  
   intercambiarTabHitos() {
     this.setState({
       mostrarProyectos: !this.state.mostrarProyectos,
@@ -289,7 +306,7 @@ class Proyectos extends React.Component {
                       Detalles
                     </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarIteraciones(i)}>
                       Iteracion
-                    </Button>, <Button variant="contained" color="primary" onCick={() => this.mostrarHitos(i)}>
+                    </Button>, <Button variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
                       Hitos
                     </Button>, <span hidden={!row.mostrarBotones}>
                       <Button variant="contained" color="primary" onClick={() => this.cancelarProyecto(i)} >
@@ -314,6 +331,7 @@ class Proyectos extends React.Component {
         <Riesgos agregarRiesgos={this.agregarRiesgos} mostrarRiesgos={this.state.mostrarRiesgos} intercambiarTabRiesgos={this.intercambiarTabRiesgos} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Detalles mostrarDetalles={this.state.mostrarDetalles} intercambiarTabDetalles={this.intercambiarTabDetalles} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Iteraciones agregarIteracion={this.agregarIteracion} intercambiarTabIteraciones={this.intercambiarTabIteraciones} mostrarIteraciones={this.state.mostrarIteraciones} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
+        <Hitos intercambiarTabHitos={this.intercambiarTabHitos} mostrarHitos={this.state.mostrarHitos} agregarHito={this.agregarHito} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
       </div>
     );
   }

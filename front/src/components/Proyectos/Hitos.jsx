@@ -12,8 +12,19 @@ import CrearHitos from "./CrearHitos";
 class Hitos extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mostrarTabla: true,
+      mostrarCrearHitos: false
+    };
+    this.intercambiarTablaCrearHitos = this.intercambiarTablaCrearHitos.bind(this);
   }
 
+  intercambiarTablaCrearHitos() {
+    this.setState({
+      mostrarTabla: !this.state.mostrarTabla,
+      mostrarCrearHitos: !this.state.mostrarCrearHitos
+    });
+  }
   render() {
     const StyledTableCell = withStyles(theme => ({
         head: {
@@ -32,45 +43,48 @@ class Hitos extends React.Component {
         },
     },
     }))(TableRow);
-    
-    const rows = [
-        {
-            nombreHito: "algun nombre",
-            fecha: "10/10/2019",
-            features: "Alta",
-            estado: "Demorado"
-        }
-    ];
-
+   
     return (
-        <div className="hitos-tab">
+        <div className="hitos-tab" hidden={!this.props.mostrarHitos}>
+          <div className="tabla-hitos" hidden={!this.state.mostrarTabla}>
             <Table className="hitos-iteraciones" aria-label="customized table">
-            <TableHead>
-                <TableRow>
-                    <StyledTableCell>Hito</StyledTableCell>
-                    <StyledTableCell align="right">Fecha</StyledTableCell>
-                    <StyledTableCell align="right">Features</StyledTableCell>
-                    <StyledTableCell align="right">Estado</StyledTableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-            {rows.map((row, i) => (
-                <StyledTableRow key={i}>
-                    <StyledTableCell component="th" scope="row">
-                        {row.nombreHito}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.fecha}</StyledTableCell>
-                    <StyledTableCell align="right">{row.features}</StyledTableCell>
-                    <StyledTableCell align="right">{row.estado}</StyledTableCell>
-                </StyledTableRow>
-            ))}
-            </TableBody>
-        </Table>
-        
-        <Button variant="contained" color="primary" id={"crear"}>
-            Crear hito
-        </Button>
-        <CrearHitos />
+                <TableHead>
+                    <TableRow>
+                        <StyledTableCell>Hito</StyledTableCell>
+                        <StyledTableCell align="right">Fecha</StyledTableCell>
+                        <StyledTableCell align="right">Features</StyledTableCell>
+                        <StyledTableCell align="right">Estado</StyledTableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.proyectos[this.props.proyectoSeleccionado].hitos.map((row, i) => (
+                      <StyledTableRow key={i}>
+                          <StyledTableCell component="th" scope="row">
+                              {row.nombreHito}
+                          </StyledTableCell>
+                          <StyledTableCell align="right">{row.fecha}</StyledTableCell>
+                          <StyledTableCell align="right">{row.features}</StyledTableCell>
+                          <StyledTableCell align="right">{row.estado}</StyledTableCell>
+                      </StyledTableRow>
+                  ))}
+                </TableBody>
+            </Table>
+    
+            <div className="ui grid">
+                <div className="two wide column">
+                    <Button variant="contained" color="primary" onClick={this.intercambiarTablaCrearHitos}>
+                        Crear Hito
+                    </Button>
+                </div>
+                <div className="two wide column">
+                    <Button variant="contained" color="primary" onClick={this.props.intercambiarTabHitos}>
+                        Volver
+                    </Button>
+                </div>
+            </div>
+          </div>
+            
+        <CrearHitos agregarHito={this.props.agregarHito} intercambiarTablaCrearHitos={this.intercambiarTablaCrearHitos} mostrarCrearHitos={this.state.mostrarCrearHitos} />
     </div>
     
     );
