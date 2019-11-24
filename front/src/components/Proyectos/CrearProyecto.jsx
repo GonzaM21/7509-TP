@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
+import moment from "moment";
 
 class CrearProyecto extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class CrearProyecto extends React.Component {
         estado: "",
         limiteDeRiesgo: "",
         fechaDeFinalizacion: "",
-        nombreVacio: false
+        nombreVacio: false,
+        fechaInvalida: false
     }
     this.crearProyecto = this.crearProyecto.bind(this);
   }
@@ -34,11 +36,22 @@ class CrearProyecto extends React.Component {
         fechaEstimadaDeFinalizacion: this.state.fechaDeFinalizacion,
         mostrarBotones: true
     };
+    
+    let date = moment(this.state.fechaDeFinalizacion, "DD/MM/YYYY");
+
     if (this.state.nombre === "") {
         this.setState({
             nombreVacio: true
-        })
+        });
+    } else if (!date.isValid() || !(this.state.fechaDeFinalizacion.split("/").length === 3)) {
+        this.setState({
+            fechaInvalida: true
+        });
     } else {
+        this.setState({
+            nombreVacio: false,
+            fechaInvalida: false
+        })
         this.props.agregarNuevoProyecto(proyecto);
     }
   }
@@ -116,6 +129,8 @@ class CrearProyecto extends React.Component {
                 value={this.state.fechaDeFinalizacion}
                 onChange={event => this.setState({ fechaDeFinalizacion: event.target.value })}
                 variant="outlined"
+                error={this.state.fechaInvalida}
+                helperText={this.state.fechaInvalida? 'Campo invalido' : ' '}
             />
             <div className="ui grid botones-aceptar-cancelar">
                 <div className="two wide column">
