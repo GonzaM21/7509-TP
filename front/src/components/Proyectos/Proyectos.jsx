@@ -331,7 +331,7 @@ class Proyectos extends React.Component {
             </TableBody>
           </Table>
           <div className="wrapper-boton-crear-proyecto">
-            <Button variant="contained" color="primary" onClick={() => this.setState({mostrarProyectos: false, mostrarCrearProyectos: true})}>
+            <Button id = "proyecto-bar" variant="contained" color="primary" onClick={() => this.setState({mostrarProyectos: false, mostrarCrearProyectos: true})}>
               Crear proyecto
             </Button>
           </div>
