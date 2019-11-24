@@ -12,8 +12,19 @@ import CrearIteracion from "./CrearIteracion";
 class Iteraciones extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mostrarTabla: true,
+      mostrarCrearIteraciones: false
+    }
+    this.intercambiarEntreTablaYCrear = this.intercambiarEntreTablaYCrear.bind(this)
   }
 
+  intercambiarEntreTablaYCrear() {
+    this.setState({
+      mostrarTabla: !this.state.mostrarTabla,
+      mostrarCrearIteraciones: !this.state.mostrarCrearIteraciones
+    })
+  }
   render() {
     const StyledTableCell = withStyles(theme => ({
         head: {
@@ -32,50 +43,52 @@ class Iteraciones extends React.Component {
         },
     },
     }))(TableRow);
-    
-    const rows = [
-        {
-            nombreIteracion: "algun nombre",
-            fechaInicio: "10/10/2019",
-            capacidadEquipo: "Alta",
-            hitos: "hito 1",
-            tareas: "tarea 1"
-        }
-    ];
 
     return (
-        <div className="iteraciones-tab">
-            <Table className="tabla-iteraciones" aria-label="customized table">
-            <TableHead>
-                <TableRow>
-                    <StyledTableCell>Iteraciones</StyledTableCell>
-                    <StyledTableCell align="right">Fecha de Inicio</StyledTableCell>
-                    <StyledTableCell align="right">Fecha de Finalizacion</StyledTableCell>
-                    <StyledTableCell align="right">Capacidad del Equipo</StyledTableCell>
-                    <StyledTableCell align="right">Hitos</StyledTableCell> 
-                    <StyledTableCell align="right">Tareas</StyledTableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-            {rows.map((row, i) => (
-                <StyledTableRow key={i}>
-                    <StyledTableCell component="th" scope="row">
-                        {row.nombreIteracion}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.nombreIteracion}</StyledTableCell>
-                    <StyledTableCell align="right">{row.fechaInicio}</StyledTableCell>
-                    <StyledTableCell align="right">{row.capacidadEquipo}</StyledTableCell>
-                    <StyledTableCell align="right">{row.hitos}</StyledTableCell>
-                    <StyledTableCell align="right">{row.tareas}</StyledTableCell>
-                </StyledTableRow>
-            ))}
-            </TableBody>
-        </Table>
-        
-        <Button variant="contained" color="primary" id={"crear"}>
-            Crear nueva iteraccion
-        </Button>
-        <CrearIteracion />
+        <div className="iteraciones-tab" hidden={!this.props.mostrarIteraciones}>
+          <div className="tabla" hidden={!this.state.mostrarTabla}>
+              <Table className="tabla-iteraciones" aria-label="customized table">
+                <TableHead>
+                    <TableRow>
+                        <StyledTableCell>Iteraciones</StyledTableCell>
+                        <StyledTableCell align="right">Fecha de Inicio</StyledTableCell>
+                        <StyledTableCell align="right">Fecha de Finalizacion</StyledTableCell>
+                        <StyledTableCell align="right">Capacidad del Equipo</StyledTableCell>
+                        <StyledTableCell align="right">Hitos</StyledTableCell> 
+                        <StyledTableCell align="right">Tareas</StyledTableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                {this.props.proyectos[this.props.proyectoSeleccionado].iteraciones.map((row, i) => (
+                    <StyledTableRow key={i}>
+                        <StyledTableCell component="th" scope="row">
+                            {row.nombreIteracion}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">{row.fechaInicio}</StyledTableCell>
+                        <StyledTableCell align="right">{row.fechaDeFinalizacion}</StyledTableCell>
+                        <StyledTableCell align="right">{row.capacidadEquipo}</StyledTableCell>
+                        <StyledTableCell align="right">{row.hitos}</StyledTableCell>
+                        <StyledTableCell align="right">{row.tareas}</StyledTableCell>
+                    </StyledTableRow>
+                ))}
+                </TableBody>
+            </Table>
+            
+
+            <div className="ui grid">
+                <div className="two wide column">
+                  <Button variant="contained" color="primary" id={"crear-iteraccion"} onClick={this.intercambiarEntreTablaYCrear}>
+                    Crear iteraccion
+                  </Button>
+                </div>
+                <div className="two wide column">
+                  <Button variant="contained" color="primary" onClick={this.props.intercambiarTabIteraciones}>
+                      Volver
+                  </Button>
+                </div>
+            </div>
+        </div>
+      <CrearIteracion agregarIteracion={this.props.agregarIteracion} mostrarCrearIteraciones={this.state.mostrarCrearIteraciones} intercambiarEntreTablaYCrear={this.intercambiarEntreTablaYCrear}/>
     </div>
     
     );
