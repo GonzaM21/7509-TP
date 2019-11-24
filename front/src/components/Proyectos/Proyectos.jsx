@@ -267,7 +267,7 @@ class Proyectos extends React.Component {
     
     return (
       <div className="container">
-        <div className="proyectos-tabs" hidden={!this.state.mostrarProyectos}>
+        <div className="proyectos-tabs" hidden={!this.state.mostrarProyectos} id="miId">
           <h1 className="portafolio-title">
             Portafolio de Proyectos
           </h1>
@@ -302,7 +302,7 @@ class Proyectos extends React.Component {
                       <Button variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
                         Tareas
                       </Button> 
-                      <Button variant="contained" color="primary" onClick={() => this.mostrarRiesgos(i)}>
+                      <Button variant="contained" color="primary" style={{background: "#ff9800"}} onClick={() => this.mostrarRiesgos(i)}>
                         Riesgos
                       </Button> 
                       <Button variant="contained" color="primary" onClick={() => this.mostrarDetalles(i)}>
@@ -315,12 +315,12 @@ class Proyectos extends React.Component {
                         Hitos
                       </Button> 
                       <span hidden={!row.mostrarBotones}>
-                        <Button variant="contained" color="primary" onClick={() => this.cancelarProyecto(i)} >
+                        <Button variant="contained" color="primary" style={{background:"#ff1744"}} onClick={() => this.cancelarProyecto(i)} >
                           Cancelar
                         </Button>  
                       </span> 
                       <span hidden={!row.mostrarBotones}>
-                        <Button variant="contained" color="primary" onClick={() => this.finalizarProyecto(i)}>
+                        <Button variant="contained" color="primary" style={{background:"#4caf50"}} onClick={() => this.finalizarProyecto(i)}>
                           Finalizar
                         </Button>
                       </span>
