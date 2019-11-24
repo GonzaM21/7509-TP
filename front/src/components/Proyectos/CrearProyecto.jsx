@@ -12,7 +12,8 @@ class CrearProyecto extends React.Component {
         version: "",
         estado: "",
         limiteDeRiesgo: "",
-        fechaDeFinalizacion: ""
+        fechaDeFinalizacion: "",
+        nombreVacio: false
     }
     this.crearProyecto = this.crearProyecto.bind(this);
   }
@@ -33,7 +34,13 @@ class CrearProyecto extends React.Component {
         fechaEstimadaDeFinalizacion: this.state.fechaDeFinalizacion,
         mostrarBotones: true
     };
-    this.props.agregarNuevoProyecto(proyecto);
+    if (this.state.nombre === "") {
+        this.setState({
+            nombreVacio: true
+        })
+    } else {
+        this.props.agregarNuevoProyecto(proyecto);
+    }
   }
 
   render() {
@@ -48,8 +55,8 @@ class CrearProyecto extends React.Component {
                 variant="outlined"
                 value={this.state.nombre}
                 onChange={event => this.setState({ nombre: event.target.value })}
-                // error={text === ""}
-                // helperText={text === "" ? 'Empty field!' : ' '}
+                error={this.state.nombreVacio === true}
+                helperText={this.state.nombreVacio? 'Campo vacio' : ' '}
             />
             <div className="texto-informacion">
                 Ingrese prioridad del proyecto
