@@ -315,7 +315,7 @@ class Proyectos extends React.Component {
                         Hitos
                       </Button> 
                       <span hidden={!row.mostrarBotones}>
-                        <Button variant="contained" color="primary" onClick={() => this.cancelarProyecto(i)} >
+                        <Button variant="contained" color="secondary" onClick={() => this.cancelarProyecto(i)} >
                           Cancelar
                         </Button>  
                       </span> 
