@@ -65,6 +65,7 @@ class CrearProyecto extends React.Component {
                 Ingrese el nombre del proyecto
             </div>
             <TextField
+                id = "nombre-proyecto"
                 variant="outlined"
                 value={this.state.nombre}
                 onChange={event => this.setState({ nombre: event.target.value })}
@@ -134,7 +135,7 @@ class CrearProyecto extends React.Component {
             />
             <div className="ui grid botones-aceptar-cancelar">
                 <div className="two wide column">
-                    <Button variant="contained" color="primary" onClick={this.crearProyecto}>
+                    <Button id="boton-aceptar" variant="contained" color="primary" onClick={this.crearProyecto}>
                         Aceptar
                     </Button>
                 </div>
