@@ -127,11 +127,23 @@ class CrearIteracion extends React.Component {
         <div className="texto-informacion">
             Ingrese hitos
         </div>
-        <TextField
-            variant="outlined"
-            value={this.state.hitos}
-            onChange={event => this.setState({ hitos: event.target.value })}
-        />
+        <FormControl className="form-input">
+            <Select
+                labelId="label-tipo-tarea"
+                id="seleccionar-tareas"
+                value={this.state.hitos}
+                onChange={event => this.setState({ hitos: event.target.value })}
+                error={this.state.tipoInvalido}
+                helpertext={this.state.tipoInvalido? 'Tarea inválida': ''}
+            >
+            {
+                this.props.hitos.map(hito => (
+                    <MenuItem value={hito.nombreHito}>{hito.nombreHito}</MenuItem>
+                ))
+            }
+            </Select>
+        </FormControl>
+
         <div className="texto-informacion">
             Ingrese tareas
         </div>
@@ -150,7 +162,7 @@ class CrearIteracion extends React.Component {
                 ))
             }
             </Select>
-            </FormControl>
+        </FormControl>
         <div className="ui grid">
             <div className="two wide column">
                 <Button id="boton-aceptar-iteracion" variant="contained" color="primary" onClick={this.crearIteracion}>

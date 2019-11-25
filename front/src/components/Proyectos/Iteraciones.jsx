@@ -88,7 +88,7 @@ class Iteraciones extends React.Component {
                 </div>
             </div>
         </div>
-      <CrearIteracion tareas={this.props.proyectos[this.props.proyectoSeleccionado].tareas} agregarIteracion={this.props.agregarIteracion} mostrarCrearIteraciones={this.state.mostrarCrearIteraciones} intercambiarEntreTablaYCrear={this.intercambiarEntreTablaYCrear}/>
+      <CrearIteracion hitos={this.props.proyectos[this.props.proyectoSeleccionado].hitos} tareas={this.props.proyectos[this.props.proyectoSeleccionado].tareas} agregarIteracion={this.props.agregarIteracion} mostrarCrearIteraciones={this.state.mostrarCrearIteraciones} intercambiarEntreTablaYCrear={this.intercambiarEntreTablaYCrear}/>
     </div>
     
     );
