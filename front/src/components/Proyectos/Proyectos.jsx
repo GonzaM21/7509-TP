@@ -24,7 +24,6 @@ class Proyectos extends React.Component {
           version: "Demo",
           lider: "Soluzzia",
           tipo: "Desarrollo",
-          limiteExposicion: "5",
           tareas: [{
                   prioridad: 1,
                   titulo: "Configuración de bases de datos",
@@ -296,7 +295,7 @@ class Proyectos extends React.Component {
                   <StyledTableCell align="right">{row.version}</StyledTableCell>
                   <StyledTableCell align="right">{row.lider}</StyledTableCell>
                   <StyledTableCell align="right">{row.tipo}</StyledTableCell>
-                  <StyledTableCell align="right">{row.estado}</StyledTableCell>
+                  <StyledTableCell align="right">{row.limiteExposicion}</StyledTableCell>
                   <StyledTableCell align="right">
                     <div className="botones-accion">
                       <Button id ="tarea-bar" variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>

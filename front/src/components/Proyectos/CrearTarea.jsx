@@ -16,7 +16,7 @@ class CrearTarea extends React.Component {
         tituloTareaVacio: false,
         descripcionTareaVacia: false,
         prioridadInvalida: false,
-        tipoInvalido: false,
+        estadoInvalido: false,
         tiempoEstimadoInvalido: false
     }
     this.crearTarea = this.crearTarea.bind(this);
@@ -32,72 +32,74 @@ class CrearTarea extends React.Component {
         estado: this.state.estado,
         desarrolladorAsignado: this.state.desarrolladorAsignado
     };
-
+    
     var estados = ['Asignada', 'Pausada', 'Terminada', 'Atrasada', 'En tiempo'];
+    
+    let puedeCrearTarea = true;
 
     if (this.state.titulo === "") {
-        this.state.tituloTareaVacio = true;
+        puedeCrearTarea = false;
         this.setState({
             tituloTareaVacio: true
         });
     } else {
-        this.state.tituloTareaVacio = false;
         this.setState({
             tituloTareaVacio: false
         });
-    } if (this.state.descripcion === "") {
-        this.state.descripcionTareaVacia = true;
+    } 
+    if (this.state.descripcion === "") {
+        puedeCrearTarea = false;
         this.setState({
             descripcionTareaVacia: true
         });
     } else {
-        this.state.descripcionTareaVacia = false;
         this.setState({
             descripcionTareaVacia: false
         });
-    } if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
-        this.state.prioridadInvalida = true;
+    } 
+    if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
+        puedeCrearTarea = false;
         this.setState({
             prioridadInvalida: true
         });
     } else {
-        this.state.prioridadInvalida = false;
         this.setState({
             prioridadInvalida: false
         });
-    } if (this.state.tipo == undefined) {
-        this.state.tipoInvalido = true;
+    }
+    
+    if (!this.state.estado in estados) {
+        puedeCrearTarea = false;
         this.setState({
-            tipoInvalido: true
-        })
+            estadoInvalido: true
+        });
     } else {
-        this.state.tipoInvalido = false;
         this.setState({
-            tipoInvalido: false
-        })
-    } if ((this.state.tipo == "No asignada" && this.state.desarrolladorAsignado != '') ||
-        (this.state.tipo in estados && this.state.desarrolladorAsignado == '')) {
-        this.state.desarrrolladorInvalido = true;
-        this.setState({
+            estadoInvalido: false
+        });
+    }
+    if ((this.state.estado === "No asignada" && this.state.desarrolladorAsignado != '') ||
+        (this.state.estado in estados && this.state.desarrolladorAsignado == '')) {
+            puedeCrearTarea = false;
+            this.setState({
             desarrrolladorInvalido: true
-        })
+        });
     } else {
-        this.state.desarrrolladorInvalido = false;
         this.setState({
             desarrrolladorInvalido: false
-        })
-    } if (isNaN(Number(this.state.tiempoEstimado)) || isNaN(parseFloat(this.state.tiempoEstimado))) {
-        this.state.tiempoEstimadoInvalido = true;
+        });
+    } 
+    if (isNaN(Number(this.state.tiempoEstimado)) || isNaN(parseFloat(this.state.tiempoEstimado))) {
+        puedeCrearTarea = false;
         this.setState({
             tiempoEstimadoInvalido: true
         });
     } else {
-        this.state.tiempoEstimadoInvalido = false;
         this.setState({
             tiempoEstimadoInvalido: false
         });
-    } if (! this.state.tituloTareaVacio && ! this.state.descripcionTareaVacia && ! this.state.prioridadInvalida &&
-        ! this.state.tipoInvalido && ! this.state.desarrrolladorInvalido && ! this.state.tiempoEstimadoInvalido) {
+    } 
+    if (puedeCrearTarea) {
         this.props.agregarTareas(tarea);
         this.props.intercambiarVisibilidadTablaCrear();
     } 
@@ -161,7 +163,7 @@ class CrearTarea extends React.Component {
                 onChange={event => this.setState({ tiempoEstimado: event.target.value })}
                 endAdornment={<InputAdornment position="end">Hs</InputAdornment>}
                 error={this.state.tiempoEstimadoInvalido}
-                helperText={this.state.tiempoEstimadoInvalido? 'Tiempo estimado inválido': ' '}
+                helpertext={this.state.tiempoEstimadoInvalido? 'Tiempo estimado inválido': ' '}
                 />
             </FormControl>
             
@@ -172,10 +174,10 @@ class CrearTarea extends React.Component {
             <Select
                 labelId="label-tipo-tarea"
                 id="tipo-tarea"
-                value={this.state.tipo}
-                onChange={event => this.setState({ tipo: event.target.value })}
+                value={this.state.estado}
+                onChange={event => this.setState({ estado: event.target.value })}
                 error={this.state.tipoInvalido}
-                helperText={this.state.tipoInvalido? 'Tipo inválido': ''}
+                helpertext={this.state.tipoInvalido? 'Tipo inválido': ''}
             >
             <MenuItem value={5}>No asignada</MenuItem>
             <MenuItem value={0}>Asignada</MenuItem>
