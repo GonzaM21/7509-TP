@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
+import moment from "moment";
 
 class CrearIteracion extends React.Component {
   constructor(props) {
@@ -10,7 +11,11 @@ class CrearIteracion extends React.Component {
         fechaDeFinalizacion: "",
         capacidadEquipo: "",
         hitos: "",
-        tareas: ""
+        tareas: "",
+        nombreIteracionVacio: false,
+        fechaInicioInvalida: false,
+        fechaFinalizacionInvalida: false,
+        capacidadInvalida: false
     };
     this.crearIteracion = this.crearIteracion.bind(this);
   }
@@ -25,9 +30,44 @@ class CrearIteracion extends React.Component {
         tareas: this.state.tareas
     };
     
-    this.props.agregarIteracion(iteracion);
-    this.props.intercambiarEntreTablaYCrear();
-  }
+    let fin = moment(this.state.fechaDeFinalizacion, "DD/MM/YYYY");
+    let inicio = moment(this.state.fechaInicio, "DD/MM/YYYY");
+
+    if (this.state.nombreIteracion === "") {
+        this.state.nombreIteracionVacio = true;
+        this.setState({
+            nombreIteracionVacio: true
+        });
+    } else {
+        this.state.nombreIteracionVacio = false;
+        this.setState({
+            nombreIteracionVacio: false
+        });
+    } if (! fin.isValid() || !(this.state.fechaDeFinalizacion.split("/").length === 3)) {
+        this.state.fechaFinalizacionInvalida = true;
+    } else {
+        this.state.fechaFinalizacionInvalida = false;
+    } if (! inicio.isValid() || !(this.state.fechaInicio.split("/").length === 3)) {
+        this.state.fechaInicioInvalida = true;
+    } else {
+        this.state.fechaInicioInvalida = false;
+    } 
+    if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
+        this.state.capacidadInvalida = true;
+        this.setState({
+            capacidadInvalida: true
+        });
+    } else {
+        this.state.capacidadInvalida = false;
+        this.setState({
+            capacidadInvalida: false
+        });
+    } if (! this.state.nombreIteracionVacio && ! this.state.fechaInicioInvalida && ! this.state.fechaFinalizacionInvalida
+        && ! this.state.capacidadInvalida) {
+        this.props.agregarIteracion(iteracion);
+        this.props.intercambiarEntreTablaYCrear();
+    }
+}
   render() {
     
     return (
@@ -36,35 +76,53 @@ class CrearIteracion extends React.Component {
             Ingrese el nombre de la iteracion
         </div>
         <TextField
+            id="nombre-iteracion"
             variant="outlined"
             value={this.state.nombreIteracion}
+            aria-required="true"
+            aria-invalid={this.state.nombreIteracionVacio}
             onChange={event => this.setState({ nombreIteracion: event.target.value })}
-            // error={text === ""}
-            // helperText={text === "" ? 'Empty field!' : ' '}
-        />
+            error={this.state.nombreIteracionVacio}
+            helperText={this.state.nombreIteracionVacio? 'Campo vacio' : ' '}
+            />
         <div className="texto-informacion">
             Ingrese fecha de inicio
         </div>
         <TextField
+            id="fecha-inicio-iteracion"
             variant="outlined"
             value={this.state.fechaInicio}
+            aria-required="true"
+            aria-invalid={this.state.fechaInicioInvalida}
             onChange={event => this.setState({ fechaInicio: event.target.value })}
+            error={this.state.fechaInicioInvalida}
+            helperText={this.state.fechaInicioInvalida? 'Fecha inválida' : ' '}
         />
         <div className="texto-informacion">
             Ingrese fecha de finalizacion
         </div>
         <TextField
+            id="fecha-fin-iteracion"
             variant="outlined"
             value={this.state.fechaDeFinalizacion}
+            aria-required="true"
+            aria-invalid={this.state.fechaFinalizacionInvalida}
             onChange={event => this.setState({ fechaDeFinalizacion: event.target.value })}
+            error={this.state.fechaFinalizacionInvalida}
+            helperText={this.state.fechaFinalizacionInvalida? 'Fecha inválida' : ' '}
         />
         <div className="texto-informacion">
             Ingrese capacidad del equipo
         </div>
         <TextField
+            id="capacidad-iteracion"
             variant="outlined"
             value={this.state.capacidadEquipo}
+            aria-required="true"
+            aria-invalid={this.state.capacidadInvalida}
             onChange={event => this.setState({ capacidadEquipo: event.target.value })}
+            error={this.state.capacidadInvalida}
+            helperText={this.state.capacidadInvalida? 'La capacidad debe ser numérica': ' '}
         />
         <div className="texto-informacion">
             Ingrese hitos
@@ -84,7 +142,7 @@ class CrearIteracion extends React.Component {
         />
         <div className="ui grid">
             <div className="two wide column">
-                <Button variant="contained" color="primary" onClick={this.crearIteracion}>
+                <Button id="boton-aceptar-iteracion" variant="contained" color="primary" onClick={this.crearIteracion}>
                     Aceptar
                 </Button>
             </div>

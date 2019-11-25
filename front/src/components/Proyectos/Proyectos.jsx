@@ -307,7 +307,7 @@ class Proyectos extends React.Component {
                       <Button variant="contained" color="primary" onClick={() => this.mostrarDetalles(i)}>
                         Detalles
                       </Button> 
-                      <Button variant="contained" color="primary" onClick={() => this.mostrarIteraciones(i)}>
+                      <Button id="iteracion-bar" variant="contained" color="primary" onClick={() => this.mostrarIteraciones(i)}>
                         Iteracion
                       </Button> 
                       <Button variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
