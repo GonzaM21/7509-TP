@@ -21,28 +21,28 @@ class CrearHitos extends React.Component {
         features: this.state.features,
     };
 
+    let puedeCrearHito = true;
+
     if (this.state.nombreHito == '') {
-        this.state.nombreHitoVacio = true;
+        puedeCrearHito = false;
         this.setState({
             nombreHitoVacio: true
         });
     } else {
-        this.state.nombreHitoVacio = false;
         this.setState({
             nombreHitoVacio: false
         });
     }  if (this.state.descripcion == '') {
-        this.state.descripcionHitoVacia = true;
+        puedeCrearHito = false;
         this.setState({
             descripcionHitoVacia: true
         });
     } else {
-        this.state.descripcionHitoVacia = false;
         this.setState({
             descripcionHitoVacia: false
         });
     }
-    if (! this.state.nombreHitoVacio && ! this.state.descripcionHitoVacia) {
+    if (puedeCrearHito) {
         this.props.agregarHito(hito);
         this.props.intercambiarTablaCrearHitos();
     }

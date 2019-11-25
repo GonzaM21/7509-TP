@@ -24,25 +24,36 @@ class CrearRiesgo extends React.Component {
         exposicion: this.state.exposicion
     };
 
+    let puedeCrearRiesgo = true;
+
     if (this.state.nombre === "") {
-        this.state.nombreRiesgoVacio = true;
+        puedeCrearRiesgo = false;
         this.setState({
             nombreRiesgoVacio: true
         });
     } else {
-        this.state.nombreRiesgoVacio = false;
         this.setState({
             nombreRiesgoVacio: false
         });
     } if (isNaN(parseFloat(this.state.probabilidadOcurrencia)) || parseFloat(this.state.probabilidadOcurrencia)> 1) {
-        this.state.probabilidadInvalida = true;
+        puedeCrearRiesgo = false;
+        this.setState({
+            probabilidadInvalida: true
+        });
     } else {
-        this.state.probabilidadInvalida = false;
+        this.setState({
+            probabilidadInvalida: false
+        });    
     } if (isNaN(parseFloat(this.state.impactoProyecto)) || parseFloat(this.state.impactoProyecto)> 1) {
-        this.state.impactoInvalido = true;
+        puedeCrearRiesgo = false;
+        this.setState({
+            impactoInvalido: true
+        });
     } else {
-        this.state.impactoInvalido = false;
-    } if (! this.state.nombreRiesgoVacio && ! this.state.impactoInvalido && ! this.state.probabilidadInvalida) {
+        this.setState({
+            impactoInvalido: false
+        });
+    } if (puedeCrearRiesgo) {
         this.props.agregarRiesgos(riesgo);
         this.props.intercambiarTablaCrearRiesgo();
     }
