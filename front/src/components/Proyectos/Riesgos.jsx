@@ -49,7 +49,7 @@ class Riesgos extends React.Component {
         <div className="riesgos-tab" hidden={!this.props.mostrarRiesgos}>
             <div className="informacion-riesgo" hidden={!this.state.mostrarTabla}>
                 <div className="riesgo-numero">
-                    Limite de riesgo: {this.props.proyectos[this.props.proyectoSeleccionado].limiteDeRiesgo}
+                    Limite de exposicion: {this.props.proyectos[this.props.proyectoSeleccionado].limiteExposicion}
                 </div>
                 <Table className="tabla-riesgos" aria-label="customized table">
                     <TableHead>

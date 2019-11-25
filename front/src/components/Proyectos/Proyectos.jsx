@@ -24,13 +24,13 @@ class Proyectos extends React.Component {
           version: "Demo",
           lider: "Soluzzia",
           tipo: "Desarrollo",
+          limiteExposicion: "5",
           tareas: [{
                   prioridad: 1,
                   titulo: "Configuración de bases de datos",
                   descripcion: "Consultar qué bases de datos son necesarias y configurarlas",
                   tiempoReal: "12hs",
                   tiempoEstimado: "10hs",
-                  estado: "En proceso",
                   desarrolladorAsignado: "Felipe Codeo"
               }],
           riesgos: [{
@@ -59,7 +59,7 @@ class Proyectos extends React.Component {
             features: "feature 1",
             estado: "A Tiempo"
               }],
-          limiteDeRiesgo: "0.3",
+          limiteExposicion: "0.3",
           fechaEstimadaDeFinalizacion: "25/11/2019",
           mostrarBotones: true
       }
@@ -281,7 +281,7 @@ class Proyectos extends React.Component {
                 <StyledTableCell align="right">Version</StyledTableCell>
                 <StyledTableCell align="right">Lider</StyledTableCell>
                 <StyledTableCell align="right">Tipo</StyledTableCell>
-                <StyledTableCell align="right">Estado</StyledTableCell>
+                <StyledTableCell align="right">Limite de exposicion</StyledTableCell>
                 <StyledTableCell align="right">Acciones</StyledTableCell>
               </TableRow>
             </TableHead>

@@ -53,18 +53,10 @@ class Detalles extends React.Component {
                 </div>
                 <div className="row">
                     <div className="column propiedad-detalle">
-                        Estado
+                        Limite de exposicion
                     </div>
                     <div className="column">
-                        {proyecto.estado}
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="column propiedad-detalle">
-                        Limite de riesgo
-                    </div>
-                    <div className="column">
-                        {proyecto.limiteDeRiesgo}
+                        {proyecto.limiteExposicion}
                     </div>
                 </div>
                 <div className="row">

@@ -11,7 +11,6 @@ class CrearProyecto extends React.Component {
         tipo: "",
         lider: "",
         version: "",
-        estado: "",
         limiteExposicion: "",
         fechaDeFinalizacion: "",
         nombreProyectoVacio: false,
