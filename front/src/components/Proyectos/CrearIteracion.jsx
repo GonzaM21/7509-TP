@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, FormControl, Select, MenuItem } from "@material-ui/core";
 import moment from "moment";
 
 class CrearIteracion extends React.Component {
@@ -52,7 +52,7 @@ class CrearIteracion extends React.Component {
     } else {
         this.state.fechaInicioInvalida = false;
     } 
-    if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
+    if (isNaN(Number(this.state.capacidadEquipo)) || isNaN(parseInt(this.state.capacidadEquipo))) {
         this.state.capacidadInvalida = true;
         this.setState({
             capacidadInvalida: true
@@ -135,11 +135,22 @@ class CrearIteracion extends React.Component {
         <div className="texto-informacion">
             Ingrese tareas
         </div>
-        <TextField
-            variant="outlined"
-            value={this.state.tareas}
-            onChange={event => this.setState({ tareas: event.target.value })}
-        />
+        <FormControl className="form-input">
+            <Select
+                labelId="label-tipo-tarea"
+                id="seleccionar-tareas"
+                value={this.state.tareas}
+                onChange={event => this.setState({ tareas: event.target.value })}
+                error={this.state.tipoInvalido}
+                helpertext={this.state.tipoInvalido? 'Tarea inválida': ''}
+            >
+            {
+                this.props.tareas.map(tarea => (
+                    <MenuItem value={tarea.titulo}>{tarea.titulo}</MenuItem>
+                ))
+            }
+            </Select>
+            </FormControl>
         <div className="ui grid">
             <div className="two wide column">
                 <Button id="boton-aceptar-iteracion" variant="contained" color="primary" onClick={this.crearIteracion}>
