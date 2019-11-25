@@ -24,7 +24,6 @@ class Proyectos extends React.Component {
           version: "Demo",
           lider: "Soluzzia",
           tipo: "Desarrollo",
-          estado: "En proceso",
           tareas: [{
                   prioridad: 1,
                   titulo: "Configuración de bases de datos",
