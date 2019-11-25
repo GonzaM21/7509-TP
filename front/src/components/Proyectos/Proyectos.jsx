@@ -38,13 +38,13 @@ class Proyectos extends React.Component {
                   nombre: "Perder clientes",
                   probabilidadOcurrencia: 0.2,
                   impactoProyecto: 0.7,
-                  exposicion: 100
+                  exposicion: (Number(0.7*0.2)).toFixed(2)
               },
               {
                   nombre: "Contaminacion ambiental",
                   probabilidadOcurrencia: 0.6,
                   impactoProyecto: 0.4,
-                  exposicion: 10
+                  exposicion: (Number(0.6*0.4)).toFixed(2)
               }],
           iteraciones: [{
             nombreIteracion: "Iteracion 1",
@@ -299,10 +299,10 @@ class Proyectos extends React.Component {
                   <StyledTableCell align="right">{row.estado}</StyledTableCell>
                   <StyledTableCell align="right">
                     <div className="botones-accion">
-                      <Button id = "tarea-bar" variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
+                      <Button id ="tarea-bar" variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
                         Tareas
                       </Button> 
-                      <Button variant="contained" color="primary" style={{background: "#ff9800"}} onClick={() => this.mostrarRiesgos(i)}>
+                      <Button id="riesgo-bar" variant="contained" color="primary" style={{background: "#ff9800"}} onClick={() => this.mostrarRiesgos(i)}>
                         Riesgos
                       </Button> 
                       <Button variant="contained" color="primary" onClick={() => this.mostrarDetalles(i)}>

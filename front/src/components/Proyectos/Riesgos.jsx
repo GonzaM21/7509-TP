@@ -68,14 +68,14 @@ class Riesgos extends React.Component {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">{row.probabilidadOcurrencia}</StyledTableCell>
                                 <StyledTableCell align="right">{row.impactoProyecto}</StyledTableCell>
-                                <StyledTableCell align="right">{row.exposicion}</StyledTableCell>
+                                <StyledTableCell align="right">{Number(row.probabilidadOcurrencia*row.impactoProyecto).toFixed(2)}</StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>
                 <div className="ui grid">
                     <div className="two wide column">
-                        <Button variant="contained" color="primary" onClick={this.intercambiarTablaCrearRiesgo}>
+                        <Button id="boton-nuevo-riesgo" variant="contained" color="primary" onClick={this.intercambiarTablaCrearRiesgo}>
                             Crear riesgo
                         </Button>
                     </div>

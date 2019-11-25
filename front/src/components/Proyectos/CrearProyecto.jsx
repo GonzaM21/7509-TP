@@ -67,7 +67,7 @@ class CrearProyecto extends React.Component {
         this.state.versionInvalida = true
     } else {
         this.state.versionInvalida = false
-    } if (isNaN(parseFloat(this.state.limiteExposicion))) {
+    } if (isNaN(parseFloat(this.state.limiteExposicion)) || parseFloat(this.state.limiteExposicion)> 1) {
         this.state.limiteExposicionInvalido = true;
     } else {
         this.state.limiteExposicionInvalido = false;

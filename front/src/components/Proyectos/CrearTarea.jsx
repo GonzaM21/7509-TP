@@ -86,7 +86,7 @@ class CrearTarea extends React.Component {
         this.setState({
             desarrrolladorInvalido: false
         })
-    } if (isNaN(Number(this.state.tiempoEstimado)) || isNaN(parseInt(this.state.tiempoEstimado))) {
+    } if (isNaN(Number(this.state.tiempoEstimado)) || isNaN(parseFloat(this.state.tiempoEstimado))) {
         this.state.tiempoEstimadoInvalido = true;
         this.setState({
             tiempoEstimadoInvalido: true
