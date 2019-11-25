@@ -38,53 +38,76 @@ class CrearProyecto extends React.Component {
         fechaEstimadaDeFinalizacion: this.state.fechaDeFinalizacion,
         mostrarBotones: true
     };
+
+    let puedeCrearProyecto = true;
     
     let date = moment(this.state.fechaDeFinalizacion, "DD/MM/YYYY");
     if (this.state.nombre === "") {
-        this.state.nombreProyectoVacio = true;
+        puedeCrearProyecto = false;
+        this.setState({
+            nombreProyectoVacio: true
+        });
     } else {
-        this.state.nombreProyectoVacio = false;
+        this.setState({
+            nombreProyectoVacio: false
+        });
     }    
     if (!date.isValid() || !(this.state.fechaDeFinalizacion.split("/").length === 3)) {
-        this.state.fechaInvalida = true;
+        puedeCrearProyecto = false;
+        this.setState({
+            fechaInvalida: true
+        });
     } else {
-        this.state.fechaInvalida = false;
+        this.setState({
+            fechaInvalida: false
+        });
     } if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
-        this.state.prioridadInvalida = true;
+        puedeCrearProyecto = false;
         this.setState({
             prioridadInvalida: true
         });
     } else {
-        this.state.prioridadInvalida = false;
         this.setState({
             prioridadInvalida: false
         });
     } if (this.state.lider === "") {
-        this.state.nombreLiderProyectoVacio = true;
+        puedeCrearProyecto = false;
+        this.setState({
+            nombreLiderProyectoVacio: true
+        });
     } else {
-        this.state.nombreLiderProyectoVacio = false;
+        this.setState({
+            nombreLiderProyectoVacio: false
+        })
     } if (isNaN(parseInt(this.state.version))) {
-        this.state.versionInvalida = true
+        puedeCrearProyecto = false;
+        this.setState({
+            versionInvalida: true
+        });
     } else {
-        this.state.versionInvalida = false
+        this.setState({
+            versionInvalida: false
+        });
     } if (isNaN(parseFloat(this.state.limiteExposicion)) || parseFloat(this.state.limiteExposicion)> 1) {
-        this.state.limiteExposicionInvalido = true;
+        puedeCrearProyecto = false;
+        this.setState({
+            limiteExposicionInvalido: true
+        });
     } else {
-        this.state.limiteExposicionInvalido = false;
+        this.setState({
+            limiteExposicionInvalido: false
+        });
     } if (this.state.tipo == "") {
-        this.state.tipoInvalido = true;
+        puedeCrearProyecto = false;
         this.setState({
             tipoInvalido: true
         })
     } else {
-        this.state.tipoInvalido = false;
         this.setState({
             tipoInvalido: false
         })
     } 
-    if (! this.state.nombreProyectoVacio && ! this.state.fechaInvalida && ! this.state.prioridadInvalida  &&
-        ! this.state.nombreLiderProyectoVacio && ! this.state.versionInvalida && ! this.state.limiteExposicionInvalido  &&
-        ! this.state.tipoInvalido) {
+    if (puedeCrearProyecto) {
         this.props.agregarNuevoProyecto(proyecto);
     } 
   }

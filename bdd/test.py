@@ -478,7 +478,7 @@ class PythonOrgSearch(unittest.TestCase):
 		boton_aceptar.click()
 		sleep(2)
 		assert(capacidad_iteracion.get_attribute("value") == '12')
-		assert(capacidad_iteracion.get_attribute("aria-invalid") == "true")
+		assert(capacidad_iteracion.get_attribute("aria-invalid") == "false")
 
 	def test_creacion_iteracion(self):
 		self.nombre_iteracion_ok()

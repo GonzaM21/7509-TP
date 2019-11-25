@@ -29,41 +29,51 @@ class CrearIteracion extends React.Component {
         hitos: this.state.hitos,
         tareas: this.state.tareas
     };
+
+    let puedeCrearIteracion = true;
     
     let fin = moment(this.state.fechaDeFinalizacion, "DD/MM/YYYY");
     let inicio = moment(this.state.fechaInicio, "DD/MM/YYYY");
 
     if (this.state.nombreIteracion === "") {
-        this.state.nombreIteracionVacio = true;
+        puedeCrearIteracion = false;
         this.setState({
             nombreIteracionVacio: true
         });
     } else {
-        this.state.nombreIteracionVacio = false;
         this.setState({
             nombreIteracionVacio: false
         });
     } if (! fin.isValid() || !(this.state.fechaDeFinalizacion.split("/").length === 3)) {
-        this.state.fechaFinalizacionInvalida = true;
+        puedeCrearIteracion = false;
+        this.setState({
+            fechaFinalizacionInvalida: true
+        });
     } else {
-        this.state.fechaFinalizacionInvalida = false;
+        this.setState({
+            fechaFinalizacionInvalida: false
+        });    
     } if (! inicio.isValid() || !(this.state.fechaInicio.split("/").length === 3)) {
-        this.state.fechaInicioInvalida = true;
+        puedeCrearIteracion = false;
+        this.setState({
+            fechaInicioInvalida: true
+        });
     } else {
-        this.state.fechaInicioInvalida = false;
+        this.setState({
+            fechaInicioInvalida: false
+        });
     } 
     if (isNaN(Number(this.state.capacidadEquipo)) || isNaN(parseInt(this.state.capacidadEquipo))) {
+        puedeCrearIteracion = false;
         this.state.capacidadInvalida = true;
         this.setState({
             capacidadInvalida: true
         });
     } else {
-        this.state.capacidadInvalida = false;
         this.setState({
             capacidadInvalida: false
         });
-    } if (! this.state.nombreIteracionVacio && ! this.state.fechaInicioInvalida && ! this.state.fechaFinalizacionInvalida
-        && ! this.state.capacidadInvalida) {
+    } if (puedeCrearIteracion) {
         this.props.agregarIteracion(iteracion);
         this.props.intercambiarEntreTablaYCrear();
     }
