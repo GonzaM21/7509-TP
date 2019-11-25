@@ -105,7 +105,7 @@ class CrearProyecto extends React.Component {
                 aria-invalid={this.state.nombreProyectoVacio}
                 onChange={event => this.setState({ nombre: event.target.value })}
                 error={this.state.nombreProyectoVacio}
-                helperText={this.state.nombreProyectoVacio? 'Campo vacio' : ' '}
+                helpertext={this.state.nombreProyectoVacio? 'Campo vacio' : ' '}
             />
             <div className="texto-informacion">
                 Ingrese prioridad del proyecto
@@ -131,7 +131,7 @@ class CrearProyecto extends React.Component {
                 value={this.state.tipo}
                 onChange={event => this.setState({ tipo: event.target.value })}
                 error={this.state.tipoInvalido}
-                helperText={this.state.tipoInvalido? 'Tipo inválido': ''}
+                helpertext={this.state.tipoInvalido? 'Tipo inválido': ''}
             >
             <MenuItem value={"Customizacion"}>Customizacion</MenuItem>
             <MenuItem value={"Desarrollo"}>Desarrollo</MenuItem>
