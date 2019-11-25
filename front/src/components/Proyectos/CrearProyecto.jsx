@@ -12,7 +12,7 @@ class CrearProyecto extends React.Component {
         lider: "",
         version: "",
         estado: "",
-        limiteDeRiesgo: "",
+        limiteExposicion: "",
         fechaDeFinalizacion: "",
         nombreProyectoVacio: false,
         fechaInvalida: false,
@@ -20,7 +20,6 @@ class CrearProyecto extends React.Component {
         nombreLiderProyectoVacio: false,
         versionInvalida: false,
         tipoInvalido: false,
-        estadoInvalido: false
     }
     this.crearProyecto = this.crearProyecto.bind(this);
   }
@@ -32,12 +31,11 @@ class CrearProyecto extends React.Component {
         version: this.state.version,
         lider: this.state.lider,
         tipo: this.state.tipo,
-        estado: this.state.estado,
         tareas: [],
         riesgos: [],
         iteraciones: [],
         hitos: [],
-        limiteDeRiesgo: this.state.limiteDeRiesgo,
+        limiteExposicion: this.state.limiteExposicion,
         fechaEstimadaDeFinalizacion: this.state.fechaDeFinalizacion,
         mostrarBotones: true
     };
@@ -70,10 +68,10 @@ class CrearProyecto extends React.Component {
         this.state.versionInvalida = true
     } else {
         this.state.versionInvalida = false
-    } if (isNaN(parseFloat(this.state.limiteDeRiesgo))) {
-        this.state.limiteRiesgoInvalido = true;
+    } if (isNaN(parseFloat(this.state.limiteExposicion))) {
+        this.state.limiteExposicionInvalido = true;
     } else {
-        this.state.limiteRiesgoInvalido = false;
+        this.state.limiteExposicionInvalido = false;
     } if (this.state.tipo == "") {
         this.state.tipoInvalido = true;
         this.setState({
@@ -84,20 +82,10 @@ class CrearProyecto extends React.Component {
         this.setState({
             tipoInvalido: false
         })
-    } if (this.state.estado == "") {
-        this.state.estadoInvalido = true;
-        this.setState({
-            estadoInvalido: true
-        })
-    } else {
-        this.state.estadoInvalido = false;
-        this.setState({
-            estadoInvalido: false
-        })
-    }
+    } 
     if (this.state.nombreProyectoVacio == false && this.state.fechaInvalida == false && this.state.prioridadInvalida == false &&
-        this.state.nombreLiderProyectoVacio == false && this.state.versionInvalida == false && this.state.limiteRiesgoInvalido == false &&
-        this.state.tipoInvalido == false && this.state.estadoInvalido == false) {
+        this.state.nombreLiderProyectoVacio == false && this.state.versionInvalida == false && this.state.limiteExposicionInvalido == false &&
+        this.state.tipoInvalido == false) {
         this.props.agregarNuevoProyecto(proyecto);
     } 
   }
@@ -179,37 +167,17 @@ class CrearProyecto extends React.Component {
                 helperText={this.state.versionInvalida? 'Versión inválida': ' '}
             />
             <div className="texto-informacion">
-                Ingrese estado del proyecto
-            </div>
-            
-            <FormControl className="form-input">
-            <Select
-                labelId="label-estado-proyecto"
-                id="estado-proyecto"
-                value={this.state.estado}
-                onChange={event => this.setState({ estado: event.target.value })}
-                error={this.state.estadoInvalido}
-                helperText={this.state.estadoInvalido? 'Estado inválido': ''}
-            >
-            <MenuItem value={"Asignado"}>Asignado</MenuItem>
-            <MenuItem value={"En proceso"}>En proceso</MenuItem>
-            <MenuItem value={"Pausado"}>Pausado</MenuItem>
-            <MenuItem value={"Terminado"}>Terminado</MenuItem>
-            </Select>
-            </FormControl>
-
-            <div className="texto-informacion">
-                Ingrese limite de riesgo del proyecto
+                Ingrese limite de exposición del proyecto
             </div>
             <TextField
                 id="riesgo-proyecto"
                 variant="outlined"
                 aria-required="true"
-                aria-invalid={this.state.limiteRiesgoInvalido}
-                value={this.state.limiteDeRiesgo}
-                onChange={event => this.setState({ limiteDeRiesgo: event.target.value })}
-                error={this.state.limiteRiesgoInvalido}
-                helperText={this.state.limiteRiesgoInvalido? 'Límite riesgo inválido': ' '}
+                aria-invalid={this.state.limiteExposicionInvalido}
+                value={this.state.limiteExposicion}
+                onChange={event => this.setState({ limiteExposicion: event.target.value })}
+                error={this.state.limiteExposicionInvalido}
+                helperText={this.state.limiteExposicionInvalido? 'Límite de exposición inválido': ' '}
             />
             <div className="texto-informacion">
                 Ingrese fecha estimada de finalizacion

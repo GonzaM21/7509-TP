@@ -24,15 +24,15 @@ class Proyectos extends React.Component {
           version: "Demo",
           lider: "Soluzzia",
           tipo: "Desarrollo",
-          estado: "Desarrolando",
+          estado: "En proceso",
           tareas: [{
                   prioridad: 1,
-                  titulo: "crear front",
-                  descripcion: "se debe crear el front",
+                  titulo: "Configuración de bases de datos",
+                  descripcion: "Consultar qué bases de datos son necesarias y configurarlas",
                   tiempoReal: "12hs",
                   tiempoEstimado: "10hs",
-                  estado: "Desarrollando",
-                  desarrolladorAsignado: "felipe"
+                  estado: "En proceso",
+                  desarrolladorAsignado: "Felipe Codeo"
               }],
           riesgos: [{
                   nombre: "Perder clientes",
@@ -50,7 +50,7 @@ class Proyectos extends React.Component {
             nombreIteracion: "Iteracion 1",
             fechaInicio: "01/12/2019",
             fechaDeFinalizacion: "26/12/2019",
-            capacidadEquipo: "Alta",
+            capacidadEquipo: "10",
             hitos: "Hito 1",
             tareas: "Tarea 1"
               }],
@@ -299,7 +299,7 @@ class Proyectos extends React.Component {
                   <StyledTableCell align="right">{row.estado}</StyledTableCell>
                   <StyledTableCell align="right">
                     <div className="botones-accion">
-                      <Button variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
+                      <Button id = "tarea-bar" variant="contained" color="primary" onClick={() => this.mostrarTareas(i)}>
                         Tareas
                       </Button> 
                       <Button variant="contained" color="primary" style={{background: "#ff9800"}} onClick={() => this.mostrarRiesgos(i)}>

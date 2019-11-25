@@ -45,7 +45,7 @@ class CrearHitos extends React.Component {
                 onChange={event => this.setState({ fecha: event.target.value })}
             />
             <div className="texto-informacion">
-                Ingese features
+                Ingrese features
             </div>
             <TextField
                 variant="outlined"
