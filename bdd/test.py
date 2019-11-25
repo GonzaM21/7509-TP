@@ -163,7 +163,7 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(riesgo_proyecto.get_attribute("aria-invalid") == "false")
 	
 	def test_creacion_proyecto(self):
-		self.nombre_proyecto_ok()
+		'''self.nombre_proyecto_ok()
 		self.nombre_proyecto_vacio()
 		self.prioridad_proyecto_valida()
 		self.prioridad_proyecto_invalida()
@@ -175,7 +175,7 @@ class PythonOrgSearch(unittest.TestCase):
 		self.limite_exposicion_invalido()
 		self.limite_exposicion_invalido_numerico()
 		self.fecha_valida()
-		self.fecha_invalida()
+		self.fecha_invalida()'''
 	
 	def inicio_creacion_tarea(self):
 		driver = self.driver
@@ -281,14 +281,102 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(tiempo_estimado.get_attribute("aria-invalid") == "false")
 
 	def test_creacion_tarea(self):
-		self.nombre_tarea_vacio()
+		'''self.nombre_tarea_vacio()
 		self.nombre_tarea_ok()
 		self.descripcion_tarea_vacia()
 		self.descripcion_tarea_ok()
 		self.prioridad_tarea_invalida()
 		self.prioridad_tarea_valida()
 		self.tiempo_estimado_invalido()
-		self.tiempo_estimado_valido()
+		self.tiempo_estimado_valido()'''
+	
+	def inicio_creacion_riesgo(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		tarea_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'riesgo-bar')))
+		tarea_bar.click()
+		sleep(2)
+
+		nueva_tarea = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-nuevo-riesgo')))
+		nueva_tarea.click()
+		sleep(2)
+	
+	def	nombre_riesgo_vacio(self):
+		self.inicio_creacion_riesgo()
+		#No le doy ningun nombre al riesgo
+		nombre_riesgo = self.driver.find_element_by_id('nombre-riesgo')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-riesgo')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_riesgo.get_attribute("value") == '')
+		assert(nombre_riesgo.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def nombre_riesgo_ok(self):
+		self.inicio_creacion_riesgo()
+		#Le doy un nombre al reisgo
+		nombre_riesgo = self.driver.find_element_by_id('nombre-riesgo')
+		nombre_riesgo.send_keys("Mi riesgo")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-riesgo')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_riesgo.get_attribute("value") == 'Mi riesgo')
+		assert(nombre_riesgo.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def probabilidad_riesgo_invalida(self):
+		self.inicio_creacion_riesgo()
+		#Le doy probabilidad de ocurrencia al riesgo del proyecto
+		probabilidad_proyecto = self.driver.find_element_by_id('probabilidad-riesgo')
+		probabilidad_proyecto.send_keys("2.9")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-riesgo')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(probabilidad_proyecto.get_attribute("value") == '2.9')
+		assert(probabilidad_proyecto.get_attribute("aria-invalid") == "true")
+	
+	def probabilidad_riesgo_valida(self):
+		self.inicio_creacion_riesgo()
+		#Le doy probabilidad de ocurrencia al riesgo del proyecto
+		probabilidad_proyecto = self.driver.find_element_by_id('probabilidad-riesgo')
+		probabilidad_proyecto.send_keys("0.9")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-riesgo')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(probabilidad_proyecto.get_attribute("value") == '0.9')
+		assert(probabilidad_proyecto.get_attribute("aria-invalid") == "false")
+	
+	def impacto_riesgo_invalido(self):
+		self.inicio_creacion_riesgo()
+		#Le doy impacto al riesgo del proyecto
+		impacto_proyecto = self.driver.find_element_by_id('impacto-riesgo')
+		impacto_proyecto.send_keys("2.9")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-riesgo')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(impacto_proyecto.get_attribute("value") == '2.9')
+		assert(impacto_proyecto.get_attribute("aria-invalid") == "true")
+	
+	def impacto_riesgo_valido(self):
+		self.inicio_creacion_riesgo()
+		#Le doy impacto al riesgo del proyecto
+		impacto_proyecto = self.driver.find_element_by_id('impacto-riesgo')
+		impacto_proyecto.send_keys("0.9")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-riesgo')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(impacto_proyecto.get_attribute("value") == '0.9')
+		assert(impacto_proyecto.get_attribute("aria-invalid") == "false")
+	
+	def test_creacion_riesgo(self):
+		self.nombre_riesgo_ok()
+		self.nombre_riesgo_vacio()
+		self.probabilidad_riesgo_valida()
+		self.probabilidad_riesgo_invalida()
+		self.impacto_riesgo_valido()
+		self.impacto_riesgo_invalido()
 
 	def tearDown(self):
 		self.driver.close()
