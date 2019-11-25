@@ -30,7 +30,8 @@ class Proyectos extends React.Component {
                   titulo: "Configuración de bases de datos",
                   descripcion: "Consultar qué bases de datos son necesarias y configurarlas",
                   tiempoReal: "12hs",
-                  tiempoEstimado: "10hs",
+                  tiempoEstimado: "10",
+                  estado: "Asignada",
                   desarrolladorAsignado: "Felipe Codeo"
               }],
           riesgos: [{

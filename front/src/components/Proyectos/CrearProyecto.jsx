@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TextField, Select, InputLabel, MenuItem, FormControl } from "@material-ui/core";
+import { Button, TextField, Select, MenuItem, FormControl } from "@material-ui/core";
 import moment from "moment";
 
 class CrearProyecto extends React.Component {
@@ -82,9 +82,9 @@ class CrearProyecto extends React.Component {
             tipoInvalido: false
         })
     } 
-    if (this.state.nombreProyectoVacio == false && this.state.fechaInvalida == false && this.state.prioridadInvalida == false &&
-        this.state.nombreLiderProyectoVacio == false && this.state.versionInvalida == false && this.state.limiteExposicionInvalido == false &&
-        this.state.tipoInvalido == false) {
+    if (! this.state.nombreProyectoVacio && ! this.state.fechaInvalida && ! this.state.prioridadInvalida  &&
+        ! this.state.nombreLiderProyectoVacio && ! this.state.versionInvalida && ! this.state.limiteExposicionInvalido  &&
+        ! this.state.tipoInvalido) {
         this.props.agregarNuevoProyecto(proyecto);
     } 
   }

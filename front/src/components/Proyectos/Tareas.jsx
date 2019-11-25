@@ -69,7 +69,7 @@ class Tareas extends React.Component {
                             <StyledTableCell align="right">{row.titulo}</StyledTableCell>
                             <StyledTableCell align="right">{row.descripcion}</StyledTableCell>
                             <StyledTableCell align="right">{row.tiempoReal}</StyledTableCell>
-                            <StyledTableCell align="right">{row.tiempoEstimado}</StyledTableCell>
+                            <StyledTableCell align="right">{row.tiempoEstimado + "hs"}</StyledTableCell>
                             <StyledTableCell align="right">{row.estado}</StyledTableCell>
                             <StyledTableCell align="right">{row.desarrolladorAsignado}</StyledTableCell>
                         </StyledTableRow>
@@ -78,7 +78,7 @@ class Tareas extends React.Component {
                 </Table>
                 <div className="ui grid">
                     <div className="two wide column">
-                        <Button variant="contained" color="primary" onClick={this.intercambiarVisibilidadTablaCrear}>
+                        <Button id="boton-nueva-tarea" variant="contained" color="primary" onClick={this.intercambiarVisibilidadTablaCrear}>
                             Crear nueva tarea
                         </Button>
                     </div>

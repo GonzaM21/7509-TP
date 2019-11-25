@@ -42,7 +42,7 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(nombre_proyecto.get_attribute("value") == 'Mi proyecto')
 		assert(nombre_proyecto.get_attribute("aria-invalid") == "false")
 	
-	def prioridad_valida(self):
+	def prioridad_proyecto_valida(self):
 		self.inicio_creacion_proyecto()
 		#Le doy prioridad al proyecto
 		prioridad_proyecto = self.driver.find_element_by_id('prioridad-proyecto')
@@ -53,7 +53,7 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(prioridad_proyecto.get_attribute("value") == '12 Invalid priority 12')
 		assert(prioridad_proyecto.get_attribute("aria-invalid") == "true")
 
-	def prioridad_invalida(self):
+	def prioridad_proyecto_invalida(self):
 		self.inicio_creacion_proyecto()
 		#Le doy prioridad al proyecto
 		prioridad_proyecto = self.driver.find_element_by_id('prioridad-proyecto')
@@ -154,8 +154,8 @@ class PythonOrgSearch(unittest.TestCase):
 	def test_creacion_proyecto(self):
 		self.nombre_proyecto_ok()
 		self.nombre_proyecto_vacio()
-		self.prioridad_valida()
-		self.prioridad_invalida()
+		self.prioridad_proyecto_valida()
+		self.prioridad_proyecto_invalida()
 		self.nombre_lider_proyecto_ok()
 		self.nombre_lider_proyecto_vacio()
 		self.version_valida()
@@ -164,6 +164,119 @@ class PythonOrgSearch(unittest.TestCase):
 		self.limite_exposicion_invalido()
 		self.fecha_valida()
 		self.fecha_invalida()
+	
+	def inicio_creacion_tarea(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		tarea_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'tarea-bar')))
+		tarea_bar.click()
+		sleep(2)
+
+		nueva_tarea = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-nueva-tarea')))
+		nueva_tarea.click()
+		sleep(2)
+
+	def	nombre_tarea_vacio(self):
+		self.inicio_creacion_tarea()
+		#No le doy ningun nombre a la tarea
+		nombre_tarea = self.driver.find_element_by_id('nombre-tarea')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_tarea.get_attribute("value") == '')
+		assert(nombre_tarea.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def nombre_tarea_ok(self):
+		self.inicio_creacion_tarea()
+		#Le doy un nombre a la tarea
+		nombre_tarea = self.driver.find_element_by_id('nombre-tarea')
+		nombre_tarea.send_keys("Mi tarea")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_tarea.get_attribute("value") == 'Mi tarea')
+		assert(nombre_tarea.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def	descripcion_tarea_vacia(self):
+		self.inicio_creacion_tarea()
+		#No le doy ninguna descripcion a la tarea
+		descripcion_tarea = self.driver.find_element_by_id('descripcion-tarea')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(descripcion_tarea.get_attribute("value") == '')
+		assert(descripcion_tarea.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def descripcion_tarea_ok(self):
+		self.inicio_creacion_tarea()
+		#Le doy una descripcion a la tarea
+		descripcion_tarea = self.driver.find_element_by_id('descripcion-tarea')
+		descripcion_tarea.send_keys("Una descripcion")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(descripcion_tarea.get_attribute("value") == 'Una descripcion')
+		assert(descripcion_tarea.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def prioridad_tarea_valida(self):
+		self.inicio_creacion_tarea()
+		#Le doy prioridad al proyecto
+		prioridad_tarea = self.driver.find_element_by_id('prioridad-tarea')
+		prioridad_tarea.send_keys("12 Invalid priority 12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(prioridad_tarea.get_attribute("value") == '12 Invalid priority 12')
+		assert(prioridad_tarea.get_attribute("aria-invalid") == "true")
+
+	def prioridad_tarea_invalida(self):
+		self.inicio_creacion_tarea()
+		#Le doy prioridad al proyecto
+		prioridad_tarea = self.driver.find_element_by_id('prioridad-tarea')
+		prioridad_tarea.send_keys("12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(prioridad_tarea.get_attribute("value") == '12')
+		assert(prioridad_tarea.get_attribute("aria-invalid") == "false")
+	
+	def tiempo_estimado_valido(self):
+		self.inicio_creacion_tarea()
+		#Le doy tiempo estimado al proyecto
+		tiempo_estimado = self.driver.find_element_by_id('tiempo-tarea')
+		tiempo_estimado.send_keys("12 Invalid time 12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(tiempo_estimado.get_attribute("value") == '12 Invalid time 12')
+		assert(tiempo_estimado.get_attribute("aria-invalid") == "true")
+
+	def tiempo_estimado_invalido(self):
+		self.inicio_creacion_tarea()
+		#No le doy un tiempo estimado valido al proyecto
+		tiempo_estimado = self.driver.find_element_by_id('tiempo-tarea')
+		tiempo_estimado.send_keys("12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(tiempo_estimado.get_attribute("value") == '12')
+		assert(tiempo_estimado.get_attribute("aria-invalid") == "false")
+
+	def test_creacion_tarea(self):
+		self.nombre_tarea_vacio()
+		self.nombre_tarea_ok()
+		self.descripcion_tarea_vacia()
+		self.descripcion_tarea_ok()
+		self.prioridad_tarea_invalida()
+		self.prioridad_tarea_valida()
+		self.tiempo_estimado_invalido()
+		self.tiempo_estimado_valido()
 
 	def tearDown(self):
 		self.driver.close()
