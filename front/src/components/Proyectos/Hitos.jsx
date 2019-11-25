@@ -51,9 +51,8 @@ class Hitos extends React.Component {
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Hito</StyledTableCell>
-                        <StyledTableCell align="right">Fecha</StyledTableCell>
+                        <StyledTableCell align="right">Descripcion</StyledTableCell>
                         <StyledTableCell align="right">Features</StyledTableCell>
-                        <StyledTableCell align="right">Estado</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -62,9 +61,8 @@ class Hitos extends React.Component {
                           <StyledTableCell component="th" scope="row">
                               {row.nombreHito}
                           </StyledTableCell>
-                          <StyledTableCell align="right">{row.fecha}</StyledTableCell>
+                          <StyledTableCell align="right">{row.descripcion}</StyledTableCell>
                           <StyledTableCell align="right">{row.features}</StyledTableCell>
-                          <StyledTableCell align="right">{row.estado}</StyledTableCell>
                       </StyledTableRow>
                   ))}
                 </TableBody>
@@ -72,7 +70,7 @@ class Hitos extends React.Component {
     
             <div className="ui grid">
                 <div className="two wide column">
-                    <Button variant="contained" color="primary" onClick={this.intercambiarTablaCrearHitos}>
+                    <Button id="boton-nuevo-hito" variant="contained" color="primary" onClick={this.intercambiarTablaCrearHitos}>
                         Crear Hito
                     </Button>
                 </div>

@@ -6,9 +6,10 @@ class CrearHitos extends React.Component {
     super(props);
     this.state = {
         nombreHito: "",
-        fecha: "",
+        descripcion: "",
         features: "",
-        estado: ""
+        nombreHitoVacio: false,
+        descripcionHitoVacia: false
     };
     this.crearHito = this.crearHito.bind(this);
   }
@@ -16,12 +17,35 @@ class CrearHitos extends React.Component {
   crearHito() {
     let hito = {
         nombreHito: this.state.nombreHito,
-        fecha: this.state.fecha,
+        descripcion: this.state.descripcion,
         features: this.state.features,
-        estado: this.state.estado
     };
-    this.props.agregarHito(hito);
-    this.props.intercambiarTablaCrearHitos();
+
+    if (this.state.nombreHito == '') {
+        this.state.nombreHitoVacio = true;
+        this.setState({
+            nombreHitoVacio: true
+        });
+    } else {
+        this.state.nombreHitoVacio = false;
+        this.setState({
+            nombreHitoVacio: false
+        });
+    }  if (this.state.descripcion == '') {
+        this.state.descripcionHitoVacia = true;
+        this.setState({
+            descripcionHitoVacia: true
+        });
+    } else {
+        this.state.descripcionHitoVacia = false;
+        this.setState({
+            descripcionHitoVacia: false
+        });
+    }
+    if (! this.state.nombreHitoVacio && ! this.state.descripcionHitoVacia) {
+        this.props.agregarHito(hito);
+        this.props.intercambiarTablaCrearHitos();
+    }
   }
   render() {
     return (
@@ -30,19 +54,27 @@ class CrearHitos extends React.Component {
                 Ingrese el nombre del hito
             </div>
             <TextField
+                id="nombre-hito"
                 variant="outlined"
                 value={this.state.nombreHito}
+                aria-required="true"
+                aria-invalid={this.state.nombreHitoVacio}
                 onChange={event => this.setState({ nombreHito: event.target.value })}
-                // error={text === ""}
-                // helperText={text === "" ? 'Empty field!' : ' '}
+                error={this.state.nombreHitoVacio}
+                helperText={this.state.nombreHitoVacio? 'Campo vacio' : ' '}
             />
             <div className="texto-informacion">
-                Ingrese fecha
+                Ingrese descripción
             </div>
             <TextField
+                id="descripcion-hito"
                 variant="outlined"
-                value={this.state.fecha}
-                onChange={event => this.setState({ fecha: event.target.value })}
+                value={this.state.descripcion}
+                aria-required="true"
+                aria-invalid={this.state.descripcionHitoVacia}
+                onChange={event => this.setState({ descripcion: event.target.value })}
+                error={this.state.descripcionHitoVacia}
+                helperText={this.state.descripcionHitoVacia? 'Campo vacio' : ' '}
             />
             <div className="texto-informacion">
                 Ingrese features
@@ -52,17 +84,9 @@ class CrearHitos extends React.Component {
                 value={this.state.features}
                 onChange={event => this.setState({ features: event.target.value })}
             />
-            <div className="texto-informacion">
-                Ingrese el estado
-            </div>
-            <TextField
-                variant="outlined"
-                value={this.state.estado}
-                onChange={event => this.setState({ estado: event.target.value })}
-            />
             <div className="ui grid">
                 <div className="two wide column">
-                    <Button variant="contained" color="primary" onClick={this.crearHito}>
+                    <Button id="boton-aceptar-hito" variant="contained" color="primary" onClick={this.crearHito}>
                         Agregar Hito
                     </Button>
                 </div>

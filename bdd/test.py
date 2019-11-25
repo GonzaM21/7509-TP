@@ -163,7 +163,7 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(fecha_proyecto.get_attribute("aria-invalid") == "false")
 	
 	def test_creacion_proyecto(self):
-		'''self.nombre_proyecto_ok()
+		self.nombre_proyecto_ok()
 		self.nombre_proyecto_vacio()
 		self.prioridad_proyecto_valida()
 		self.prioridad_proyecto_invalida()
@@ -175,7 +175,7 @@ class PythonOrgSearch(unittest.TestCase):
 		self.limite_exposicion_invalido()
 		self.limite_exposicion_invalido_numerico()
 		self.fecha_valida()
-		self.fecha_invalida()'''
+		self.fecha_invalida()
 	
 	def inicio_creacion_tarea(self):
 		driver = self.driver
@@ -281,14 +281,14 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(tiempo_estimado.get_attribute("aria-invalid") == "false")
 
 	def test_creacion_tarea(self):
-		'''self.nombre_tarea_vacio()
+		self.nombre_tarea_vacio()
 		self.nombre_tarea_ok()
 		self.descripcion_tarea_vacia()
 		self.descripcion_tarea_ok()
 		self.prioridad_tarea_invalida()
 		self.prioridad_tarea_valida()
 		self.tiempo_estimado_invalido()
-		self.tiempo_estimado_valido()'''
+		self.tiempo_estimado_valido()
 	
 	def inicio_creacion_riesgo(self):
 		driver = self.driver
@@ -371,12 +371,12 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(impacto_proyecto.get_attribute("aria-invalid") == "false")
 	
 	def test_creacion_riesgo(self):
-		'''self.nombre_riesgo_ok()
+		self.nombre_riesgo_ok()
 		self.nombre_riesgo_vacio()
 		self.probabilidad_riesgo_valida()
 		self.probabilidad_riesgo_invalida()
 		self.impacto_riesgo_valido()
-		self.impacto_riesgo_invalido()'''
+		self.impacto_riesgo_invalido()
 	
 	def inicio_creacion_iteracion(self):
 		driver = self.driver
@@ -489,6 +489,71 @@ class PythonOrgSearch(unittest.TestCase):
 		self.fecha_fin_iteracion_invalida()
 		self.capacidad_iteracion_invalida()
 		self.capacidad_iteracion_valida()
+	
+	def inicio_creacion_hito(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		hito_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'hito-bar')))
+		hito_bar.click()
+		sleep(2)
+
+		nuevo_hito = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-nuevo-hito')))
+		nuevo_hito.click()
+		sleep(2)
+
+	def	nombre_hito_vacio(self):
+		self.inicio_creacion_hito()
+		#No le doy ningun nombre al hito
+		nombre_hito = self.driver.find_element_by_id('nombre-hito')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-hito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_hito.get_attribute("value") == '')
+		assert(nombre_hito.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def nombre_hito_ok(self):
+		self.inicio_creacion_hito()
+		#Le doy un nombre al hito
+		nombre_hito = self.driver.find_element_by_id('nombre-hito')
+		nombre_hito.send_keys("Mi hito")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-hito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_hito.get_attribute("value") == 'Mi hito')
+		assert(nombre_hito.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def	descripcion_hito_vacio(self):
+		self.inicio_creacion_hito()
+		#No le doy ninguna descripcion al hito
+		descripcion_hito = self.driver.find_element_by_id('descripcion-hito')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-hito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(descripcion_hito.get_attribute("value") == '')
+		assert(descripcion_hito.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def descripcion_hito_ok(self):
+		self.inicio_creacion_hito()
+		#Le doy una descripcion al hito
+		descripcion_hito = self.driver.find_element_by_id('descripcion-hito')
+		descripcion_hito.send_keys("Mi descripcion de hito")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-hito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(descripcion_hito.get_attribute("value") == 'Mi descripcion de hito')
+		assert(descripcion_hito.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def test_creacion_hito(self):
+		self.nombre_hito_vacio()
+		self.nombre_hito_ok()
+		self.descripcion_hito_ok()
+		self.descripcion_hito_vacio()
 
 	def tearDown(self):
 		self.driver.close()

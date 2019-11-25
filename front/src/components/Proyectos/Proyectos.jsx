@@ -56,8 +56,8 @@ class Proyectos extends React.Component {
               }],
           hitos: [{
             nombreHito: "Hito 1",
-            fecha: "02/12/2019",
-            features: "feature 1",
+            descripcion: "Entrega de la funcionalidad básica",
+            features: "Feature 1",
             estado: "A Tiempo"
               }],
           limiteExposicion: "0.3",
@@ -311,7 +311,7 @@ class Proyectos extends React.Component {
                       <Button id="iteracion-bar" variant="contained" color="primary" onClick={() => this.mostrarIteraciones(i)}>
                         Iteracion
                       </Button> 
-                      <Button variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
+                      <Button id="hito-bar" variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
                         Hitos
                       </Button> 
                       <span hidden={!row.mostrarBotones}>
