@@ -77,7 +77,7 @@ class Iteraciones extends React.Component {
 
             <div className="ui grid">
                 <div className="two wide column">
-                  <Button variant="contained" color="primary" id={"crear-iteracion"} onClick={this.intercambiarEntreTablaYCrear}>
+                  <Button id="boton-nueva-iteracion" variant="contained" color="primary" onClick={this.intercambiarEntreTablaYCrear}>
                     Crear iteracion
                   </Button>
                 </div>

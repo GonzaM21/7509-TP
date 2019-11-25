@@ -143,24 +143,24 @@ class PythonOrgSearch(unittest.TestCase):
 	def fecha_valida(self):
 		self.inicio_creacion_proyecto()
 		#Le doy una fecha de finalizacion al proyecto
-		riesgo_proyecto = self.driver.find_element_by_id('fecha-proyecto')
-		riesgo_proyecto.send_keys("30/89/2929")
+		fecha_proyecto = self.driver.find_element_by_id('fecha-proyecto')
+		fecha_proyecto.send_keys("30/89/2929")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
 		boton_aceptar.click()
 		sleep(2)
-		assert(riesgo_proyecto.get_attribute("value") == '30/89/2929')
-		assert(riesgo_proyecto.get_attribute("aria-invalid") == "true")
+		assert(fecha_proyecto.get_attribute("value") == '30/89/2929')
+		assert(fecha_proyecto.get_attribute("aria-invalid") == "true")
 	
 	def fecha_invalida(self):
 		self.inicio_creacion_proyecto()
 		#Le doy una fecha de finalizacion al proyecto
-		riesgo_proyecto = self.driver.find_element_by_id('fecha-proyecto')
-		riesgo_proyecto.send_keys("30/04/2020")
+		fecha_proyecto = self.driver.find_element_by_id('fecha-proyecto')
+		fecha_proyecto.send_keys("30/04/2020")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
 		boton_aceptar.click()
 		sleep(2)
-		assert(riesgo_proyecto.get_attribute("value") == '30/04/2020')
-		assert(riesgo_proyecto.get_attribute("aria-invalid") == "false")
+		assert(fecha_proyecto.get_attribute("value") == '30/04/2020')
+		assert(fecha_proyecto.get_attribute("aria-invalid") == "false")
 	
 	def test_creacion_proyecto(self):
 		'''self.nombre_proyecto_ok()
@@ -316,7 +316,7 @@ class PythonOrgSearch(unittest.TestCase):
 
 	def nombre_riesgo_ok(self):
 		self.inicio_creacion_riesgo()
-		#Le doy un nombre al reisgo
+		#Le doy un nombre al riesgo
 		nombre_riesgo = self.driver.find_element_by_id('nombre-riesgo')
 		nombre_riesgo.send_keys("Mi riesgo")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-riesgo')))
@@ -371,12 +371,124 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(impacto_proyecto.get_attribute("aria-invalid") == "false")
 	
 	def test_creacion_riesgo(self):
-		self.nombre_riesgo_ok()
+		'''self.nombre_riesgo_ok()
 		self.nombre_riesgo_vacio()
 		self.probabilidad_riesgo_valida()
 		self.probabilidad_riesgo_invalida()
 		self.impacto_riesgo_valido()
-		self.impacto_riesgo_invalido()
+		self.impacto_riesgo_invalido()'''
+	
+	def inicio_creacion_iteracion(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		iteracion_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'iteracion-bar')))
+		iteracion_bar.click()
+		sleep(2)
+
+		nueva_iteracion = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-nueva-iteracion')))
+		nueva_iteracion.click()
+		sleep(2)
+	
+	def	nombre_iteracion_vacio(self):
+		self.inicio_creacion_iteracion()
+		#No le doy ningun nombre a la iteracion
+		nombre_iteracion = self.driver.find_element_by_id('nombre-iteracion')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_iteracion.get_attribute("value") == '')
+		assert(nombre_iteracion.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def nombre_iteracion_ok(self):
+		self.inicio_creacion_iteracion()
+		#Le doy un nombre a la iteracion
+		nombre_iteracion = self.driver.find_element_by_id('nombre-iteracion')
+		nombre_iteracion.send_keys("Mi iteracion")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_iteracion.get_attribute("value") == 'Mi iteracion')
+		assert(nombre_iteracion.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def fecha_inicio_iteracion_valida(self):
+		self.inicio_creacion_iteracion()
+		#Le doy una fecha de inicio a la iteracion
+		fecha_iteracion = self.driver.find_element_by_id('fecha-inicio-iteracion')
+		fecha_iteracion.send_keys("30/04/2020")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(fecha_iteracion.get_attribute("value") == '30/04/2020')
+		assert(fecha_iteracion.get_attribute("aria-invalid") == "false")
+
+	def fecha_inicio_iteracion_invalida(self):
+		self.inicio_creacion_iteracion()
+		#Le doy una fecha de inicio a la iteracion
+		fecha_iteracion = self.driver.find_element_by_id('fecha-inicio-iteracion')
+		fecha_iteracion.send_keys("30/89/2929")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(fecha_iteracion.get_attribute("value") == '30/89/2929')
+		assert(fecha_iteracion.get_attribute("aria-invalid") == "true")
+
+	def fecha_fin_iteracion_valida(self):
+		self.inicio_creacion_iteracion()
+		#Le doy una fecha de inicio a la iteracion
+		fecha_iteracion = self.driver.find_element_by_id('fecha-fin-iteracion')
+		fecha_iteracion.send_keys("30/04/2020")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(fecha_iteracion.get_attribute("value") == '30/04/2020')
+		assert(fecha_iteracion.get_attribute("aria-invalid") == "false")
+	
+	def fecha_fin_iteracion_invalida(self):
+		self.inicio_creacion_iteracion()
+		#Le doy una fecha de inicio a la iteracion
+		fecha_iteracion = self.driver.find_element_by_id('fecha-fin-iteracion')
+		fecha_iteracion.send_keys("30/89/2929")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(fecha_iteracion.get_attribute("value") == '30/89/2929')
+		assert(fecha_iteracion.get_attribute("aria-invalid") == "true")
+	
+	def capacidad_iteracion_invalida(self):
+		self.inicio_creacion_iteracion()
+		#Le doy capacidad a la iteracion
+		capacidad_iteracion = self.driver.find_element_by_id('capacidad-iteracion')
+		capacidad_iteracion.send_keys("12 Invalid capacity 12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(capacidad_iteracion.get_attribute("value") == '12 Invalid capacity 12')
+		assert(capacidad_iteracion.get_attribute("aria-invalid") == "true")
+	
+	def capacidad_iteracion_valida(self):
+		self.inicio_creacion_iteracion()
+		#Le doy capacidad a la iteracion
+		capacidad_iteracion = self.driver.find_element_by_id('capacidad-iteracion')
+		capacidad_iteracion.send_keys("12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-iteracion')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(capacidad_iteracion.get_attribute("value") == '12')
+		assert(capacidad_iteracion.get_attribute("aria-invalid") == "true")
+
+	def test_creacion_iteracion(self):
+		self.nombre_iteracion_ok()
+		self.nombre_iteracion_vacio()
+		self.fecha_inicio_iteracion_valida()
+		self.fecha_inicio_iteracion_invalida()
+		self.fecha_fin_iteracion_valida()
+		self.fecha_fin_iteracion_invalida()
+		self.capacidad_iteracion_invalida()
+		self.capacidad_iteracion_valida()
 
 	def tearDown(self):
 		self.driver.close()
