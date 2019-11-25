@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
+from selenium.webdriver.support.select import Select
 from time import sleep
 
 class PythonOrgSearch(unittest.TestCase):
@@ -162,7 +163,7 @@ class PythonOrgSearch(unittest.TestCase):
 		nav_bar.click()
 		sleep(2)
 
-		#Le doy limite de riesgo al proyecto
+		#Le doy riesgo al proyecto
 		riesgo_proyecto = driver.find_element_by_id('riesgo-proyecto')
 		riesgo_proyecto.send_keys("Not a valid risk")
 		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
@@ -180,7 +181,7 @@ class PythonOrgSearch(unittest.TestCase):
 		nav_bar.click()
 		sleep(2)
 
-		#Le doy limite de riesgo al proyecto
+		#Le doy riesgo al proyecto
 		riesgo_proyecto = driver.find_element_by_id('version-proyecto')
 		riesgo_proyecto.send_keys("0.95")
 		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
@@ -189,6 +190,41 @@ class PythonOrgSearch(unittest.TestCase):
 		assert(riesgo_proyecto.get_attribute("value") == '0.95')
 		assert(riesgo_proyecto.get_attribute("aria-invalid") == "false")
 	
+	def test_fecha_valida(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		nav_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'proyecto-bar')))
+		nav_bar.click()
+		sleep(2)
+
+		#Le doy una fecha de finalizacion al proyecto
+		riesgo_proyecto = driver.find_element_by_id('fecha-proyecto')
+		riesgo_proyecto.send_keys("30/89/2929")
+		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(riesgo_proyecto.get_attribute("value") == '30/89/2929')
+		assert(riesgo_proyecto.get_attribute("aria-invalid") == "true")
+	
+	def test_fecha_invalida(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		nav_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'proyecto-bar')))
+		nav_bar.click()
+		sleep(2)
+
+		#Le doy una fecha de finalizacion al proyecto
+		riesgo_proyecto = driver.find_element_by_id('fecha-proyecto')
+		riesgo_proyecto.send_keys("30/04/2020")
+		boton_aceptar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(riesgo_proyecto.get_attribute("value") == '30/04/2020')
+		assert(riesgo_proyecto.get_attribute("aria-invalid") == "false")
 
 	def tearDown(self):
 		self.driver.close()
