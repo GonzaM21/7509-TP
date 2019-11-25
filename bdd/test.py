@@ -117,6 +117,17 @@ class PythonOrgSearch(unittest.TestCase):
 		sleep(2)
 		assert(riesgo_proyecto.get_attribute("value") == 'Not a valid risk')
 		assert(riesgo_proyecto.get_attribute("aria-invalid") == "true")
+	
+	def limite_exposicion_invalido_numerico(self):
+		self.inicio_creacion_proyecto()
+		#Le doy riesgo al proyecto
+		riesgo_proyecto = self.driver.find_element_by_id('riesgo-proyecto')
+		riesgo_proyecto.send_keys("2.9")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(riesgo_proyecto.get_attribute("value") == '2.9')
+		assert(riesgo_proyecto.get_attribute("aria-invalid") == "true")
 
 	def limite_exposicion_valido(self):
 		self.inicio_creacion_proyecto()
@@ -162,6 +173,7 @@ class PythonOrgSearch(unittest.TestCase):
 		self.version_invalida()
 		self.limite_exposicion_valido()
 		self.limite_exposicion_invalido()
+		self.limite_exposicion_invalido_numerico()
 		self.fecha_valida()
 		self.fecha_invalida()
 	
@@ -261,11 +273,11 @@ class PythonOrgSearch(unittest.TestCase):
 		self.inicio_creacion_tarea()
 		#No le doy un tiempo estimado valido al proyecto
 		tiempo_estimado = self.driver.find_element_by_id('tiempo-tarea')
-		tiempo_estimado.send_keys("12")
+		tiempo_estimado.send_keys("1.2")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
 		boton_aceptar.click()
 		sleep(2)
-		assert(tiempo_estimado.get_attribute("value") == '12')
+		assert(tiempo_estimado.get_attribute("value") == '1.2')
 		assert(tiempo_estimado.get_attribute("aria-invalid") == "false")
 
 	def test_creacion_tarea(self):
