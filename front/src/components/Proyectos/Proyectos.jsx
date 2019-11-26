@@ -12,6 +12,7 @@ import Riesgos from "./Riesgos";
 import Tareas from "./Tareas";
 import CrearProyecto from "./CrearProyecto";
 import Detalles from "./Detalles";
+import Requisitos from "./Requisitos";
 
 class Proyectos extends React.Component {
   constructor(props) {
@@ -59,6 +60,13 @@ class Proyectos extends React.Component {
             features: "Feature 1",
             estado: "A Tiempo"
               }],
+          requisitos: [{
+            nombreRequisito: "Requisito 1",
+            descripcion: "Filtrar los emails bajo el tag PSA",
+            prioridad: 10,
+            tiempoEstimado: "12 hs",
+            tiempoReal: "10 hs"
+          }],
           limiteExposicion: "0.3",
           fechaEstimadaDeFinalizacion: "25/11/2019",
           mostrarBotones: true
@@ -71,6 +79,7 @@ class Proyectos extends React.Component {
       mostrarRiesgos: false,
       mostrarIteraciones: false,
       mostrarHitos: false,
+      mostrarRequisitos: false,
       proyectoSeleccionado: 0
     }
     this.agregarNuevoProyecto = this.agregarNuevoProyecto.bind(this);
@@ -91,6 +100,34 @@ class Proyectos extends React.Component {
     this.intercambiarTabIteraciones = this.intercambiarTabIteraciones.bind(this);
     this.agregarIteracion = this.agregarIteracion.bind(this);
     this.agregarHito = this.agregarHito.bind(this);
+    this.mostrarRequisitos = this.mostrarRequisitos.bind(this);
+    this.intercambiarTabRequisitos = this.intercambiarTabRequisitos.bind(this);
+    this.agregarRequisito = this.agregarRequisito.bind(this);
+  }
+
+  agregarRequisito(requisito) {
+    let proyectosCopy = [...this.state.proyectos];
+    
+    let requisitosNuevos = [...proyectosCopy[this.state.proyectoSeleccionado].requisitos, requisito];
+    proyectosCopy[this.state.proyectoSeleccionado].requisitos = requisitosNuevos;
+
+    this.setState({
+      proyectos: proyectosCopy
+    });
+  }
+
+  mostrarRequisitos(numeroDeProyecto) {
+    this.setState({
+      proyectoSeleccionado: numeroDeProyecto
+    });
+    this.intercambiarTabRequisitos();
+  }
+  
+  intercambiarTabRequisitos() {
+    this.setState({
+      mostrarProyectos: !this.state.mostrarProyectos,
+      mostrarRequisitos: !this.state.mostrarRequisitos
+    });
   }
 
   agregarHito(hito) {
@@ -309,10 +346,13 @@ class Proyectos extends React.Component {
                       </Button> 
                       <Button id="iteracion-bar" variant="contained" color="primary" onClick={() => this.mostrarIteraciones(i)}>
                         Iteracion
-                      </Button> 
+                      </Button>
                       <Button id="hito-bar" variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
                         Hitos
-                      </Button> 
+                      </Button>
+                      <Button id="requisitos-bar" variant="contained" color="primary" onClick={() => this.mostrarRequisitos(i)}>
+                        Requisitos
+                      </Button>  
                       <span hidden={!row.mostrarBotones}>
                         <Button variant="contained" color="primary" style={{background:"#ff1744"}} onClick={() => this.cancelarProyecto(i)} >
                           Cancelar
@@ -341,6 +381,7 @@ class Proyectos extends React.Component {
         <Detalles mostrarDetalles={this.state.mostrarDetalles} intercambiarTabDetalles={this.intercambiarTabDetalles} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Iteraciones agregarIteracion={this.agregarIteracion} intercambiarTabIteraciones={this.intercambiarTabIteraciones} mostrarIteraciones={this.state.mostrarIteraciones} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
         <Hitos intercambiarTabHitos={this.intercambiarTabHitos} mostrarHitos={this.state.mostrarHitos} agregarHito={this.agregarHito} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
+        <Requisitos agregarRequisito={this.agregarRequisito} intercambiarTabRequisitos={this.intercambiarTabRequisitos} mostrarRequisitos={this.state.mostrarRequisitos} proyectos={this.state.proyectos} proyectoSeleccionado={this.state.proyectoSeleccionado}/>
       </div>
     );
   }
