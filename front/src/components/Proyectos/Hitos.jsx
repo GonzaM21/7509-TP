@@ -52,7 +52,7 @@ class Hitos extends React.Component {
                     <TableRow>
                         <StyledTableCell>Hito</StyledTableCell>
                         <StyledTableCell align="right">Descripcion</StyledTableCell>
-                        <StyledTableCell align="right">Features</StyledTableCell>
+                        <StyledTableCell align="right">Requisito</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -62,7 +62,7 @@ class Hitos extends React.Component {
                               {row.nombreHito}
                           </StyledTableCell>
                           <StyledTableCell align="right">{row.descripcion}</StyledTableCell>
-                          <StyledTableCell align="right">{row.features}</StyledTableCell>
+                          <StyledTableCell align="right">{row.requisito}</StyledTableCell>
                       </StyledTableRow>
                   ))}
                 </TableBody>
@@ -82,7 +82,7 @@ class Hitos extends React.Component {
             </div>
           </div>
             
-        <CrearHitos agregarHito={this.props.agregarHito} intercambiarTablaCrearHitos={this.intercambiarTablaCrearHitos} mostrarCrearHitos={this.state.mostrarCrearHitos} />
+        <CrearHitos requisitos={this.props.proyectos[this.props.proyectoSeleccionado].requisitos} agregarHito={this.props.agregarHito} intercambiarTablaCrearHitos={this.intercambiarTablaCrearHitos} mostrarCrearHitos={this.state.mostrarCrearHitos} />
     </div>
     
     );

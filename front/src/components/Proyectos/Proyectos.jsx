@@ -32,7 +32,7 @@ class Proyectos extends React.Component {
                   tiempoReal: "12hs",
                   tiempoEstimado: "10",
                   estado: "Asignada",
-                  requisito: "Requisito I",
+                  requisito: "Requisito 1",
                   desarrolladorAsignado: "Felipe Codeo"
               }],
           riesgos: [{
@@ -58,7 +58,7 @@ class Proyectos extends React.Component {
           hitos: [{
             nombreHito: "Hito 1",
             descripcion: "Entrega de la funcionalidad básica",
-            features: "Feature 1",
+            requisito: "Requisito 1",
             estado: "A Tiempo"
               }],
           requisitos: [{

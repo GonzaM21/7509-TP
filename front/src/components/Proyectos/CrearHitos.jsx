@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, FormControl, Select, MenuItem } from "@material-ui/core";
 
 class CrearHitos extends React.Component {
   constructor(props) {
@@ -7,7 +7,7 @@ class CrearHitos extends React.Component {
     this.state = {
         nombreHito: "",
         descripcion: "",
-        features: "",
+        requisito: "",
         nombreHitoVacio: false,
         descripcionHitoVacia: false
     };
@@ -18,7 +18,7 @@ class CrearHitos extends React.Component {
     let hito = {
         nombreHito: this.state.nombreHito,
         descripcion: this.state.descripcion,
-        features: this.state.features,
+        requisito: this.state.requisito,
     };
 
     let puedeCrearHito = true;
@@ -77,13 +77,22 @@ class CrearHitos extends React.Component {
                 helperText={this.state.descripcionHitoVacia? 'Campo vacio' : ' '}
             />
             <div className="texto-informacion">
-                Ingrese features
+                Ingrese requisito
             </div>
-            <TextField
-                variant="outlined"
-                value={this.state.features}
-                onChange={event => this.setState({ features: event.target.value })}
-            />
+            <FormControl className="form-input">
+                <Select
+                    labelId="label-tipo-requisito"
+                    id="seleccionar-requisito"
+                    value={this.state.requisito}
+                    onChange={event => this.setState({ requisito: event.target.value })}
+                >
+                {
+                    this.props.requisitos.map(requisito => (
+                        <MenuItem value={requisito.nombreRequisito}>{requisito.nombreRequisito}</MenuItem>
+                    ))
+                }
+                </Select>
+            </FormControl>
             <div className="ui grid">
                 <div className="two wide column">
                     <Button id="boton-aceptar-hito" variant="contained" color="primary" onClick={this.crearHito}>
