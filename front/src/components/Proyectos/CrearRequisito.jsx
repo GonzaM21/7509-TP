@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, TextField, FormControl, Select, MenuItem } from "@material-ui/core";
-import moment from "moment";
+import { Button, TextField, Input, FormControl, InputAdornment } from "@material-ui/core";
 
 class CrearRequisito extends React.Component {
   constructor(props) {
@@ -27,8 +26,47 @@ class CrearRequisito extends React.Component {
         tiempoReal: "0 hs"
     };
 
-    this.props.agregarRequisito(requisito);
-    this.props.intercambiarEntreTablaYCrear();
+    let puedeCrearRequisito = true;
+    if (this.state.nombreRequisito === "") {
+        puedeCrearRequisito = false;
+        this.setState({
+            nombreRequisitoVacio: true
+        });
+    } else {
+        this.setState({
+            nombreRequisitoVacio: false
+        });
+    }  if (this.state.descripcion === "") {
+        puedeCrearRequisito = false;
+        this.setState({
+            descripcionVacia: true
+        });
+    } else {
+        this.setState({
+            descripcionVacia: false
+        });
+    } if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
+        puedeCrearRequisito = false;
+        this.setState({
+            prioridadInvalida: true
+        });
+    } else {
+        this.setState({
+            prioridadInvalida: false
+        });
+    } if (isNaN(Number(this.state.tiempoEstimado)) || isNaN(parseFloat(this.state.tiempoEstimado))) {
+        puedeCrearRequisito = false;
+        this.setState({
+            tiempoEstimadoInvalido: true
+        });
+    } else {
+        this.setState({
+            tiempoEstimadoInvalido: false
+        });
+    } if (puedeCrearRequisito) {
+        this.props.agregarRequisito(requisito);
+        this.props.intercambiarEntreTablaYCrear();
+    }   
   }
 
   render() {
@@ -77,20 +115,24 @@ class CrearRequisito extends React.Component {
         <div className="texto-informacion">
             Ingrese Tiempo Estimado
         </div>
-        <TextField
-            id="tiempo-estimado-requisito"
-            variant="outlined"
-            value={this.state.tiempoEstimado}
-            aria-required="true"
-            aria-invalid={this.state.tiempoEstimadoInvalido}
-            onChange={event => this.setState({ tiempoEstimado: event.target.value })}
-            error={this.state.tiempoEstimadoInvalido}
-            helperText={this.state.tiempoEstimadoInvalido? 'Campo invalido': ' '}
-        />
+
+        <FormControl className="form-tiempo">
+                <Input
+                id="tiempo-estimado-requisito"
+                variant="outlined"
+                aria-required="true"
+                aria-invalid={this.state.tiempoEstimadoInvalido}
+                value={this.state.tiempoEstimado}
+                onChange={event => this.setState({ tiempoEstimado: event.target.value })}
+                endAdornment={<InputAdornment position="end">Hs</InputAdornment>}
+                error={this.state.tiempoEstimadoInvalido}
+                helpertext={this.state.tiempoEstimadoInvalido? 'Tiempo estimado inválido': ' '}
+                />
+        </FormControl>
         
         <div className="ui grid">
             <div className="two wide column">
-                <Button id="boton-aceptar-iteracion" variant="contained" color="primary" onClick={this.crearRequisito}>
+                <Button id="boton-aceptar-requisito" variant="contained" color="primary" onClick={this.crearRequisito}>
                     Aceptar
                 </Button>
             </div>

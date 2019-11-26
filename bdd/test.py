@@ -238,7 +238,7 @@ class PythonOrgSearch(unittest.TestCase):
 	
 	def prioridad_tarea_valida(self):
 		self.inicio_creacion_tarea()
-		#Le doy prioridad al proyecto
+		#Le doy prioridad a la tarea
 		prioridad_tarea = self.driver.find_element_by_id('prioridad-tarea')
 		prioridad_tarea.send_keys("12 Invalid priority 12")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
@@ -249,7 +249,7 @@ class PythonOrgSearch(unittest.TestCase):
 
 	def prioridad_tarea_invalida(self):
 		self.inicio_creacion_tarea()
-		#Le doy prioridad al proyecto
+		#Le doy prioridad a la tarea
 		prioridad_tarea = self.driver.find_element_by_id('prioridad-tarea')
 		prioridad_tarea.send_keys("12")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
@@ -260,7 +260,7 @@ class PythonOrgSearch(unittest.TestCase):
 	
 	def tiempo_estimado_valido(self):
 		self.inicio_creacion_tarea()
-		#Le doy tiempo estimado al proyecto
+		#Le doy tiempo estimado a la tarea
 		tiempo_estimado = self.driver.find_element_by_id('tiempo-tarea')
 		tiempo_estimado.send_keys("12 Invalid time 12")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
@@ -271,7 +271,7 @@ class PythonOrgSearch(unittest.TestCase):
 
 	def tiempo_estimado_invalido(self):
 		self.inicio_creacion_tarea()
-		#No le doy un tiempo estimado valido al proyecto
+		#No le doy un tiempo estimado valido a la tarea
 		tiempo_estimado = self.driver.find_element_by_id('tiempo-tarea')
 		tiempo_estimado.send_keys("1.2")
 		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-tarea')))
@@ -554,6 +554,119 @@ class PythonOrgSearch(unittest.TestCase):
 		self.nombre_hito_ok()
 		self.descripcion_hito_ok()
 		self.descripcion_hito_vacio()
+	
+	def inicio_creacion_requisito(self):
+		driver = self.driver
+		driver.get("http://localhost:8080/")
+		driver.fullscreen_window()
+		#Paso a la proxima pestaña
+		requisito_bar = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'requisito-bar')))
+		requisito_bar.click()
+		sleep(2)
+
+		nuevo_requisito = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-nuevo-requisito')))
+		nuevo_requisito.click()
+		sleep(2)
+	
+	def	nombre_requisito_vacio(self):
+		self.inicio_creacion_requisito()
+		#No le doy ningun nombre al requisito
+		nombre_requisito = self.driver.find_element_by_id('nombre-requisito')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_requisito.get_attribute("value") == '')
+		assert(nombre_requisito.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def nombre_requisito_ok(self):
+		self.inicio_creacion_requisito()
+		#Le doy un nombre al requisito
+		nombre_requisito = self.driver.find_element_by_id('nombre-requisito')
+		nombre_requisito.send_keys("Mi requisito")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(nombre_requisito.get_attribute("value") == 'Mi requisito')
+		assert(nombre_requisito.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def	descripcion_requisito_vacio(self):
+		self.inicio_creacion_requisito()
+		#No le doy ninguna descripcion al requisito
+		descripcion_requisito = self.driver.find_element_by_id('descripcion-requisito')
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(descripcion_requisito.get_attribute("value") == '')
+		assert(descripcion_requisito.get_attribute("aria-invalid") == "true")
+		sleep(5)
+
+	def descripcion_requisito_ok(self):
+		self.inicio_creacion_requisito()
+		#Le doy una descripcion al requisito
+		descripcion_requisito = self.driver.find_element_by_id('descripcion-requisito')
+		descripcion_requisito.send_keys("Mi descripcion de requisito")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(descripcion_requisito.get_attribute("value") == 'Mi descripcion de requisito')
+		assert(descripcion_requisito.get_attribute("aria-invalid") == "false")
+		sleep(5)
+	
+	def prioridad_requisito_valida(self):
+		self.inicio_creacion_requisito()
+		#Le doy prioridad al requisito
+		prioridad_requisito = self.driver.find_element_by_id('prioridad-requisito')
+		prioridad_requisito.send_keys("12 Invalid priority 12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(prioridad_requisito.get_attribute("value") == '12 Invalid priority 12')
+		assert(prioridad_requisito.get_attribute("aria-invalid") == "true")
+
+	def prioridad_requisito_invalida(self):
+		self.inicio_creacion_requisito()
+		#Le doy prioridad al requisito
+		prioridad_requisito = self.driver.find_element_by_id('prioridad-requisito')
+		prioridad_requisito.send_keys("12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(prioridad_requisito.get_attribute("value") == '12')
+		assert(prioridad_requisito.get_attribute("aria-invalid") == "false")
+
+	def tiempo_estimado_requisito_valido(self):
+		self.inicio_creacion_requisito()
+		#Le doy tiempo estimado al requisito
+		tiempo_estimado = self.driver.find_element_by_id('tiempo-estimado-requisito')
+		tiempo_estimado.send_keys("12 Invalid time 12")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(tiempo_estimado.get_attribute("value") == '12 Invalid time 12')
+		assert(tiempo_estimado.get_attribute("aria-invalid") == "true")
+
+	def tiempo_estimado_requisito_invalido(self):
+		self.inicio_creacion_requisito()
+		#No le doy un tiempo estimado valido al requisito
+		tiempo_estimado = self.driver.find_element_by_id('tiempo-estimado-requisito')
+		tiempo_estimado.send_keys("1.2")
+		boton_aceptar = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'boton-aceptar-requisito')))
+		boton_aceptar.click()
+		sleep(2)
+		assert(tiempo_estimado.get_attribute("value") == '1.2')
+		assert(tiempo_estimado.get_attribute("aria-invalid") == "false")
+
+	def test_creacion_requisito(self):
+		self.nombre_requisito_vacio()
+		self.nombre_requisito_ok()
+		self.descripcion_requisito_vacio()
+		self.descripcion_requisito_ok()
+		self.prioridad_requisito_valida()
+		self.prioridad_requisito_invalida()
+		self.tiempo_estimado_requisito_invalido()
+		self.tiempo_estimado_requisito_valido()
 
 	def tearDown(self):
 		self.driver.close()
