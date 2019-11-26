@@ -47,9 +47,9 @@ class Requisitos extends React.Component {
     }))(TableRow);
 
     return (
-        <div className="iteraciones-tab" hidden={!this.props.mostrarRequisitos}>
+        <div className="requisitos-tab" hidden={!this.props.mostrarRequisitos}>
           <div className="tabla" hidden={!this.state.mostrarTabla}>
-              <Table className="tabla-iteraciones" aria-label="customized table">
+              <Table className="tabla-requisitos" aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Requisitos</StyledTableCell>
@@ -77,7 +77,7 @@ class Requisitos extends React.Component {
 
             <div className="ui grid">
                 <div className="two wide column">
-                  <Button id="boton-nueva-iteracion" variant="contained" color="primary" onClick={this.intercambiarEntreTablaYCrear}>
+                  <Button id="boton-nuevo-requisito" variant="contained" color="primary" onClick={this.intercambiarEntreTablaYCrear}>
                     Crear Requisito
                   </Button>
                 </div>

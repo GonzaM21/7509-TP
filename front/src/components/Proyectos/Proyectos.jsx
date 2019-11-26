@@ -351,7 +351,7 @@ class Proyectos extends React.Component {
                       <Button id="hito-bar" variant="contained" color="primary" onClick={() => this.mostrarHitos(i)}>
                         Hitos
                       </Button>
-                      <Button id="requisitos-bar" variant="contained" color="primary" onClick={() => this.mostrarRequisitos(i)}>
+                      <Button id="requisito-bar" variant="contained" color="primary" onClick={() => this.mostrarRequisitos(i)}>
                         Requisitos
                       </Button>  
                       <span hidden={!row.mostrarBotones}>

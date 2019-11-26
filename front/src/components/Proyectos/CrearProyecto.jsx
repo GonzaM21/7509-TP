@@ -34,7 +34,6 @@ class CrearProyecto extends React.Component {
         riesgos: [],
         iteraciones: [],
         hitos: [],
-        requisitos: [],
         limiteExposicion: this.state.limiteExposicion,
         fechaEstimadaDeFinalizacion: this.state.fechaDeFinalizacion,
         mostrarBotones: true
