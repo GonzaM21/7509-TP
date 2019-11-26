@@ -57,6 +57,7 @@ class Tareas extends React.Component {
                             <StyledTableCell align="right">Tiempo Real</StyledTableCell>
                             <StyledTableCell align="right">Tiempo Estimado</StyledTableCell>
                             <StyledTableCell align="right">Estado</StyledTableCell>
+                            <StyledTableCell align="right">Requisito asociado</StyledTableCell>
                             <StyledTableCell align="right">Desarrollador asignado</StyledTableCell>
                         </TableRow>
                     </TableHead>
@@ -71,6 +72,7 @@ class Tareas extends React.Component {
                             <StyledTableCell align="right">{row.tiempoReal}</StyledTableCell>
                             <StyledTableCell align="right">{row.tiempoEstimado + "hs"}</StyledTableCell>
                             <StyledTableCell align="right">{row.estado}</StyledTableCell>
+                            <StyledTableCell align="right">{row.requisito}</StyledTableCell>
                             <StyledTableCell align="right">{row.desarrolladorAsignado}</StyledTableCell>
                         </StyledTableRow>
                     ))}
@@ -89,7 +91,7 @@ class Tareas extends React.Component {
                     </div>
                 </div>
             </div>
-            <CrearTarea mostrarCrearTareas={this.state.mostrarCrearTareas} intercambiarVisibilidadTablaCrear={this.intercambiarVisibilidadTablaCrear} agregarTareas={this.props.agregarTareas}/>
+            <CrearTarea requisitos={this.props.proyectos[this.props.proyectoSeleccionado].requisitos} mostrarCrearTareas={this.state.mostrarCrearTareas} intercambiarVisibilidadTablaCrear={this.intercambiarVisibilidadTablaCrear} agregarTareas={this.props.agregarTareas}/>
         </div>
         
     );

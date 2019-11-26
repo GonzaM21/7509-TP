@@ -32,6 +32,7 @@ class Proyectos extends React.Component {
                   tiempoReal: "12hs",
                   tiempoEstimado: "10",
                   estado: "Asignada",
+                  requisito: "Requisito I",
                   desarrolladorAsignado: "Felipe Codeo"
               }],
           riesgos: [{

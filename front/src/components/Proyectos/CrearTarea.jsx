@@ -12,11 +12,13 @@ class CrearTarea extends React.Component {
         tiempoReal: "",
         tiempoEstimado: "",
         estado: "",
+        requisito: "",
         desarrolladorAsignado: "",
         tituloTareaVacio: false,
         descripcionTareaVacia: false,
         prioridadInvalida: false,
         estadoInvalido: false,
+        requisitoInvalido: false,
         tiempoEstimadoInvalido: false
     }
     this.crearTarea = this.crearTarea.bind(this);
@@ -30,6 +32,7 @@ class CrearTarea extends React.Component {
         tiempoReal: "0 Hs",
         tiempoEstimado: this.state.tiempoEstimado,
         estado: this.state.estado,
+        requisito: this.state.requisito,
         desarrolladorAsignado: this.state.desarrolladorAsignado
     };
     
@@ -47,6 +50,7 @@ class CrearTarea extends React.Component {
             tituloTareaVacio: false
         });
     } 
+    
     if (this.state.descripcion === "") {
         puedeCrearTarea = false;
         this.setState({
@@ -57,6 +61,7 @@ class CrearTarea extends React.Component {
             descripcionTareaVacia: false
         });
     } 
+    
     if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
         puedeCrearTarea = false;
         this.setState({
@@ -68,7 +73,7 @@ class CrearTarea extends React.Component {
         });
     }
     
-    if (!this.state.estado in estados) {
+    if (this.state.estado === "") {
         puedeCrearTarea = false;
         this.setState({
             estadoInvalido: true
@@ -78,17 +83,30 @@ class CrearTarea extends React.Component {
             estadoInvalido: false
         });
     }
+    
     if ((this.state.estado === "No asignada" && this.state.desarrolladorAsignado != '') ||
         (this.state.estado in estados && this.state.desarrolladorAsignado == '')) {
-            puedeCrearTarea = false;
-            this.setState({
+        puedeCrearTarea = false;
+        this.setState({
             desarrrolladorInvalido: true
         });
     } else {
         this.setState({
             desarrrolladorInvalido: false
         });
-    } 
+    }
+    
+    if (this.state.requisito === "") {
+        puedeCrearTarea = false;
+        this.setState({
+            requisitoInvalido: true
+        });
+    } else {
+        this.setState({
+            requisitoInvalido: false
+        });
+    }
+
     if (isNaN(Number(this.state.tiempoEstimado)) || isNaN(parseFloat(this.state.tiempoEstimado))) {
         puedeCrearTarea = false;
         this.setState({
@@ -102,7 +120,8 @@ class CrearTarea extends React.Component {
     if (puedeCrearTarea) {
         this.props.agregarTareas(tarea);
         this.props.intercambiarVisibilidadTablaCrear();
-    } 
+    }
+     
   }
 
   render() {    
@@ -176,8 +195,8 @@ class CrearTarea extends React.Component {
                 id="tipo-tarea"
                 value={this.state.estado}
                 onChange={event => this.setState({ estado: event.target.value })}
-                error={this.state.tipoInvalido}
-                helpertext={this.state.tipoInvalido? 'Tipo inválido': ''}
+                error={this.state.estadoInvalido}
+                helpertext={this.state.estadoInvalido? 'Tipo inválido': ''}
             >
             <MenuItem value={5}>No asignada</MenuItem>
             <MenuItem value={0}>Asignada</MenuItem>
@@ -186,6 +205,26 @@ class CrearTarea extends React.Component {
             <MenuItem value={3}>Pausada</MenuItem>
             <MenuItem value={4}>Terminada</MenuItem>
             </Select>
+            </FormControl>
+
+            <div className="texto-informacion">
+                Ingrese requisito asociado
+            </div>
+            <FormControl className="form-input">
+                <Select
+                    labelId="label-requisito-tarea"
+                    id="requisito-tareas"
+                    value={this.state.requisito}
+                    onChange={event => this.setState({ requisito: event.target.value })}
+                    error={this.state.requisitoInvalido}
+                    helpertext={this.state.requisitoInvalido? 'Requisito inválida': ''}
+                >
+                {
+                    this.props.requisitos.map(requisito => (
+                        <MenuItem value={requisito.nombreRequisito}>{requisito.nombreRequisito}</MenuItem>
+                    ))
+                }
+                </Select>
             </FormControl>
             <div className="texto-informacion">
                 Ingrese desarrollador a tomar la tarea
