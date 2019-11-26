@@ -324,7 +324,7 @@ class Proyectos extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.proyectos.map((row, i) => (
+              {this.state.proyectos.sort((proyecto1, proyecto2) => parseInt(proyecto1.prioridad) - parseInt(proyecto2.prioridad)).map((row, i) => (
                 <StyledTableRow key={i}>
                   <StyledTableCell component="th" scope="row">
                     {row.prioridad}
