@@ -25,21 +25,22 @@ class CrearTarea extends React.Component {
   }
 
   crearTarea() {
+    const estados = ['Asignada', 'En tiempo', 'Atrasada', 'Pausada', 'Terminada'];
+    var idx_estado = parseInt(this.state.estado)
+
     var tarea = {
         prioridad: this.state.prioridad,
         titulo: this.state.titulo,
         descripcion: this.state.descripcion,
         tiempoReal: "0 Hs",
         tiempoEstimado: this.state.tiempoEstimado,
-        estado: this.state.estado,
+        estado: estados[idx_estado],
         requisito: this.state.requisito,
         desarrolladorAsignado: this.state.desarrolladorAsignado
     };
-    
-    var estados = ['Asignada', 'Pausada', 'Terminada', 'Atrasada', 'En tiempo'];
-    
-    let puedeCrearTarea = true;
 
+    let puedeCrearTarea = true;
+    
     if (this.state.titulo === "") {
         puedeCrearTarea = false;
         this.setState({
