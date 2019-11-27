@@ -147,8 +147,8 @@ class CrearIteracion extends React.Component {
                 helpertext={this.state.tipoInvalido? 'Tarea inválida': ''}
             >
             {
-                this.props.hitos.map(hito => (
-                    <MenuItem value={hito.nombreHito}>{hito.nombreHito}</MenuItem>
+                this.props.hitos.map((hito, i) => (
+                    <MenuItem key={i} value={hito.nombreHito}>{hito.nombreHito}</MenuItem>
                 ))
             }
             </Select>
@@ -167,8 +167,8 @@ class CrearIteracion extends React.Component {
                 helpertext={this.state.tipoInvalido? 'Tarea inválida': ''}
             >
             {
-                this.props.tareas.map(tarea => (
-                    <MenuItem value={tarea.titulo}>{tarea.titulo}</MenuItem>
+                this.props.tareas.map((tarea, i) => (
+                    <MenuItem key={i} value={tarea.titulo}>{tarea.titulo}</MenuItem>
                 ))
             }
             </Select>
