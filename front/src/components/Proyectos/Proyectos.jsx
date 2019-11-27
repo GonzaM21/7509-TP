@@ -196,6 +196,7 @@ class Proyectos extends React.Component {
   finalizarProyecto(numeroDeProyecto) {
     let proyectosCopy = [...this.state.proyectos];
     proyectosCopy[numeroDeProyecto].mostrarBotones = false;
+    proyectosCopy[numeroDeProyecto].background = "#4caf50";
 
     this.setState({
       proyectos: proyectosCopy
@@ -205,6 +206,7 @@ class Proyectos extends React.Component {
   cancelarProyecto(numeroDeProyecto) {
     let proyectosCopy = [...this.state.proyectos];
     proyectosCopy[numeroDeProyecto].mostrarBotones = false;
+    proyectosCopy[numeroDeProyecto].background = "#ff1744";
 
     this.setState({
       proyectos: proyectosCopy
@@ -336,7 +338,7 @@ class Proyectos extends React.Component {
             </TableHead>
             <TableBody>
               {this.state.proyectos.sort((proyecto1, proyecto2) => parseInt(proyecto1.prioridad) - parseInt(proyecto2.prioridad)).map((row, i) => (
-                <StyledTableRow key={i}>
+                <StyledTableRow key={i} style={{background: row.background}}>
                   <StyledTableCell component="th" scope="row">
                     {row.prioridad}
                   </StyledTableCell>
