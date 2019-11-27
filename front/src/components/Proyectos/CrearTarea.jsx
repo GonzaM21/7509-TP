@@ -221,8 +221,8 @@ class CrearTarea extends React.Component {
                     helpertext={this.state.requisitoInvalido? 'Requisito inválida': ''}
                 >
                 {
-                    this.props.requisitos.map(requisito => (
-                        <MenuItem value={requisito.nombreRequisito}>{requisito.nombreRequisito}</MenuItem>
+                    this.props.requisitos.map((requisito, i) => (
+                        <MenuItem key={i} value={requisito.nombreRequisito}>{requisito.nombreRequisito}</MenuItem>
                     ))
                 }
                 </Select>

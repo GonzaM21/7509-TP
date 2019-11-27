@@ -87,8 +87,8 @@ class CrearHitos extends React.Component {
                     onChange={event => this.setState({ requisito: event.target.value })}
                 >
                 {
-                    this.props.requisitos.map(requisito => (
-                        <MenuItem value={requisito.nombreRequisito}>{requisito.nombreRequisito}</MenuItem>
+                    this.props.requisitos.map((requisito, i) => (
+                        <MenuItem key={i} value={requisito.nombreRequisito}>{requisito.nombreRequisito}</MenuItem>
                     ))
                 }
                 </Select>
