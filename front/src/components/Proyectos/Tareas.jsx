@@ -62,7 +62,7 @@ class Tareas extends React.Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {this.props.proyectos[this.props.proyectoSeleccionado].tareas.sort((tarea1, tarea2) => parseInt(tarea1.prioridad) - parseInt(tarea2.prioridad)).map((row, i) => (
+                    {this.props.proyectos[this.props.proyectoSeleccionado].tareas.map((row, i) => (
                         <StyledTableRow key={i}>
                             <StyledTableCell component="th" scope="row">
                                 {row.prioridad}
