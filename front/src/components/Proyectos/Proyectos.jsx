@@ -106,6 +106,17 @@ class Proyectos extends React.Component {
     this.agregarRequisito = this.agregarRequisito.bind(this);
   }
 
+  componentWillUnmount() {
+    document.proyectos = this.state.proyectos;
+  }
+
+  componentWillMount() {
+    if (document.proyectos) {
+      this.setState({proyectos:  document.proyectos});
+    }
+  }
+
+
   agregarRequisito(requisito) {
     let proyectosCopy = [...this.state.proyectos];
     
