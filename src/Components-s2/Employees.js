@@ -119,7 +119,7 @@ export default class Employees extends Component {
                                             <Typography className="heading" style={{textAlign:"left"}}>{employee.salary}</Typography>
                                         </div>
                                         <div className="column" style={{flexBasis: '25.0%'}}>
-                                            <LinearProgress variant="determinate" color="secondary" value={(employee.uses/employee.time)*100} style={{height: "50%", marginTop:"5px",color:"#1769aa",background: "rgb(235,235,235)"}}/>
+                                            <LinearProgress variant="determinate" value={(employee.uses/employee.time)*100} style={{height: "50%", marginTop:"5px",color:"#1769aa",background: "rgb(235,235,235)"}}/>
                                         </div>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails style={{background: "rgb(245,245,245)"}}>

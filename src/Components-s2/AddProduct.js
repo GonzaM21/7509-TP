@@ -10,34 +10,31 @@ import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers"
 export default class AddProduct extends Component {
     state = {modalOpen: false,
         name:"",price:"",c1:"",c2:"",lastdate:"",previous:"",version:"1.0",date:"Wed Nov 27 2019 13:41:00 GMT-0300 (hora estándar de Argentina)",
-        errorname:false,
-        errorprice:false,
-        errorversion:false,
-        errordate:false};
+        addButton:false};
 
     handleOpen = () => this.setState({modalOpen: true});
-    handleClose = () => this.setState({modalOpen: false, errordate : false,
-        errorversion : false,
-        errorprice : false,
-        errorname : false});
+    handleClose = () => this.setState({modalOpen: false, name:"",price:"",
+        c1:"",c2:"",lastdate:"",previous:"",version:"1.0",
+        date:"Wed Nov 27 2019 13:41:00 GMT-0300 (hora estándar de Argentina)", addButton:false});
 
     addproduct = this.addproduct.bind(this);
+
+    clicker = () => this.setState( { addButton: true});
 
     addproduct(){
 
         if(!this.state.name || this.state.name === ""){
-            this.setState({errorname : true});
+            this.clicker();
+            return null;
         }
 
         if(!this.state.price || this.state.price === ""){
-            this.setState({errorprice : true});
+            this.clicker();
+            return null;
         }
 
         if(!this.state.version || this.state.version === ""){
-            this.setState({errorversion : true});
-        }
-
-        if(this.state.errorversion || this.state.errorname || this.state.errorprice) {
+            this.clicker();
             return null;
         }
 
@@ -47,7 +44,7 @@ export default class AddProduct extends Component {
             price:this.state.price,
             c1:this.state.c1,
             c2:this.state.c2,
-            lastdate:this.state.date,
+            lastdate:this.state.date.toString().slice(4,15),
             previous: "0.0.1"};
 
         this.props.addProduct(product);
@@ -67,7 +64,7 @@ export default class AddProduct extends Component {
                         <TextField id="outlined-basic"
                                    variant="outlined"
                                    label="Nombre"
-                                   required error={this.state.errorname}
+                                   required error={this.state.name === "" && this.state.addButton}
                                    value={this.state.name}
                                    onChange={event => this.setState({ name: event.target.value })}
                                    style={{width:"100%", marginTop:"1%",marginBottom:"3%"}}/>
@@ -79,7 +76,7 @@ export default class AddProduct extends Component {
                         <TextField id="price"
                                    label="Precio"
                                    variant="outlined"
-                                   required error={this.state.errorprice}
+                                   required error={this.state.price === "" && this.state.addButton}
                                    value={this.state.price}
                                    onChange={event => this.setState({ price: event.target.value })}
                                    style={{width:"30%",marginTop:"1%",marginRight:"5%",marginBottom:"3%"}}
@@ -93,7 +90,7 @@ export default class AddProduct extends Component {
                         <TextField id="version"
                                    label="Versión"
                                    variant="outlined"
-                                   required error={this.state.errorversion}
+                                   required error={this.state.version === "" && this.state.addButton}
                                    value={this.state.version}
                                    onChange={event => this.setState({ version: event.target.value })}
                                    style={{width:"30%", marginTop:"1%",marginRight:"5%"}}/>

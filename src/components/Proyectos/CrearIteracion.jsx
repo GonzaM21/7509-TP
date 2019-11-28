@@ -31,7 +31,7 @@ class CrearIteracion extends React.Component {
     };
 
     let puedeCrearIteracion = true;
-    
+
     let fin = moment(this.state.fechaDeFinalizacion, "DD/MM/YYYY");
     let inicio = moment(this.state.fechaInicio, "DD/MM/YYYY");
 
@@ -52,7 +52,7 @@ class CrearIteracion extends React.Component {
     } else {
         this.setState({
             fechaFinalizacionInvalida: false
-        });    
+        });
     } if (! inicio.isValid() || !(this.state.fechaInicio.split("/").length === 3)) {
         puedeCrearIteracion = false;
         this.setState({
@@ -62,7 +62,7 @@ class CrearIteracion extends React.Component {
         this.setState({
             fechaInicioInvalida: false
         });
-    } 
+    }
     if (isNaN(Number(this.state.capacidadEquipo)) || isNaN(parseInt(this.state.capacidadEquipo))) {
         puedeCrearIteracion = false;
         this.setState({
@@ -78,7 +78,7 @@ class CrearIteracion extends React.Component {
     }
 }
   render() {
-    
+
     return (
       <div className="crear-iteracion" hidden={!this.props.mostrarCrearIteraciones}>
         <div className="texto-informacion">

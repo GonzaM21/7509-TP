@@ -17,6 +17,11 @@ export default class Clients  extends Component {
     state ={};
 
     add(value){
+        if(value.name === "") return null;
+        if(value.version === "") return null;
+        if(value.product === "") return null;
+        if(value.date === "") return null;
+        if(value.priority === "") return null;
         this.props.addClient(value);
     }
 

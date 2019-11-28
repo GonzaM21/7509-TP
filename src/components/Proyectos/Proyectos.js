@@ -111,7 +111,7 @@ class Proyectos extends React.Component {
     document.proyectos = this.state.proyectos;
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (document.proyectos) {
       this.setState({proyectos:  document.proyectos});
     }
