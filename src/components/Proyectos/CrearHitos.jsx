@@ -23,7 +23,7 @@ class CrearHitos extends React.Component {
 
     let puedeCrearHito = true;
 
-    if (this.state.nombreHito == '') {
+    if (this.state.nombreHito === '') {
         puedeCrearHito = false;
         this.setState({
             nombreHitoVacio: true
@@ -32,7 +32,7 @@ class CrearHitos extends React.Component {
         this.setState({
             nombreHitoVacio: false
         });
-    }  if (this.state.descripcion == '') {
+    }  if (this.state.descripcion === '') {
         puedeCrearHito = false;
         this.setState({
             descripcionHitoVacia: true

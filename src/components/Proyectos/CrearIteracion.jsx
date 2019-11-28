@@ -65,7 +65,6 @@ class CrearIteracion extends React.Component {
     } 
     if (isNaN(Number(this.state.capacidadEquipo)) || isNaN(parseInt(this.state.capacidadEquipo))) {
         puedeCrearIteracion = false;
-        this.state.capacidadInvalida = true;
         this.setState({
             capacidadInvalida: true
         });

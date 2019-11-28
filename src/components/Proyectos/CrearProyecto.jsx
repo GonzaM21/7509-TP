@@ -99,7 +99,7 @@ class CrearProyecto extends React.Component {
         this.setState({
             limiteExposicionInvalido: false
         });
-    } if (this.state.tipo == "") {
+    } if (this.state.tipo === "") {
         puedeCrearProyecto = false;
         this.setState({
             tipoInvalido: true

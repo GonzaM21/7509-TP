@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Select, MenuItem, FormControl, InputAdornment, Input } from "@material-ui/core";
 
 class CrearTarea extends React.Component {
@@ -85,8 +84,8 @@ class CrearTarea extends React.Component {
         });
     }
     
-    if ((this.state.estado === "No asignada" && this.state.desarrolladorAsignado != '') ||
-        (this.state.estado in estados && this.state.desarrolladorAsignado == '')) {
+    if ((this.state.estado === "No asignada" && this.state.desarrolladorAsignado !== '') ||
+        (this.state.estado in estados && this.state.desarrolladorAsignado === '')) {
         puedeCrearTarea = false;
         this.setState({
             desarrrolladorInvalido: true
