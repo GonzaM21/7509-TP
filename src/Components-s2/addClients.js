@@ -45,7 +45,7 @@ export default class AddClients extends Component {
             this.clicker();
             return null;
         }
-        let new_color = "#ff5722";
+        let new_color = "#ff1744";
         if(this.state.priority === "media") {
             new_color = "#ffc107";
         }

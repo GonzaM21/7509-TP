@@ -76,7 +76,7 @@ export default class App extends Component {
                 description:"Se desea que la funcionalidad tenga soporte 24/7", product:"SAM3", version:"1.2"},
             {name:"Oportunidad 2", priority:"Cancelada", colour:"#ff1744", stakeholder:"Amazon",
                 description:"Mayor eficiencia de procesamiento de datos", product:"SSO 2", version:"1.0.1"},
-            {name:"Oportunidad 3", priority:"En proceso", colour:"#ff9800", stakeholder:"Facebook",
+            {name:"Oportunidad 3", priority:"En proceso", colour:"#ffc107", stakeholder:"Facebook",
                 description:"Mayor portabilidad", product:"PSA", version:"1.2.345"},
             {name:"Oportunidad 4", priority:"Cancelada", colour:"#ff1744", stakeholder:"Mulesoft",
                 description:"Mayor eficiencia de procesamiento de datos", product:"GSMO", version:"2.5.1"},
