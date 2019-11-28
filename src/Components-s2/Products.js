@@ -26,7 +26,9 @@ export default class Products extends Component {
                 <ExpansionPanel square expanded={false}>
                     <ExpansionPanelSummary>
                         <div className="column" style={{flexBasis: '50%'}}>
-                            <Typography className="heading" onClick={this.props.sortproducts} style={{textAlign:"left"}}><b>Producto</b></Typography>
+                            <Typography className="heading" onClick={this.props.sortproducts} style={{textAlign:"left"}}><b>Producto </b>
+                                {this.props.productsort ? <i className="arrow circle down icon"></i> :
+                                <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                         <div className="column" style={{flexBasis: '26%'}}>
                             <Typography className="heading" style={{textAlign:"left"}}><b>Versión Actual</b></Typography>
@@ -47,7 +49,7 @@ export default class Products extends Component {
                                 <div className="column" style={{flexBasis: '50%'}}>
                                     <Typography className="heading" style={{textAlign:"left", marginTop: "6px"}}>{product.name}</Typography>
                                 </div>
-                                <div className="column" style={{flexBasis: '20%'}}>
+                                <div className="column" style={{flexBasis: '20.5%'}}>
                                     <Typography className="heading" style={{textAlign:"left",paddingLeft:"6%",marginTop: "6px"}}>V {product.version}</Typography>
                                 </div>
                                 <div className="column" style={{flexBasis: '20%'}}>

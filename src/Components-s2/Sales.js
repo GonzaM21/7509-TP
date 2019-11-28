@@ -40,13 +40,19 @@ export default class Sales extends Component {
                 <ExpansionPanel square expanded={false}>
                     <ExpansionPanelSummary>
                         <div className="column" style={{flexBasis: '33%'}}>
-                            <Typography className="heading" onClick={this.props.sortopportunity} style={{textAlign:"left"}}><b>Oportunidad de Negocio</b></Typography>
+                            <Typography className="heading" onClick={this.props.sortopportunity} style={{textAlign:"left"}}><b>Oportunidad de Negocio </b>
+                                {this.props.opportinitysort ? <i className="arrow circle down icon"></i> :
+                                <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                         <div className="column" style={{flexBasis: '33%'}}>
-                            <Typography className="heading" onClick={this.props.sortstakeholders} style={{textAlign:"left"}}><b>Interesado</b></Typography>
+                            <Typography className="heading" onClick={this.props.sortstakeholders} style={{textAlign:"left"}}><b>Interesado </b>
+                                {this.props.stakerholdersort ? <i className="arrow circle down icon"></i> :
+                                    <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                         <div className="column" style={{flexBasis: '33%'}}>
-                            <Typography className="heading" onClick={this.props.sortstate} style={{textAlign:"left"}}><b>Estado</b></Typography>
+                            <Typography className="heading" onClick={this.props.sortstate} style={{textAlign:"left"}}><b>Estado </b>
+                                {this.props.statesort ? <i className="arrow circle down icon"></i> :
+                                    <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                     </ExpansionPanelSummary>
                 </ExpansionPanel>
