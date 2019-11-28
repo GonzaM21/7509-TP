@@ -42,7 +42,7 @@ class CrearProyecto extends React.Component {
     };
 
     let puedeCrearProyecto = true;
-    
+
     let date = moment(this.state.fechaDeFinalizacion, "DD/MM/YYYY");
     if (this.state.nombre === "") {
         puedeCrearProyecto = false;
@@ -53,7 +53,7 @@ class CrearProyecto extends React.Component {
         this.setState({
             nombreProyectoVacio: false
         });
-    }    
+    }
     if (!date.isValid() || !(this.state.fechaDeFinalizacion.split("/").length === 3)) {
         puedeCrearProyecto = false;
         this.setState({
@@ -108,14 +108,14 @@ class CrearProyecto extends React.Component {
         this.setState({
             tipoInvalido: false
         })
-    } 
+    }
     if (puedeCrearProyecto) {
         this.props.agregarNuevoProyecto(proyecto);
-    } 
+    }
   }
 
   render() {
-    
+
     return (
       <div className="crear-proyecto" hidden={!this.props.mostrarCrearProyectos}>
           <div className="wrapper">
@@ -141,7 +141,7 @@ class CrearProyecto extends React.Component {
                 aria-required="true"
                 aria-invalid={this.state.prioridadInvalida}
                 value={this.state.prioridad}
-                onChange={event => this.setState({ prioridad: event.target.value })}  
+                onChange={event => this.setState({ prioridad: event.target.value })}
                 error={this.state.prioridadInvalida}
                 helperText={this.state.prioridadInvalida? 'Prioridad inválida': ' '}
             />

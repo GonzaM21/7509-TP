@@ -39,7 +39,7 @@ class CrearTarea extends React.Component {
     };
 
     let puedeCrearTarea = true;
-    
+
     if (this.state.titulo === "") {
         puedeCrearTarea = false;
         this.setState({
@@ -49,8 +49,8 @@ class CrearTarea extends React.Component {
         this.setState({
             tituloTareaVacio: false
         });
-    } 
-    
+    }
+
     if (this.state.descripcion === "") {
         puedeCrearTarea = false;
         this.setState({
@@ -60,8 +60,8 @@ class CrearTarea extends React.Component {
         this.setState({
             descripcionTareaVacia: false
         });
-    } 
-    
+    }
+
     if (isNaN(Number(this.state.prioridad)) || isNaN(parseInt(this.state.prioridad))) {
         puedeCrearTarea = false;
         this.setState({
@@ -72,7 +72,7 @@ class CrearTarea extends React.Component {
             prioridadInvalida: false
         });
     }
-    
+
     if (this.state.estado === "") {
         puedeCrearTarea = false;
         this.setState({
@@ -83,9 +83,9 @@ class CrearTarea extends React.Component {
             estadoInvalido: false
         });
     }
-    
+
     if ((this.state.estado === "No asignada" && this.state.desarrolladorAsignado !== '') ||
-        (this.state.estado in estados && this.state.desarrolladorAsignado === '')) {
+        (this.state.estado in estados && this.state.desarrolladorAsignado ==='')) {
         puedeCrearTarea = false;
         this.setState({
             desarrrolladorInvalido: true
@@ -95,7 +95,7 @@ class CrearTarea extends React.Component {
             desarrrolladorInvalido: false
         });
     }
-    
+
     if (this.state.requisito === "") {
         puedeCrearTarea = false;
         this.setState({
@@ -116,15 +116,15 @@ class CrearTarea extends React.Component {
         this.setState({
             tiempoEstimadoInvalido: false
         });
-    } 
+    }
     if (puedeCrearTarea) {
         this.props.agregarTareas(tarea);
         this.props.intercambiarVisibilidadTablaCrear();
     }
-     
+
   }
 
-  render() {    
+  render() {
     return (
 
         <div className="crear-tarea" hidden={!this.props.mostrarCrearTareas}>
@@ -185,7 +185,7 @@ class CrearTarea extends React.Component {
                 helpertext={this.state.tiempoEstimadoInvalido? 'Tiempo estimado inválido': ' '}
                 />
             </FormControl>
-            
+
             <div className="texto-informacion">
                 Ingrese el estado inicial
             </div>

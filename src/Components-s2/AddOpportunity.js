@@ -13,32 +13,36 @@ export default class AddOpportunity extends Component {
         colour:"#ff1744",
         description:"",
         product:"",
-        version:"",
-        errordescription : false,
-        errorname : false,
-        errorstakeholder : false,};
+        version:"",addButton:false};
 
     handleOpen = () => this.setState({modalOpen: true});
-    handleClose = () => this.setState({modalOpen: false, errordescription : false,
-        errorname : false,
-        errorstakeholder : false});
+    handleClose = () => this.setState({modalOpen: false,name:"",
+        stakeholder:"",
+        priority:"Abierto",
+        description:"",
+        product:"",
+        version:"",
+        addButton:false});
 
     addOpportunity = this.addOpportunity.bind(this);
+    clicker = () => this.setState( { addButton: true});
 
 
     addOpportunity(){
         if(!this.state.name || this.state.name === ""){
-            this.setState({errorname : true});
+            this.clicker();
+            return null;
         }
         if(!this.state.stakeholder || this.state.stakeholder === ""){
-            this.setState({errorstakeholder : true});
+            this.clicker();
+            return null;
         }
-        if(!this.state.product || this.state.description === ""){
-            this.setState({errordescription : true});
+        if(!this.state.description || this.state.description === ""){
+            this.clicker();
+            return null;
         }
 
-        if(this.state.errordescription || this.state.errorstakeholder || this.state.errorname) return null;
-        var opportunity = {name:this.state.name,
+        let opportunity = {name:this.state.name,
             stakeholder:this.state.stakeholder,
             priority:this.state.priority,
             colour:this.state.colour,
@@ -63,7 +67,7 @@ export default class AddOpportunity extends Component {
                         <TextField id="outlined-basic"
                                    variant="outlined"
                                    label="Nombre"
-                                   required error={this.state.errorname}
+                                   required error={this.state.name === "" && this.state.addButton}
                                    value={this.state.name}
                                    onChange={event => this.setState({ name: event.target.value })}
                                    style={{width:"100%", position:"left",marginTop:"1%",marginBottom:"4%"}}/>
@@ -76,7 +80,7 @@ export default class AddOpportunity extends Component {
                     <TextField id="stakerholder"
                                variant="outlined" label="Interesado"
                                select value={this.state.stakeholder}
-                               required error={this.state.errorstakeholder}
+                               required error={this.state.stakeholder === "" && this.state.addButton}
                                onChange={event => this.setState({ stakeholder: event.target.value })}
                                style={{width:"100%",marginTop:"1%"}}>
                         {this.props.stakeholders.map((option,i) => (
@@ -118,7 +122,7 @@ export default class AddOpportunity extends Component {
                     <TextField id="description"
                                variant="outlined"
                                label="Descripción"
-                               required error={this.state.errordescription}
+                               required error={this.state.description === "" && this.state.addButton}
                                value={this.state.description}
                                onChange={event => this.setState({ description: event.target.value })}
                                style={{ width:"100%", marginTop:"2%"}}/>
