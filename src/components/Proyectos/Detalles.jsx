@@ -2,7 +2,9 @@ import React from "react";
 import { Button } from "@material-ui/core";
 
 class Detalles extends React.Component {
-
+    constructor(props) {
+        super(props);
+    }
   render() {
     let proyecto = this.props.proyectos[this.props.proyectoSeleccionado];
     return (
