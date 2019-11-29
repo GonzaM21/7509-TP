@@ -121,6 +121,7 @@ export default class Clients  extends Component {
                 <AddClients addClient={this.add}
                             products={this.props.products}
                             version={this.props.version}
+                            stakeholders={this.props.stakeholders}
                 />
             </div>
         </div>

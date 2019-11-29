@@ -104,7 +104,7 @@ export default class App extends Component {
     };
 
     addClient(value){
-        if(value.name in this.state.Stakeholders) return null;
+        if(this.state.Stakeholders.includes(value.name)) return null;
         this.setState({ClientsList:[...this.state.ClientsList,value], Stakeholders:[...this.state.Stakeholders,value.name]});
     }
 
@@ -280,6 +280,7 @@ export default class App extends Component {
                                          cps={this.state.cp}
                                          addClient={this.addClient}
                                          products={this.state.ProductsActual}
+                                         stakeholders={this.state.Stakeholders}
                                          version={this.state.Version}
                                          sortname={this.sortname}
                                          sortpriority={this.sortpriority}
@@ -327,7 +328,7 @@ function Main() {
         <NavigationBar />
         <div style={{marginTop:"20%",paddingLeft:"30%",paddingRight:"30%"}}>
             <Typography variant="h4" gutterBottom style={{textAlign: "center"}}>Bienvenidos a PSA System</Typography>
-            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Toque un alguno de los botones de la barra navegación para visualizar la vista requerida</Typography>
+            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Seleccione la area requerida</Typography>
         </div>
     </div>
 }

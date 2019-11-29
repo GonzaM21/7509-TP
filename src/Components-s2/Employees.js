@@ -141,7 +141,7 @@ export default class Employees extends Component {
                                         <i className="arrow circle up icon"></i>}</Typography>
                             </div>
                             <div className="column" style={{flexBasis: '25.0%'}}>
-                                <Typography className="heading" onClick={this.sortprogress} style={{textAlign:"center"}}><b>Progreso </b>
+                                <Typography className="heading" onClick={this.sortprogress} style={{textAlign:"center"}}><b>Carga de trabajo </b>
                                     {this.state.progresssort ? <i className="arrow circle down icon"></i> :
                                         <i className="arrow circle up icon"></i>}</Typography>
                             </div>

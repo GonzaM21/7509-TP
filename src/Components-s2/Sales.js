@@ -80,7 +80,7 @@ export default class Sales extends Component {
                                 <div className="column" style={{flexBasis: '100%'}}>
                                     <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Descripción:</b> {opportunity.description}</Typography>
                                     <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Producto: </b>{ opportunity.product}</Typography>
-                                    <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Versión: </b> {opportunity.version}</Typography>
+                                    <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Versión del producto: </b> {opportunity.version}</Typography>
                                 </div>
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
