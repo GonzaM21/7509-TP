@@ -25,7 +25,7 @@ export default class AddClients extends Component {
     clicker = () => this.setState( { addButton: true});
 
     add(){
-        if (this.state.name === " " || this.state.name === ""){
+        if (this.state.name === " " || this.state.name === "" || (this.props.stakeholders).includes(this.state.name)){
             this.clicker();
             return null;
         }
@@ -71,17 +71,17 @@ export default class AddClients extends Component {
     render() {
         return <div style={{position:"absolute",right:50,bottom:50}}>
             <Modal id="addclient"
-                trigger={<Fab aria-label="add" style={{background:"#1769aa",color:"white"}} onClick={this.handleOpen}> <Add fontSize={"large"}/></Fab>}
-                open={this.state.modalOpen}
-                onClose={this.handleClose}
-                size='small'>
+                   trigger={<Fab aria-label="add" style={{background:"#1769aa",color:"white"}} onClick={this.handleOpen}> <Add fontSize={"large"}/></Fab>}
+                   open={this.state.modalOpen}
+                   onClose={this.handleClose}
+                   size='small'>
                 <Header icon='user plus' content='Nuevo Cliente'/>
                 <Modal.Content>
-                <form>
+                    <form>
                         <TextField id="name"
                                    variant="outlined"
                                    label="Nombre"
-                                   required error={(this.state.name === "" && this.state.addButton)}
+                                   required error={((this.state.name === "" || this.state.addButton) && (this.props.stakeholders).includes(this.state.name))}
                                    value={this.state.name}
                                    onChange={event => this.setState({ name: event.target.value })}
                                    style={{width:"48%", marginTop:"1%",marginRight:"4%",marginBottom:"3%"}}/>
@@ -170,11 +170,11 @@ export default class AddClients extends Component {
                                    value={this.state.email}
                                    onChange={event => this.setState({ email: event.target.value })}
                                    style={{width:"30%",marginTop:"1%",marginRight:"5%"}} InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Email />
-                                            </InputAdornment>
-                                         ),
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Email />
+                                </InputAdornment>
+                            ),
                         }}/>
                         <TextField id="phone"
                                    variant="outlined"

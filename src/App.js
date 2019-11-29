@@ -27,7 +27,8 @@ export default class App extends Component {
         this.sortproducts=this.sortproducts.bind(this);
     }
 
-    state = {
+    state = { name:true,priority:false,product:false,productsort:true,opportinitysort:true,stakeholdersort:false,
+        statesort:false,
         ClientsList : [
             {name:"Amazon",priority:"Baja", colour:"#4caf50", sede:"Seattle, Washington, EE.UU.",
                 phone:"555-4567", mail:"Amazon@amazon.com", product:"GSMO V 2.5.1", date:"Jul 06 2018"},
@@ -44,11 +45,11 @@ export default class App extends Component {
         ],
 
         cp : [{client:"Ford Argentina", product:"GSMO",version:"2.5.2", date:"Sep 12 2019"},
-                {client:"Ford Argentina", product:"SSO 2",version:"1.0.1", date:"Sep 12 2019"},
-                {client:"Amazon", product:"SSO 2", version:"1.0.1", date:"Jun 05 2018"},
-                {client:"Mulesoft", product:"SAM3",version:"1.2", date:"Feb 11 2018"},
-                {client:"Mulesoft", product:"GSMO", version:"2.5.1", date:"Oct 11 2018"},
-                {client:"Mulesoft", product:"PSA",version:"1.2.345", date:"May 21 2017"}],
+            {client:"Ford Argentina", product:"SSO 2",version:"1.0.1", date:"Sep 12 2019"},
+            {client:"Amazon", product:"SSO 2", version:"1.0.1", date:"Jun 05 2018"},
+            {client:"Mulesoft", product:"SAM3",version:"1.2", date:"Feb 11 2018"},
+            {client:"Mulesoft", product:"GSMO", version:"2.5.1", date:"Oct 11 2018"},
+            {client:"Mulesoft", product:"PSA",version:"1.2.345", date:"May 21 2017"}],
 
         ProductsActual : [{product:"PSA", value: "1.2.345"},
             {product:"PSA 2", value: "4.3.5"},
@@ -59,17 +60,17 @@ export default class App extends Component {
         ],
 
         Version : [{product:"PSA", value: "1.2.345"},
-                    {product:"PSA", value: "1.2.100"},
-                    {product:"PSA 2", value: "4.3.5"},
-                    {product:"PSA 2", value: "4.2"},
-                    {product:"GSMO", value: "2.5.3"},
-                    {product:"GSMO", value: "2.5.2"},
-                    {product:"SSO 2", value: "1.0.1"},
-                    {product:"SSO 2", value: "1.0"},
-                    {product:"SAM3", value: "1.2"},
-                    {product:"SAM3", value: "1.1"},
-                    {product:"SPE", value: "0.1(Beta)"},
-                    {product:"SPE", value: "Alpha"}],
+            {product:"PSA", value: "1.2.100"},
+            {product:"PSA 2", value: "4.3.5"},
+            {product:"PSA 2", value: "4.2"},
+            {product:"GSMO", value: "2.5.3"},
+            {product:"GSMO", value: "2.5.2"},
+            {product:"SSO 2", value: "1.0.1"},
+            {product:"SSO 2", value: "1.0"},
+            {product:"SAM3", value: "1.2"},
+            {product:"SAM3", value: "1.1"},
+            {product:"SPE", value: "0.1(Beta)"},
+            {product:"SPE", value: "Alpha"}],
 
         Opportunities : [
             {name:"Oportunidad 1", priority:"Aprobada", colour:"#4caf50", stakeholder:"Martin Maulhardt",
@@ -103,7 +104,7 @@ export default class App extends Component {
     };
 
     addClient(value){
-        if(value.name in this.state.Stakeholders) return null;
+        if(this.state.Stakeholders.includes(value.name)) return null;
         this.setState({ClientsList:[...this.state.ClientsList,value], Stakeholders:[...this.state.Stakeholders,value.name]});
     }
 
@@ -120,29 +121,57 @@ export default class App extends Component {
     }
 
     sortname(){
+        if(this.state.name){
+            this.setState({name:false});
+            this.state.ClientsList.sort(function(first, second){
+                return -(first.name.localeCompare(second.name));});
+            this.update();
+            return true;
+        }
         this.state.ClientsList.sort(function(first, second){
             return first.name.localeCompare(second.name);});
         this.state.Stakeholders.sort();
+        this.setState({name:true});
         this.update();
     }
 
     sortpriority(){
+        if(this.state.priority){
+            this.state.ClientsList.sort(function(first, second){
+                if(first.priority === second.priority) return 0;
+                if((first.priority === "Alta") && (second.priority === "Baja" || second.priority === "Media")) return 1;
+                if((first.priority === "Media") && (second.priority === "Baja")) return 1;
+                if((second.priority === "Alta") && (first.priority === "Baja" ||first.priority === "Media")) return -1;
+                if((second.priority === "Media") && (first.priority === "Baja")) return -1;
+                return first.priority.localeCompare(second.priority);});
+            this.setState({priority:false});
+            this.update();
+            return null;
+        }
         this.state.ClientsList.sort(function(first, second){
             if(first.priority === second.priority) return 0;
             if((first.priority === "Alta") && (second.priority === "Baja" ||second.priority === "Media")) return -1;
             if((first.priority === "Media") && (second.priority === "Baja")) return -1;
             if((second.priority === "Alta") && (first.priority === "Baja" ||first.priority === "Media")) return 1;
             if((second.priority === "Media") && (first.priority === "Baja")) return 1;
-
             return first.priority.localeCompare(second.priority);});
+        this.setState({priority:true});
         this.update()
     }
 
     sortproduct(){
+        if(this.state.product){
+            this.state.ClientsList.sort(function(first, second){
+                return second.product.localeCompare(first.product);});
+            this.setState({product:false});
+            this.update();
+            return null;
+        }
         this.state.ClientsList.sort(function(first, second){
             return first.product.localeCompare(second.product);});
-        this.state.Stakeholders.sort();
+        this.setState({product:true});
         this.update();
+        return null;
     }
 
     update(){
@@ -152,18 +181,48 @@ export default class App extends Component {
     }
 
     sortoportunity(){
+        if(this.state.opportinitysort){
+            this.state.Opportunities.sort(function(first, second){
+                return second.name.localeCompare(first.name);});
+            this.setState({opportinitysort:false});
+            this.update();
+            return null;
+        }
         this.state.Opportunities.sort(function(first, second){
             return first.name.localeCompare(second.name);});
+        this.setState({opportinitysort:true});
         this.update();
+        return null;
     }
 
     sortstakeholders(){
+        if(this.state.stakeholdersort){
+            this.state.Opportunities.sort(function(first, second){
+                return second.stakeholder.localeCompare(first.stakeholder);});
+            this.setState({stakeholdersort:false});
+            this.update();
+            return null;
+        }
         this.state.Opportunities.sort(function(first, second){
             return first.stakeholder.localeCompare(second.stakeholder);});
-        this.update()
+        this.setState({stakeholdersort:true});
+        this.update();
+        return null;
     }
 
     sortstate(){
+        if(this.state.statesort){
+            this.state.Opportunities.sort(function(first, second){
+                if(first.priority === second.priority) return 0;
+                if(first.priority === "En proceso" && (second.priority === "Aprobada" || second.priority === "Cancelada")) return 1;
+                if(second.priority === "En proceso" && (first.priority === "Aprobada" || first.priority === "Cancelada")) return -1;
+                if(first.priority === "Aprobada" && second.priority === "Cancelada") return 1;
+                if(second.priority === "Aprobada" && first.priority === "Cancelada") return -1;
+                return 0});
+            this.setState({statesort:false});
+            this.update();
+            return null;
+        }
         this.state.Opportunities.sort(function(first, second){
             if(first.priority === second.priority) return 0;
             if(first.priority === "En proceso" && (second.priority === "Aprobada" || second.priority === "Cancelada")) return -1;
@@ -171,15 +230,25 @@ export default class App extends Component {
             if(first.priority === "Aprobada" && second.priority === "Cancelada") return -1;
             if(second.priority === "Aprobada" && first.priority === "Cancelada") return 1;
             return 0});
-        this.update()
+        this.setState({statesort:true});
+        this.update();
+        return null;
     }
 
     sortproducts(){
+        if(this.state.productsort){
+            this.state.Products.sort(function(first, second){
+                return second.name.localeCompare(first.name);});
+            this.setState({productsort:false});
+            this.update();
+            return null;
+        }
         this.state.Products.sort(function(first, second){
             return first.name.localeCompare(second.name);});
+        this.setState({productsort:true});
         this.update();
+        return null;
     }
-
     render() {
         return <BrowserRouter>
             <Fragment>
@@ -196,25 +265,30 @@ export default class App extends Component {
                                 <Products addProduct={this.addProduct}
                                           products={this.state.Products}
                                           sortproducts={this.sortproducts}
+                                          productsort={this.state.productsort}
                                 />
                             </div>
                         </div>
-                        }
+                    }
                     />
                     <Route path="/clients-s2" render={ () =>
                         <div id="page" style={{float: "left", height: "100vh", width: "100vw",overflow: "hidden"}}>
                             <CssBaseline />
                             <NavigationBar />
                             <div id="content" style={{height: "90%", width: "100%",overflow: "auto"}}>
-                                    <Clients clients={this.state.ClientsList}
-                                             cps={this.state.cp}
-                                             addClient={this.addClient}
-                                             products={this.state.ProductsActual}
-                                             version={this.state.Version}
-                                             sortname={this.sortname}
-                                             sortpriority={this.sortpriority}
-                                             sortproduct={this.sortproduct}
-                                    />
+                                <Clients clients={this.state.ClientsList}
+                                         cps={this.state.cp}
+                                         addClient={this.addClient}
+                                         products={this.state.ProductsActual}
+                                         stakeholders={this.state.Stakeholders}
+                                         version={this.state.Version}
+                                         sortname={this.sortname}
+                                         sortpriority={this.sortpriority}
+                                         sortproduct={this.sortproduct}
+                                         clientsname={this.state.name}
+                                         clientspriority={this.state.priority}
+                                         clientsproduct={this.state.product}
+                                />
                             </div>
                         </div>}
                     />
@@ -234,8 +308,11 @@ export default class App extends Component {
                                        sortopportunity={this.sortoportunity}
                                        sortstate={this.sortstate}
                                        sortstakeholders={this.sortstakeholders}
+                                       opportinitysort={this.state.opportinitysort}
+                                       stakerholdersort={this.state.stakeholdersort}
+                                       statesort={this.state.statesort}
                                 />
-                             </div>
+                            </div>
                         </div>}/>
 
                     <Route render={() => <div><h1> 404 Not Found <hr/> </h1></div>}/>
@@ -251,7 +328,7 @@ function Main() {
         <NavigationBar />
         <div style={{marginTop:"20%",paddingLeft:"30%",paddingRight:"30%"}}>
             <Typography variant="h4" gutterBottom style={{textAlign: "center"}}>Bienvenidos a PSA System</Typography>
-            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Toque un alguno de los botones de la barra navegación para visualizar la vista requerida</Typography>
+            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Seleccione el area requerida</Typography>
         </div>
     </div>
 }

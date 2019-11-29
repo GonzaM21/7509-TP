@@ -17,11 +17,6 @@ export default class Clients  extends Component {
     state ={};
 
     add(value){
-        if(value.name === "") return null;
-        if(value.version === "") return null;
-        if(value.product === "") return null;
-        if(value.date === "") return null;
-        if(value.priority === "") return null;
         this.props.addClient(value);
     }
 
@@ -45,13 +40,20 @@ export default class Clients  extends Component {
                 <ExpansionPanel square expanded={false} defaultExpanded TransitionProps={{timeout: 0}}>
                     <ExpansionPanelSummary>
                         <div className="column" style={{flexBasis: '20%'}}>
-                            <Typography onClick={this.props.sortname} tyle={{textAlign:"center"}}><b>Nombre</b></Typography>
+                            <Typography onClick={this.props.sortname} tyle={{textAlign:"center"}}><b>Nombre </b>
+                                {this.props.clientsname ? <i className="arrow circle down icon"></i> :
+                                    <i className="arrow circle up icon"></i>}</Typography>
+
                         </div>
                         <div className="column" style={{flexBasis: '20%'}}>
-                            <Typography onClick={this.props.sortpriority} tyle={{textAlign:"center"}}><b>Prioridad</b></Typography>
+                            <Typography onClick={this.props.sortpriority} tyle={{textAlign:"center"}}><b>Prioridad </b> {this.props.clientspriority ? <i className="arrow circle down icon"></i> :
+                                <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                         <div className="column" style={{flexBasis: '30%'}}>
-                            <Typography  onClick={this.props.sortproduct} style={{textAlign:"center"}}><b>Producto/s Adquirido/s</b></Typography>
+                            <Typography  onClick={this.props.sortproduct} style={{textAlign:"center"}}><b>Producto/s Adquirido/s </b>
+                                {this.props.clientsproduct ? <i className="arrow circle down icon"></i> :
+                                <i className="arrow circle up icon"></i>}
+                            </Typography>
                         </div>
                         <div className="column" style={{flexBasis: '30%'}}>
                             <Typography className="heading" style={{textAlign:"center"}}><b>Fecha de Aquisición</b></Typography>
@@ -119,6 +121,7 @@ export default class Clients  extends Component {
                 <AddClients addClient={this.add}
                             products={this.props.products}
                             version={this.props.version}
+                            stakeholders={this.props.stakeholders}
                 />
             </div>
         </div>

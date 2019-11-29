@@ -40,13 +40,19 @@ export default class Sales extends Component {
                 <ExpansionPanel square expanded={false}>
                     <ExpansionPanelSummary>
                         <div className="column" style={{flexBasis: '33%'}}>
-                            <Typography className="heading" onClick={this.props.sortopportunity} style={{textAlign:"left"}}><b>Oportunidad de Negocio</b></Typography>
+                            <Typography className="heading" onClick={this.props.sortopportunity} style={{textAlign:"left"}}><b>Oportunidad de Negocio </b>
+                                {this.props.opportinitysort ? <i className="arrow circle down icon"></i> :
+                                <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                         <div className="column" style={{flexBasis: '33%'}}>
-                            <Typography className="heading" onClick={this.props.sortstakeholders} style={{textAlign:"left"}}><b>Interesado</b></Typography>
+                            <Typography className="heading" onClick={this.props.sortstakeholders} style={{textAlign:"left"}}><b>Interesado </b>
+                                {this.props.stakerholdersort ? <i className="arrow circle down icon"></i> :
+                                    <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                         <div className="column" style={{flexBasis: '33%'}}>
-                            <Typography className="heading" onClick={this.props.sortstate} style={{textAlign:"left"}}><b>Estado</b></Typography>
+                            <Typography className="heading" onClick={this.props.sortstate} style={{textAlign:"left"}}><b>Estado </b>
+                                {this.props.statesort ? <i className="arrow circle down icon"></i> :
+                                    <i className="arrow circle up icon"></i>}</Typography>
                         </div>
                     </ExpansionPanelSummary>
                 </ExpansionPanel>
@@ -74,7 +80,7 @@ export default class Sales extends Component {
                                 <div className="column" style={{flexBasis: '100%'}}>
                                     <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Descripción:</b> {opportunity.description}</Typography>
                                     <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Producto: </b>{ opportunity.product}</Typography>
-                                    <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Versión: </b> {opportunity.version}</Typography>
+                                    <Typography className="heading" style={{textAlign:"left",marginTop: "6px"}}><b>Versión del producto: </b> {opportunity.version}</Typography>
                                 </div>
                             </ExpansionPanelDetails>
                         </ExpansionPanel>

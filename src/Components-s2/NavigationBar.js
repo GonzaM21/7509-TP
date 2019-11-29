@@ -19,7 +19,7 @@ export default class NavigationBar extends Component {
                     style={{fontSize:"20px",float: "left", marginRight: "1%", height:"100%"}}>
                 PSA
             </Button>
-            <Button id="home"
+            <Button id="projects"
                     component={Link}
                     to="/projects-s1"
                     color='inherit'
