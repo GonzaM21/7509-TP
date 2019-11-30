@@ -46,10 +46,10 @@ export default class AddClients extends Component {
             return null;
         }
         let new_color = "#ff1744";
-        if(this.state.priority === "media") {
+        if(this.state.priority === "Media") {
             new_color = "#ffc107";
         }
-        if(this.state.priority === "baja") {
+        if(this.state.priority === "Baja") {
             new_color = "#4caf50";
         }
         let client = {
