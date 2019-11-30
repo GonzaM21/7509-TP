@@ -328,7 +328,7 @@ function Main() {
         <NavigationBar />
         <div style={{marginTop:"20%",paddingLeft:"30%",paddingRight:"30%"}}>
             <Typography variant="h4" gutterBottom style={{textAlign: "center"}}>Bienvenidos a PSA System</Typography>
-            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Seleccione el area requerida</Typography>
+            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Seleccione el área requerida</Typography>
         </div>
     </div>
 }
