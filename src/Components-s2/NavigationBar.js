@@ -62,7 +62,7 @@ export default class NavigationBar extends Component {
             <IconButton component={Link} to="/HomerPage" style={{textAlign:'center', color: "inherit", float: "right",marginTop:".1%"}}>
                 <AccountCircleIcon fontSize={"large"}/>
             </IconButton>
-            <IconButton style={{textAlign:'center', color: "inherit", float: "right",marginTop:".5%"}}>
+            <IconButton component={Link}  to="/Pointless" style={{textAlign:'center', color: "inherit", float: "right",marginTop:".5%"}}>
                 <Badge badgeContent={9}
                        color="error">
                     <NotificationsIcon style={{margin:0}}/>
