@@ -106,6 +106,7 @@ export default class App extends Component {
     addClient(value){
         if(this.state.Stakeholders.includes(value.name)) return null;
         this.setState({ClientsList:[...this.state.ClientsList,value], Stakeholders:[...this.state.Stakeholders,value.name]});
+        this.state.Stakeholders.sort();
     }
 
     addOpportunities(value){
@@ -122,15 +123,14 @@ export default class App extends Component {
 
     sortname(){
         if(this.state.name){
-            this.setState({name:false});
             this.state.ClientsList.sort(function(first, second){
-                return -(first.name.localeCompare(second.name));});
+                return second.name.localeCompare(first.name);});
+                this.setState({name:false});
             this.update();
-            return true;
+            return null;
         }
         this.state.ClientsList.sort(function(first, second){
             return first.name.localeCompare(second.name);});
-        this.state.Stakeholders.sort();
         this.setState({name:true});
         this.update();
     }
