@@ -9,7 +9,7 @@ export default class AddOpportunity extends Component {
 
     state = {modalOpen: false,name:"",
         stakeholder:"",
-        priority:"Abierto",
+        priority:"En proceso",
         colour:"#ffc107",
         description:"",
         product:"",
