@@ -82,7 +82,7 @@ export default class App extends Component {
             {name:"Oportunidad 4", priority:"Cancelada", colour:"#ff1744", stakeholder:"Mulesoft",
                 description:"Mayor eficiencia de procesamiento de datos", product:"GSMO", version:"2.5.1"},
             {name:"Oportunidad 5", priority:"Aprobada", colour:"#4caf50", stakeholder:"YPF",
-                description:"Creación de un nuevo producto en colaboración con YPF para la adminitación de toda su empresa", product:"-", version:"-"}],
+                description:"Creación de un nuevo producto en colaboración con YPF para la administración de toda su empresa", product:"-", version:"-"}],
 
         Stakeholders : ["Amazon", "Facebook","Ford Argentina","Martin Maulhardt","Mulesoft","PSA","YPF"],
         Productsname : ["PSA","PSA 2", "GSMO","SSO 2","SAM3", "SPE"],
