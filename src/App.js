@@ -10,6 +10,10 @@ import Sales from "./Components-s2/Sales";
 import Typography from "@material-ui/core/Typography";
 import Homerphoto from './Components-s2/images/Homer.gif';
 import Proyectos from './components/Proyectos/Proyectos'
+import Soporte from './Components-s3/Soporte';
+import CrearTicket from './Components-s3/CrearTicket';
+import AtenderLlamada from './Components-s3/AtenderLlamada';
+import Horas from './Components-s3/Horas';
 
 export default class App extends Component {
     constructor(props) {
@@ -295,6 +299,23 @@ export default class App extends Component {
 
                     <Route path="/employees-s2" render={Empleados}/>
 
+			  <Route
+				exact
+				path="/Soporte"
+				render={RenderSoporte} />
+			  <Route
+				exact
+				path="/Soporte/CrearTicket"
+				render={RenderCrearTicket} />
+			  <Route
+				exact
+				path="/Soporte/AtenderLlamada"
+				render={RenderAtenderLlamada} />
+			  <Route
+				exact
+				path="/GestionDeHoras"
+				render={RenderGestionDeHoras} />
+
                     <Route path="/sales-s2" render={() =>
                         <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
                             <CssBaseline />
@@ -361,3 +382,45 @@ function Proyectos_S1() {
             </div>
         </div>
 }
+
+function RenderSoporte() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <Soporte/>
+        </div>
+    </div>
+}
+
+function RenderCrearTicket() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <CrearTicket/>
+        </div>
+    </div>
+}
+
+function RenderAtenderLlamada() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <AtenderLlamada/>
+        </div>
+    </div>
+}
+
+function RenderGestionDeHoras() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <Horas/>
+        </div>
+    </div>
+}
+
+
