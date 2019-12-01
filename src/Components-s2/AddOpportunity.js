@@ -9,8 +9,8 @@ export default class AddOpportunity extends Component {
 
     state = {modalOpen: false,name:"",
         stakeholder:"",
-        priority:"Abierto",
-        colour:"#ff1744",
+        priority:"En proceso",
+        colour:"#ffc107",
         description:"",
         product:"",
         version:"",addButton:false};
@@ -18,7 +18,6 @@ export default class AddOpportunity extends Component {
     handleOpen = () => this.setState({modalOpen: true});
     handleClose = () => this.setState({modalOpen: false,name:"",
         stakeholder:"",
-        priority:"Abierto",
         description:"",
         product:"",
         version:"",

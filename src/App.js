@@ -10,6 +10,11 @@ import Sales from "./Components-s2/Sales";
 import Typography from "@material-ui/core/Typography";
 import Homerphoto from './Components-s2/images/Homer.gif';
 import Proyectos from './components/Proyectos/Proyectos'
+import Soporte from './Components-s3/Soporte';
+import CrearTicket from './Components-s3/CrearTicket';
+import AtenderLlamada from './Components-s3/AtenderLlamada';
+import Horas from './Components-s3/Horas';
+import Pointless from './Components-s2/images/pointless.gif'
 
 export default class App extends Component {
     constructor(props) {
@@ -82,7 +87,7 @@ export default class App extends Component {
             {name:"Oportunidad 4", priority:"Cancelada", colour:"#ff1744", stakeholder:"Mulesoft",
                 description:"Mayor eficiencia de procesamiento de datos", product:"GSMO", version:"2.5.1"},
             {name:"Oportunidad 5", priority:"Aprobada", colour:"#4caf50", stakeholder:"YPF",
-                description:"Creación de un nuevo producto en colaboración con YPF para la adminitación de toda su empresa", product:"-", version:"-"}],
+                description:"Creación de un nuevo producto en colaboración con YPF para la administración de toda su empresa", product:"-", version:"-"}],
 
         Stakeholders : ["Amazon", "Facebook","Ford Argentina","Martin Maulhardt","Mulesoft","PSA","YPF"],
         Productsname : ["PSA","PSA 2", "GSMO","SSO 2","SAM3", "SPE"],
@@ -106,6 +111,7 @@ export default class App extends Component {
     addClient(value){
         if(this.state.Stakeholders.includes(value.name)) return null;
         this.setState({ClientsList:[...this.state.ClientsList,value], Stakeholders:[...this.state.Stakeholders,value.name]});
+        this.state.Stakeholders.sort();
     }
 
     addOpportunities(value){
@@ -122,15 +128,14 @@ export default class App extends Component {
 
     sortname(){
         if(this.state.name){
-            this.setState({name:false});
             this.state.ClientsList.sort(function(first, second){
-                return -(first.name.localeCompare(second.name));});
+                return second.name.localeCompare(first.name);});
+                this.setState({name:false});
             this.update();
-            return true;
+            return null;
         }
         this.state.ClientsList.sort(function(first, second){
             return first.name.localeCompare(second.name);});
-        this.state.Stakeholders.sort();
         this.setState({name:true});
         this.update();
     }
@@ -256,6 +261,7 @@ export default class App extends Component {
                 <Switch>
                     <Route exact path="/" render={Main}/>
                     <Route path="/HomerPage" render={Homer}/>
+                    <Route path="/Pointless" render={pointless}/>
                     <Route path="/projects-s1" render={Proyectos_S1}/>
                     <Route path="/products-s2" render={ () =>
                         <div id="page" style={{float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
@@ -295,6 +301,23 @@ export default class App extends Component {
 
                     <Route path="/employees-s2" render={Empleados}/>
 
+			  <Route
+				exact
+				path="/Soporte"
+				render={RenderSoporte} />
+			  <Route
+				exact
+				path="/Soporte/CrearTicket"
+				render={RenderCrearTicket} />
+			  <Route
+				exact
+				path="/Soporte/AtenderLlamada"
+				render={RenderAtenderLlamada} />
+			  <Route
+				exact
+				path="/GestionDeHoras"
+				render={RenderGestionDeHoras} />
+
                     <Route path="/sales-s2" render={() =>
                         <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
                             <CssBaseline />
@@ -328,7 +351,7 @@ function Main() {
         <NavigationBar />
         <div style={{marginTop:"20%",paddingLeft:"30%",paddingRight:"30%"}}>
             <Typography variant="h4" gutterBottom style={{textAlign: "center"}}>Bienvenidos a PSA System</Typography>
-            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Seleccione el area requerida</Typography>
+            <Typography variant="body1" gutterBottom style={{textAlign: "center"}}>Seleccione el área requerida</Typography>
         </div>
     </div>
 }
@@ -353,6 +376,15 @@ function Homer() {
     </div>
 }
 
+function pointless() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <div>
+            <img src={Pointless} alt="homer" style={{height: "100vh" ,width: "100vw"}}/>
+        </div>
+    </div>
+}
+
 function Proyectos_S1() {
     return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
             <CssBaseline />
@@ -361,3 +393,45 @@ function Proyectos_S1() {
             </div>
         </div>
 }
+
+function RenderSoporte() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <Soporte/>
+        </div>
+    </div>
+}
+
+function RenderCrearTicket() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <CrearTicket/>
+        </div>
+    </div>
+}
+
+function RenderAtenderLlamada() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <AtenderLlamada/>
+        </div>
+    </div>
+}
+
+function RenderGestionDeHoras() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <NavigationBar />
+        <div id="content" style={{height: "90%", width: "100%", overflow: "auto"}}>
+            <Horas/>
+        </div>
+    </div>
+}
+
+

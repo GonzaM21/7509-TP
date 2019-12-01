@@ -59,10 +59,28 @@ export default class NavigationBar extends Component {
                     style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
                 Ventas
             </Button>
+            <Button id="soporte"
+                    component={Link}
+                    to="/Soporte"
+                    color='inherit'
+                    className="sales"
+                    name="soporteButton"
+                    style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
+                Soporte
+            </Button>
+            <Button id="horas"
+                    component={Link}
+                    to="/GestionDeHoras"
+                    color='inherit'
+                    className="sales"
+                    name="gestionDeHorasButton"
+                    style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
+                Gestión de horas
+            </Button>
             <IconButton component={Link} to="/HomerPage" style={{textAlign:'center', color: "inherit", float: "right",marginTop:".1%"}}>
                 <AccountCircleIcon fontSize={"large"}/>
             </IconButton>
-            <IconButton style={{textAlign:'center', color: "inherit", float: "right",marginTop:".5%"}}>
+            <IconButton component={Link}  to="/Pointless" style={{textAlign:'center', color: "inherit", float: "right",marginTop:".5%"}}>
                 <Badge badgeContent={9}
                        color="error">
                     <NotificationsIcon style={{margin:0}}/>
