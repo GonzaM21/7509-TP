@@ -14,6 +14,7 @@ import Soporte from './Components-s3/Soporte';
 import CrearTicket from './Components-s3/CrearTicket';
 import AtenderLlamada from './Components-s3/AtenderLlamada';
 import Horas from './Components-s3/Horas';
+import Pointless from './Components-s2/images/pointless.gif'
 
 export default class App extends Component {
     constructor(props) {
@@ -260,6 +261,7 @@ export default class App extends Component {
                 <Switch>
                     <Route exact path="/" render={Main}/>
                     <Route path="/HomerPage" render={Homer}/>
+                    <Route path="/Pointless" render={pointless}/>
                     <Route path="/projects-s1" render={Proyectos_S1}/>
                     <Route path="/products-s2" render={ () =>
                         <div id="page" style={{float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
@@ -370,6 +372,15 @@ function Homer() {
         <CssBaseline />
         <div>
             <img src={Homerphoto} alt="homer" style={{height: "100vh" ,width: "100vw"}}/>
+        </div>
+    </div>
+}
+
+function pointless() {
+    return <div id="page" style={{position:"absolute",float: "left", height: "100vh", width: "100vw", overflow: "hidden"}}>
+        <CssBaseline />
+        <div>
+            <img src={Pointless} alt="homer" style={{height: "100vh" ,width: "100vw"}}/>
         </div>
     </div>
 }
